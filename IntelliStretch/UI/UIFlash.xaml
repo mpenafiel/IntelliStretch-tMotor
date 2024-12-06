@@ -1,0 +1,13 @@
+﻿<GameLib:RehabGameBase x:Class="IntelliStretch.UI.UIFlash"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:GameLib="clr-namespace:RehabGameLib;assembly=RehabGameLib"
+    Loaded="uiFlash_Loaded">
+    <Grid>
+        <Grid x:Name="gridFlash" />
+        <Grid x:Name="gridPreview" Visibility="Collapsed">
+            <Image x:Name="imgGame"/>
+        </Grid>        
+    </Grid>
+
+</GameLib:RehabGameBase>

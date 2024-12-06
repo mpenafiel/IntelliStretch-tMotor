@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <ImageSource x:Key="imgDevice">../images/ArmStretch_Device.png</ImageSource>
+    <ImageSource x:Key="imgJoint">../images/Elbow_Stretching.png</ImageSource>
+    <ImageSource x:Key="imgNeutral">../images/arm_elbow_neutral.png</ImageSource>
+    <ImageSource x:Key="imgFlexion">../images/arm_elbow_extension.png</ImageSource>
+    <ImageSource x:Key="imgExtension">../images/arm_elbow_flexion.png</ImageSource>
+    <ImageSource x:Key="imgGuideLines">../images/elbow_angle_lines.png</ImageSource>
+    <sys:String x:Key="txtFlexion">Extension</sys:String>
+    <sys:String x:Key="txtExtension">Flexion</sys:String>
+    
+</ResourceDictionary>

@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="IntelliStretch.UserControls.Charting.SectorChart"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Name="ucSectorChart">
+
+    <Path Stroke="{Binding Stroke, ElementName=ucSectorChart}" StrokeThickness="2" Fill="{Binding Fill, ElementName=ucSectorChart}">
+        <Path.Data>
+            <PathGeometry>
+                <PathFigure IsClosed="True" StartPoint="{Binding CenterPoint, ElementName=ucSectorChart}">
+                    <LineSegment x:Name="lineSeg" />
+                    <ArcSegment x:Name="arcSeg" SweepDirection="Clockwise" />
+                </PathFigure>
+            </PathGeometry>
+        </Path.Data>
+    </Path>
+    
+</UserControl>

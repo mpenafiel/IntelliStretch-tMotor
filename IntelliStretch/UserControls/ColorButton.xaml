@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="IntelliStretch.UserControls.ColorButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Height="Auto" Width="Auto" Name="colorButton" Cursor="Arrow">
+
+    <UserControl.Resources>
+
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background"  Value="LightBlue"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="0" Color="DimGray" BlurRadius="10" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="4" Color="DimGray" BlurRadius="20" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Button Content="{Binding Text, ElementName=colorButton}" Style="{StaticResource ButtonStyle}" FontSize="{Binding TextFontSize, ElementName=colorButton}" FontWeight="DemiBold" Click="Button_Click" Cursor="Arrow">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="{Binding GradientColor, ElementName=colorButton}" Offset="0.1"/>
+                    <GradientStop Color="{Binding Color, ElementName=colorButton}" Offset="0.5"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Foreground>
+                <LinearGradientBrush>
+                    <GradientStop Color="{Binding TextColor, ElementName=colorButton}"/>
+                </LinearGradientBrush>
+            </Button.Foreground>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="{Binding ButtonCornerRadius, ElementName=colorButton}"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </Grid>
+</UserControl>

@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="IntelliStretch.UI.UIPrelimSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:UserControls="clr-namespace:IntelliStretch.UserControls"
+    xmlns:value_converters="clr-namespace:IntelliStretch.ValueConverters"
+    x:Name="uiPrelimSettings" Loaded="uiPrelimSettings_Loaded">
+    <UserControl.Resources>
+        <value_converters:BoolScaleConverter x:Key="boolScaleConverter" />
+        
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Slider Grid.Column="0" x:Name="sliderValuePicker" Margin="20" Orientation="Vertical" SmallChange="1" IsSnapToTickEnabled="True" ValueChanged="sliderValuePicker_ValueChanged" Opacity="0.0"/>
+
+        <Grid RenderTransformOrigin="0.5,0.5" Grid.Column="2" HorizontalAlignment="Right" Margin="50">
+            <Grid.RenderTransform>
+                <ScaleTransform ScaleX="{Binding IsReflected, ElementName=uiPrelimSettings, Converter={StaticResource boolScaleConverter}, Mode=OneWay}" ScaleY="1" />
+            </Grid.RenderTransform>
+            <Image Source="{Binding GuideLinesImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Margin="50"/>
+            <Image x:Name="imgNeutral" Source="{Binding NeutralImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Margin="50"/>
+            <Image x:Name="imgFlexion" Source="{Binding FlexionImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Visibility="Collapsed" Margin="50"/>
+            <Image x:Name="imgExtension" Source="{Binding ExtensionImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Visibility="Collapsed" Margin="50"/>
+
+            <Border Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}" Panel.ZIndex="-1"/>
+        </Grid>
+
+        <StackPanel Grid.Column="1">
+            <Border Background="{DynamicResource SecondaryBlueColor}" CornerRadius="5" Padding="10">
+                <StackPanel>
+                    <TextBlock 
+                        Height="24" 
+                        Text="Neutral Position" 
+                        TextWrapping="Wrap" 
+                        FontWeight="Bold"
+                        Foreground="{DynamicResource TertiaryTextColor}"
+                        FontSize="16"
+                        Margin="10,5,5,0"/>
+                    <Button
+                        x:Name="setNeutral"
+                        Content="Set zero"
+                        GotFocus="setting_GotFocus"
+                        Style="{DynamicResource GeneralButtonStyle}"
+                        Click="btnSetNeutral_Click" 
+                        Height="28"
+                        FontSize="12"
+                        Margin="5,0,5,5"/>
+
+                    <UserControls:FlatTextButton x:Name="setFlexion" FontWeight="Bold" Caption="{Binding FlexionName, ElementName=uiPrelimSettings, StringFormat=Max {0}:}" ButtonText="Measure" GotFocus="setting_GotFocus" ButtonClick="Measure_ButtonClick"/>
+
+                    <UserControls:FlatTextButton x:Name="setExtension" FontWeight="Bold" Caption="{Binding ExtensionName, ElementName=uiPrelimSettings, StringFormat=Max {0}:}" Margin="0,5" 
+                         ButtonText="Measure" GotFocus="setting_GotFocus" ButtonClick="Measure_ButtonClick"/>
+
+                    <Border x:Name="exRangeBdr" BorderThickness="2" CornerRadius="5" Grid.Row="4" GotFocus="exRangeBdr_GotFocus"  LostFocus="exRangeBdr_LostFocus" >
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Margin="10,5">
+                                <TextBlock  Height="24" Text="Extra Range" TextWrapping="Wrap" Foreground="{DynamicResource TertiaryTextColor}" FontSize="16" FontWeight="Bold"/>
+                                <StackPanel Orientation= "Horizontal">
+                                    <TextBox
+                                        x:Name="setExRange"
+                                        Height="28"
+                                        Width="100"
+                                        TextWrapping="Wrap"
+                                        Padding="10,0"
+                                        FontSize="16"
+                                        IsReadOnly="True"
+                                        FontWeight="Bold"
+                                        VerticalContentAlignment="Center">
+                                        <TextBox.Resources>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="CornerRadius" Value="5"/>
+                                            </Style>
+                                            <Style TargetType="{x:Type TextBox}">
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                            </Style>
+                                        </TextBox.Resources>
+                                    </TextBox>
+                                </StackPanel>
+                            </StackPanel>
+                            <UserControls:HorizontalScroller x:Name="exRangeScroller" Margin="0,5" VerticalAlignment="Bottom" HorizontalAlignment="Center" ButtonMinClick="exRangeScroller_ButtonMinClick" ButtonMaxClick="exRangeScroller_ButtonMaxClick"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+            
+
+            <Button x:Name="btnApplyGeneralSettings" Style="{DynamicResource GeneralButtonStyle}" Content="Set" Height="50" Margin="0,5,0,0" HorizontalAlignment="Stretch" Click="btnApplyGeneralSettings_Click"/>
+
+            <Border Background="{DynamicResource PrimaryBlueColor}" Grid.Row="1" Height="50" Margin="0,10,0,0" CornerRadius="5,5,0,0">
+                <Grid>
+                    <TextBlock Text="Control Measures" Margin="10,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" Foreground="{DynamicResource PrimaryTextColor}"/>
+                </Grid>
+            </Border>
+
+            <Border Background="{DynamicResource SecondaryBlueColor}" Grid.Row="2" CornerRadius="0,0,5,5" Margin="0,0,0,10">
+                <Grid Margin="10,20">
+                    <TextBlock x:Name="txtDataInfo"
+                FontSize="20" 
+                TextWrapping="Wrap" 
+                TextAlignment="Justify"
+                FontWeight="SemiBold"
+                Foreground="{DynamicResource TertiaryTextColor}"/>
+                </Grid>
+            </Border>
+
+            <UserControls:EmbeddedDialog Grid.Row="3" DialogText="Please make sure your stop switch is enabled !" DialogTitle="Caution" DialogWidth="240" VerticalAlignment="Bottom"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

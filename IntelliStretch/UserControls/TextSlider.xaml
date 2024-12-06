@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="IntelliStretch.UserControls.TextSlider"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Name="textSlider" Margin="20,0">
+    <UniformGrid Rows="2">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Text, ElementName=textSlider}" FontSize="{Binding TextFontSize, ElementName=textSlider}" VerticalAlignment="Center" />
+            <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Foreground="Red" FontWeight="Bold" FontSize="{Binding TextFontSize, ElementName=textSlider}" Text="{Binding Value, ElementName=sliderValue}" />
+        </StackPanel>
+        <Slider x:Name="sliderValue" VerticalAlignment="Center" TickPlacement="BottomRight" SmallChange="1" IsSnapToTickEnabled="True" AutoToolTipPlacement="BottomRight" 
+                Minimum="{Binding Minimum, ElementName=textSlider}" Maximum="{Binding Maximum, ElementName=textSlider}" 
+                Value="{Binding Value, ElementName=textSlider, Mode=TwoWay}" TickFrequency="{Binding TickFrequency, ElementName=textSlider}" ValueChanged="sliderValue_ValueChanged">
+        </Slider>        
+
+    </UniformGrid>
+</UserControl>

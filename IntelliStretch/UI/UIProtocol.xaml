@@ -1,0 +1,239 @@
+﻿<UserControl x:Class="IntelliStretch.UI.UIProtocol"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:UserControls="clr-namespace:IntelliStretch.UserControls"
+    xmlns:value_converters="clr-namespace:IntelliStretch.ValueConverters"
+    x:Name="uiProtocol">
+    <UserControl.Resources>
+        <value_converters:BoolReverseConverter x:Key="boolReverseConverter" />
+        <Storyboard x:Key="sbSlideIn">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="bdrProtocol" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="700"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="0" KeySpline="0,0.7,0.2,1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="sbSlideOut" Completed="aniSlideOut_Completed">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="bdrProtocol" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="700" KeySpline="0,0.7,0.2,1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid Background="#C2222222">
+        <Border x:Name="bdrProtocol" Background="{DynamicResource PrimaryTextColor}" BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
+                HorizontalAlignment="Center" VerticalAlignment="Center" Height="635" Width="800">
+            <Border.RenderTransform>
+                <TranslateTransform/>
+            </Border.RenderTransform>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="65" />
+                </Grid.RowDefinitions>
+                <TabControl x:Name="tabCtrlConfig" FontSize="16" Style="{DynamicResource TabControlStyle}" Width="750" VerticalAlignment="Stretch" Margin="25">
+                    <TabItem x:Name="tabGeneral" Header="General Settings" Style="{DynamicResource TabItemStyle}" Width="160">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <GroupBox Margin="12,8" Header="Preliminary Settings" Padding="10" Foreground="{DynamicResource TertiaryTextColor}" FontSize="18.667" BorderBrush="#FF0046D5">
+                                <UniformGrid Rows="3">
+                                    <UserControls:TextSlider x:Name="sliderFlexMax" Text="{Binding FlexionName, ElementName=uiProtocol, StringFormat=Max {0} [deg]:}" Maximum="90" TickFrequency="5"/>
+                                    <UserControls:TextSlider x:Name="sliderExtMax" Text="{Binding ExtensionName, ElementName=uiProtocol, StringFormat=Max {0} [deg]:}" Maximum="90" TickFrequency="5"/>
+                                    <UserControls:TextSlider x:Name="sliderExRange" Text="Extra Range [deg]:" />
+                                </UniformGrid>
+                            </GroupBox>
+                            <GroupBox Grid.Row="1" Margin="12,8" Header="Other Settings" Padding="10" Foreground="{DynamicResource TertiaryTextColor}" FontSize="18.667" BorderBrush="#FF0046D5">
+                                <UniformGrid Columns="2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Sampling Rate [Hz]:" FontSize="16" Margin="12,0" VerticalAlignment="Center" />
+                                        <ComboBox HorizontalAlignment="Left" Margin="20,0,0,0" Name="cboSampRate" Width="100" FontSize="16" Height="28" SelectedIndex="1">
+                                            <ComboBoxItem>20</ComboBoxItem>
+                                            <ComboBoxItem>50</ComboBoxItem>
+                                            <ComboBoxItem>100</ComboBoxItem>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Save Data File:" FontSize="16" Margin="12,0" VerticalAlignment="Center" />
+                                        <ToggleButton x:Name="tgBtnSave" Width="100" Height="30" Margin="5" Click="tgBtnSave_Click">
+                                            <Ellipse x:Name="ellipseSaveing" Width="24" Height="24" Fill="Red" />
+                                        </ToggleButton>
+                                    </StackPanel>
+                                </UniformGrid>
+                            </GroupBox>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="Passive Stretching" x:Name="tabStretch" Style="{DynamicResource TabItemStyle}" Width="170">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <GroupBox Margin="12,8" Header="General" FontSize="18.667"  Padding="10" BorderBrush="#FF0046D5"  Foreground="{DynamicResource TertiaryTextColor}">
+                                <UniformGrid Columns="2">
+                                    <UserControls:TextSlider x:Name="sliderStretchDuration" Text="Duration [min]:" Minimum="1" Maximum="100"/>
+                                    <UserControls:TextSlider x:Name="sliderStretchHoldTime"  Text="Holding Time [sec]:" Maximum="100" />
+                                </UniformGrid>
+                            </GroupBox>
+                            <GroupBox Grid.Row="1" Margin="12,8" Padding="10" Header="Velocity [deg/sec]" FontSize="18.667" BorderBrush="#FF0046D5"  Foreground="{DynamicResource TertiaryTextColor}">
+                                <UniformGrid Columns="2">
+                                    <UserControls:TextSlider x:Name="sliderStretchFlexV" Minimum="5" Maximum="60" TickFrequency="5" 
+                                                             Text="{Binding Path=FlexionName, ElementName=uiProtocol, StringFormat={}{0}:}" />
+                                    <UserControls:TextSlider x:Name="sliderStretchExtV" Minimum="5" Maximum="30" TickFrequency="5" 
+                                                             Text="{Binding Path=ExtensionName, ElementName=uiProtocol, StringFormat={}{0}:}" />
+                                </UniformGrid>
+                            </GroupBox>
+                            <GroupBox Grid.Row="2" Margin="12,8" Padding="10" Header="Torque Limit [Nm]" FontSize="18.667" BorderBrush="#FF0046D5"  Foreground="{DynamicResource TertiaryTextColor}">
+                                <UniformGrid Columns="2">
+                                    <UserControls:TextSlider x:Name="sliderStretchFlexTq" Minimum="1" Maximum="{Binding FlexionTorqueMax, ElementName=uiProtocol}"  
+                                                             Text="{Binding Path=FlexionName, ElementName=uiProtocol, StringFormat={}{0}:}" />
+                                    <UserControls:TextSlider x:Name="sliderStretchExtTq"  Minimum="1" Maximum="{Binding ExtensionTorqueMax, ElementName=uiProtocol}"  
+                                                             Text="{Binding Path=ExtensionName, ElementName=uiProtocol, StringFormat={}{0}:}" />
+                                </UniformGrid>
+                            </GroupBox>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="Active Movement" x:Name="tabGames" Style="{DynamicResource TabItemStyle}" Width="170">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <GroupBox x:Name="groupAssist" Margin="12,8" Header="Assistive Settings" Foreground="{DynamicResource TertiaryTextColor}" FontSize="18.667" BorderBrush="#FF0046D5" Visibility="Visible">
+                                <UniformGrid Rows="3">
+                                    <UserControls:TextSlider x:Name="sliderAssistLevel" Text="Assistive Level:" Visibility= "Collapsed" />
+                                    <UserControls:TextSlider x:Name="sliderAssistV" Text="Assistive Velocity:" Maximum="60" TickFrequency="5"/>
+                                    <UserControls:TextSlider x:Name="sliderAssistDelay" Text="Delay Time [sec]:" />
+                                </UniformGrid>
+                            </GroupBox>
+
+                            <GroupBox x:Name="groupResist" Grid.Row="1" Margin="12,8" Header="Resistive Settings" Foreground="{DynamicResource TertiaryTextColor}" FontSize="18.667" BorderBrush="#FF0046D5">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <UniformGrid Columns="2">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                            <TextBlock Text=" Control Direction:" FontSize="16" Margin="12,0" VerticalAlignment="Center" />
+                                            <ComboBox HorizontalAlignment="Left" Margin="20,0,0,0" Name="cboCtrlDirection" Width="100" FontSize="16" Height="28">
+                                                <ComboBoxItem>X</ComboBoxItem>
+                                                <ComboBoxItem>Y</ComboBoxItem>
+                                            </ComboBox>
+                                        </StackPanel>
+                                        <UserControls:UserCheckBox x:Name="chkNoLoading" Height="36" Text=" No Loading..." Foreground="{DynamicResource TertiaryTextColor}" FontSize="16" IsChecked="True" />
+                                    </UniformGrid>
+                                    <UserControls:TextSlider x:Name="sliderResistScale" Grid.Row="1" Text="Scaling Factor:" Maximum="20" />
+                                    <UserControls:TextSlider Grid.Row="2" x:Name="sliderResistance" Text="Resistance:"/>
+                                    <!-- <UniformGrid Grid.Row="2" Columns="2" IsEnabled="{Binding IsChecked, ElementName=chkNoLoading, Mode=Default, Converter={StaticResource boolReverseConverter}}"> -->
+                                        <!--<UserControls:TextSlider x:Name="sliderResistFlex" Text="{Binding Path=FlexionName, ElementName=uiProtocol, StringFormat={}{0} Resistance:}" />-->
+                                        <!--<UserControls:TextSlider x:Name="sliderResistExt" Text="{Binding Path=ExtensionName, ElementName=uiProtocol, StringFormat={}{0} Resistance:}" />-->
+                                    <!--</UniformGrid>-->
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem x:Name="tabDAQ" Header="DAQ Settings" Style="{DynamicResource TabItemStyle}" Width="150">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Model: " Margin="12,12,12,6" Padding="0" Foreground="{DynamicResource TertiaryTextColor}"/>
+                            <TextBox x:Name="textboxModel" Grid.Row="0" Grid.Column="1" Margin="12, 12, 24, 6" Padding="3" Grid.ColumnSpan="2" Style="{DynamicResource TextBoxStyle}"/>
+
+                            <GroupBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Header="Channel 1" BorderBrush="{DynamicResource PrimaryGrayColor}" Opacity="1" Margin="12,6" Padding="0" Foreground="{DynamicResource TertiaryTextColor}"  >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Name: " Margin="6" Padding="0" Foreground="{DynamicResource TertiaryTextColor}"/>
+                                    <TextBox x:Name="textboxName1"  Grid.Row="0" Grid.Column="1" Text="{Binding Path=FlexionName, ElementName=uiProtocol}" Margin="6" Padding="3" Style="{DynamicResource TextBoxStyle}"/>
+
+                                    <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Assignment: " Margin="6" Padding="0" Foreground="{DynamicResource TertiaryTextColor}"/>
+                                    <ComboBox x:Name="physicalChannelComboBox1" Grid.Row="1" Grid.Column="1" Width="100" HorizontalAlignment="Right" Margin="6" />
+                                </Grid>
+                            </GroupBox>
+
+                            <GroupBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Header="Channel 2" BorderBrush="{DynamicResource PrimaryGrayColor}" Opacity="1" Margin="12,6" Padding="0" Foreground="{DynamicResource TertiaryTextColor}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Name: " Margin="6" Padding="0" Foreground="{DynamicResource TertiaryTextColor}"/>
+                                    <TextBox x:Name="textboxName2" Grid.Row="0" Grid.Column="1" Text="{Binding Path=ExtensionName, ElementName=uiProtocol}" Margin="6" Padding="3" Style="{DynamicResource TextBoxStyle}"/>
+
+                                    <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Assignment: " Margin="6" Padding="0" Foreground="{DynamicResource TertiaryTextColor}"/>
+                                    <ComboBox x:Name="physicalChannelComboBox2" Grid.Row="1" Grid.Column="1" Width="100" HorizontalAlignment="Right" Margin="6"/>
+                                </Grid>
+                            </GroupBox>
+                            <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Sample Rate [Hz]: " Margin="12,6" Padding="0" Foreground="{DynamicResource TertiaryTextColor}"/>
+                            <ComboBox x:Name="comboBoxSampleRate" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" SelectedIndex="1" Margin="24,6">
+                                <ComboBoxItem>500</ComboBoxItem>
+                                <ComboBoxItem>1000</ComboBoxItem>
+                                <ComboBoxItem>2000</ComboBoxItem>
+                            </ComboBox>
+
+                            <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Samples per Channel: " Margin="12,6" Padding="0" Foreground="{DynamicResource TertiaryTextColor}"/>
+                            <ComboBox x:Name="comboBoxSampPerCh" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" SelectedIndex="3" Margin="24,6">
+                                <ComboBoxItem>1</ComboBoxItem>
+                                <ComboBoxItem>10</ComboBoxItem>
+                                <ComboBoxItem>50</ComboBoxItem>
+                                <ComboBoxItem>100</ComboBoxItem>
+                                <ComboBoxItem>150</ComboBoxItem>
+                                <ComboBoxItem>200</ComboBoxItem>
+                                <ComboBoxItem>250</ComboBoxItem>
+                            </ComboBox>
+
+                            <Button x:Name="btnRefresh" Grid.Row="5" Grid.Column="1" Content="Refresh" FontSize="20" Width="120" Height="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,6" Style="{DynamicResource GeneralButtonStyle}" Click="btnRefresh_Click"/>
+
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+
+                <Grid Grid.Row="1"  VerticalAlignment="Bottom" Margin="25,0,25,25">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnSaveDefault" Content="Save" Width="120" Height="40" FontSize="20" Style="{DynamicResource GeneralButtonStyle}" Click="btnSaveDefault_Click"/>
+                    <Button x:Name="btnCancelProtocol" Grid.Column="2" Content="Cancel" Width="120" Height="40" FontSize="20" Style="{DynamicResource GeneralButtonStyle2}" Click="btnCancelProtocol_Click"/>
+                    <Button x:Name="btnAcceptProtocol" Grid.Column="3" Content="Accept" Style="{DynamicResource GeneralButtonStyle}" Width="120" Height="40" FontSize="20" Click="btnAcceptProtocol_Click"/>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

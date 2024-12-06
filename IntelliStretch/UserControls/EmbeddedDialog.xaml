@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="IntelliStretch.UserControls.EmbeddedDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IntelliStretch.UserControls"
+             mc:Ignorable="d" x:Name="embeddedDialog">
+    <StackPanel Orientation="Vertical" Width="{Binding DialogWidth, ElementName=embeddedDialog}">
+        <Border Background="{DynamicResource PrimaryBlueColor}" Grid.Row="1" Height="50" CornerRadius="5,5,0,0">
+            <Grid>
+                <TextBlock Text="{Binding DialogTitle, ElementName=embeddedDialog}" Margin="10,0" Padding="10,20" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" Foreground="{DynamicResource PrimaryTextColor}"/>
+            </Grid>
+        </Border>
+
+        <Border Background="{DynamicResource  SecondaryBlueColor}" Grid.Row="1" CornerRadius="0,0,5,5" Padding="20,10">
+            <Grid>
+                <TextBlock Text="{Binding DialogText, ElementName=embeddedDialog}" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" Foreground="{DynamicResource TertiaryTextColor}"/>
+            </Grid>
+        </Border>
+    </StackPanel>
+</UserControl>

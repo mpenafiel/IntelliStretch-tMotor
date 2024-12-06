@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="IntelliStretch.UI.UIGameLib"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:gamelib="clr-namespace:IntelliStretch.Games"
+    xmlns:UserControls="clr-namespace:IntelliStretch.UserControls"
+    xmlns:value_converters="clr-namespace:IntelliStretch.ValueConverters"
+    Background="#C2222222" Loaded="uiGameLib_Loaded">
+    <UserControl.Resources>
+        <value_converters:ImageSourceConverter x:Key="imageSourceConverter"/>
+        <Storyboard x:Key="sbSlideIn">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="bdrPopup" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="700"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="0" KeySpline="0,0.7,0.2,1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="sbSlideOut" Completed="aniSlideOut_Completed">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="bdrPopup" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="700" KeySpline="0,0.7,0.2,1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <DataTemplate x:Key="localListTemplate" DataType="{x:Type gamelib:GameInfo}">
+            <!-- Rectangle around a Userprofile-object -->
+            <Border x:Name="personsBorder" Style="{StaticResource UserBorderStyle}">
+                <Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Margin="30,10" Width="120" Height="120">
+                            <Image.Source>
+                                <MultiBinding Converter="{StaticResource imageSourceConverter}">
+                                    <Binding Path="Name"/>
+                                    <Binding Path="Preview"/>
+                                </MultiBinding>
+                            </Image.Source>
+                        </Image> 
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Padding="0,10" Text="{Binding Name}" />
+                            <TextBlock Foreground="DarkSlateBlue" Width="400" FontSize="14" Padding="0,10" TextWrapping="Wrap" Text="{Binding Description}" />
+                        </StackPanel> 
+                    </StackPanel>      
+                    <StackPanel Margin="0,0,20,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="120">
+                        <UserControls:UserCheckBox x:Name="chkInUse" Text="Display" FontSize="14" Height="40" Margin="0,10" IsChecked="{Binding IsInUse, Mode=TwoWay}" MouseLeftButtonDown="chkInUse_MouseLeftButtonDown"/>
+                        <Button x:Name="btnDeleteGame" Content="Delete" Height="40" Margin="0,10" FontSize="12" Style="{DynamicResource GeneralButtonStyle}" Click="btnDeleteGame_Click"/>
+                    </StackPanel>    
+                </Grid>
+            </Border>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" Value="True">
+                    <Setter TargetName="personsBorder" Property="Style" Value="{StaticResource SelectedBorderStyle}"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    <Grid Background="#C2222222">
+        <Border x:Name="bdrPopup" Background="{DynamicResource PrimaryTextColor}" BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
+                HorizontalAlignment="Center" VerticalAlignment="Center" Height="560" Width="850">
+            <Border.RenderTransform>
+                <TranslateTransform/>
+            </Border.RenderTransform>
+            <Grid x:Name="gridPopup">
+
+                <UserControls:ColorButton
+                    x:Name="btnCloseMenu"
+                    Margin="0,20,20,0"
+                    Color="DarkRed"
+                    GradientColor="IndianRed"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Text="X"
+                    TextColor="WhiteSmoke"
+                    Width="28"
+                    Height="28"
+                    ButtonCornerRadius="14"
+                    Click="btnCloseMenu_Click"/>
+
+                <TabControl x:Name="tabGameLib" FontSize="20" Margin="0,20" SelectionChanged="tabGameLib_SelectionChanged" Width="800" Style="{DynamicResource TabControlStyle}">                 
+                    <TabItem x:Name="tabGames" Header="Games" Style="{DynamicResource TabItemStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="100" />
+                            </Grid.RowDefinitions>
+                            <ListBox x:Name="lstGames" Margin="10,20,10,0" Background="{DynamicResource SecondaryBlueColor}" BorderThickness="0" FontSize="32" FontWeight="Bold" HorizontalContentAlignment="Stretch" ItemTemplate="{StaticResource localListTemplate}"/>
+                            <Button x:Name="btnAddGame" Grid.Row="1" Margin="20,0,0,0" Content="Add Game" Style="{DynamicResource GeneralButtonStyle}" Width="180" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center"/>                            
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <UserControls:ImageButton x:Name="btnItemUp" Margin="20,0" Image="../images/Arrow_Up.png" ImageMargin="8" BackColor="White" Width="60" Height="60" Click="btnItemUp_Click"/>
+                                <UserControls:ImageButton x:Name="btnItemDown" Margin="20,0" Image="../images/Arrow_Down.png" ImageMargin="8" BackColor="White" Width="60" Height="60" Click="btnItemDown_Click"/>
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                    <TabItem x:Name="tabOnlineGames" Header="Online Game Library" Visibility="Collapsed">
+                        <ListBox x:Name="lstOnlineGames" Margin="10,20" Background="#FFEEEEEE" FontSize="32" FontWeight="Bold" HorizontalContentAlignment="Stretch"  ItemTemplate="{StaticResource localListTemplate}"/>
+                    </TabItem>
+                </TabControl>
+                
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,184 @@
+﻿<Window x:Class="IntelliStretch.MainApp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"	    
+    xmlns:UserControls="clr-namespace:IntelliStretch.UserControls" 
+    xmlns:UI="clr-namespace:IntelliStretch.UI"
+    xmlns:value_converters="clr-namespace:IntelliStretch.ValueConverters"
+    Title="MainApp" x:Name="wndMainApp"
+    Width="1024" Height="640" Background="{DynamicResource PrimaryBlueColor}" WindowState="Maximized" WindowStyle="None" mc:Ignorable="d"
+    Loaded="wndMainApp_Loaded" KeyDown="wndMainApp_KeyDown">
+    <Window.Resources>
+        <ResourceDictionary>
+            <!-- Visual Styles -->
+            <ImageBrush x:Key="background" ImageSource="images/Background.png"/>
+            <ImageBrush x:Key="background_dim" ImageSource="images/Background_dim.png"/>
+            <value_converters:BoolVisibilityConverter x:Key="boolVisibilityConverter" />
+
+            <!-- Start: Button Style -->
+            <Style TargetType="Button" x:Key="BtnNext">
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Background" Value="{DynamicResource SecondaryBlueColor}"/>
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryBlueColor}"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="Height" Value="50"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid SnapsToDevicePixels="True">
+                                <Border CornerRadius="5"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Margin="{TemplateBinding Margin}"/>
+                                <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          SnapsToDevicePixels="True"
+                                          RecognizesAccessKey="True"
+                                          Margin="{TemplateBinding Margin}"
+                                          ContentSource="Content"
+                                          Focusable="False"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background"
+                                    Value="{DynamicResource PrimaryGrayColor}"/>
+                                    <Setter Property="Foreground"
+                                    Value="{DynamicResource PrimaryTextColor}"/>
+
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5" />
+                    </Style>
+                </Style.Resources>
+            </Style>
+            <!-- End: Button Style -->
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid x:Name="gridBackground" Background="{DynamicResource PrimaryBlueColor}" Visibility="{Binding IsSelected, ElementName=tabPrelimSettings, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=true}" />
+        <Grid x:Name="gridMain">
+            <!--Three rows-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            
+            <!--Header - Title-->
+            <TextBlock Margin="80,0,0,0" Text="{Binding SelectedItem.Header, ElementName=tabContent}" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextColor}" FontSize="48" FontWeight="DemiBold" FontFamily="Aptos" 
+                       HorizontalAlignment="Left" VerticalAlignment="Bottom"  Visibility="{Binding IsSelected, ElementName=tabGames, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=false}"/>
+            <StackPanel Margin="100,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="{Binding IsSelected, ElementName=tabGames, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=true}" >
+                <TextBlock x:Name="txtGameTitle" Text="{Binding GameTitle, ElementName=uiGames, Mode=OneWay}" FontFamily="Comic Sans MS" FontSize="68" FontWeight="Bold" Foreground="{DynamicResource PrimaryTextColor}" />
+                <Border Margin="32,8,0,0" Width="65" Height="65" BorderBrush ="#FFf79646" BorderThickness="5" Background="Yellow" CornerRadius="5" VerticalAlignment="Top">
+                    <Border.BitmapEffect>
+                        <DropShadowBitmapEffect Color="Black" Opacity=".5" ShadowDepth="11" Direction="315"/>
+                    </Border.BitmapEffect>
+                    <TextBlock Text="{Binding GameModeString, ElementName=uiGames, Mode=OneWay}" FontFamily="Comic Sans MS" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <Border x:Name="bdrROM" Margin="32,8,0,0" Width="180" Height="65" BorderBrush="#FFf2f2f2" BorderThickness="5" Background="SkyBlue" CornerRadius="5" VerticalAlignment="Top" MouseLeftButtonDown="bdrROM_MouseLeftButtonDown" Cursor="Hand">
+                    <Border.BitmapEffect>
+                        <DropShadowBitmapEffect Color="Black" Opacity=".5" ShadowDepth="11" Direction="315"/>
+                    </Border.BitmapEffect>
+                    <TextBlock Text="{Binding ROMModeString, ElementName=uiGames, Mode=OneWay}" FontFamily="Comic Sans MS" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
+            
+            
+            <!--Middle - Content-->
+            <Border Background="{DynamicResource PrimaryTextColor}" Grid.Row="1" VerticalAlignment="Stretch" Padding="50" Margin="80,15,80,30" CornerRadius="5">
+                <Grid>
+                    <TabControl x:Name="tabContent"  Background="{x:Null}" Style="{StaticResource ContentTabStyle}" Visibility="Hidden" FocusVisualStyle="{x:Null}">
+
+                        <!--TabItem Preparation-->
+                        <TabItem x:Name="tabPreparation" Header="Before You Start...">
+                            <UI:UIPreparation x:Name="uiPreparation" DeviceImage="{DynamicResource imgDevice}"/>
+                        </TabItem>
+
+                        <!--TabItem Connection-->
+                        <TabItem x:Name="tabConnection" Header="Connection">
+                            <UI:UIConnection x:Name="uiConnection" DeviceImage="{DynamicResource imgDevice}" Connction_Click="btnConnect_Click" Start_Click="btnStart_Click" />
+                        </TabItem>
+
+                        <!--TabItem PrelimSettings-->
+                        <TabItem x:Name="tabPrelimSettings" Header="Preliminary Settings">
+                            <UI:UIPrelimSettings x:Name="uiPrelimSettings" NeutralImage="{DynamicResource imgNeutral}" FlexionImage="{DynamicResource imgFlexion}" 
+                                         ExtensionImage="{DynamicResource imgExtension}" GuideLinesImage="{DynamicResource imgGuideLines}" 
+                                         FlexionName="{DynamicResource txtFlexion}" ExtensionName="{DynamicResource txtExtension}" Settings_Done="uiPrelimSettings_Settings_Done" />
+                        </TabItem>
+
+                        <!--TabItem Stretching-->
+                        <TabItem x:Name="tabStretching" Header="Passive Stretching">
+                            <UI:UIStretching x:Name="uiStretching" FlexionName="{DynamicResource txtFlexion}" ExtensionName="{DynamicResource txtExtension}" />
+                        </TabItem>
+
+                        <!--TabItem Games-->
+                        <TabItem x:Name="tabGames" Header="Active Movement">
+                            <UI:UICoverFlow x:Name="uiGames" />
+                        </TabItem>
+
+                        <!--TabItem Evaluation-->
+                        <TabItem x:Name="tabEvaluation" Header="Clinical Evaluation">
+                            <UI:UIEvaluation x:Name="uiEvaluation" FlexionName="{DynamicResource txtFlexion}" ExtensionName="{DynamicResource txtExtension}"
+                                     ExtensionImage="{DynamicResource imgExtension}" FlexionImage="{DynamicResource imgFlexion}"/>
+                        </TabItem>
+
+                        <!--TabItem Report-->
+                        <TabItem x:Name="tabReport" Header="Report">
+                            <UI:UIReport x:Name="uiReport"/>
+                        </TabItem>
+
+                    </TabControl>
+                </Grid>
+            </Border>
+
+            
+            <!--Bottom - Navigation bar-->
+            <UserControls:ImageButton x:Name="btnNavigator" Grid.Row="2" Margin="32,0,0,12" Image="images/Navigator.png" ImageMargin="8" ButtonCornerRadius="5" BackColor="{DynamicResource PrimaryGrayColor}"
+                                                     Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="btnNavigator_Click" />
+            
+
+            <Button
+                x:Name="btnNext"
+                Grid.Row="2"
+                Content="Next"
+                Margin="0,0,40,20"
+                Width="120"
+                Height="60"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="btnNext_Click"
+                Style="{DynamicResource BtnNext}"
+                Visibility="Hidden"/>
+            <TextBlock x:Name="txtGameDescription" Grid.Row="2" Margin="120,0,180,0" Text="{Binding GameDescription, ElementName=uiGames, Mode=OneWay}" FontSize="28" TextAlignment="Center" TextWrapping="Wrap" 
+                       Foreground="WhiteSmoke"  Visibility="{Binding IsSelected, ElementName=tabGames, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=true}"/>
+        </Grid>
+        
+        <Grid x:Name="gridGame" Visibility="Hidden" Margin="0,0,0,60"/>
+        
+        <UI:UIGameCtrlPanel x:Name="uiGamePanel" Visibility="Collapsed" VerticalAlignment="Bottom" />
+        
+        
+        <!--Main Menu-->
+        <UI:UIMainMenu x:Name="uiMainMenu" JointImage="{DynamicResource imgJoint}" ButtonClick="uiMainMenu_Button_Click" Visibility="Collapsed" />
+
+        <!--Protocol-->
+        <UI:UIProtocol x:Name="uiProtocol" FlexionName="{DynamicResource txtFlexion}" ExtensionName="{DynamicResource txtExtension}" Visibility="Collapsed" />
+
+        <!--Game Library-->
+        <UI:UIGameLib x:Name="uiGameLib" Visibility="Collapsed"/>
+
+        <!--Profile Loader-->
+        <UI:UIProfileLoader x:Name="uiProfileLoader"/>
+    </Grid>
+</Window>

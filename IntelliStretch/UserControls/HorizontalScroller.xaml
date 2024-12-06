@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="IntelliStretch.UserControls.HorizontalScroller"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IntelliStretch.UserControls"
+             mc:Ignorable="d">
+    <StackPanel Orientation="Horizontal">
+        <Button x:Name="btnMin" Content="&lt;" Width="40" FontSize="24" FontWeight="Black" Foreground="{DynamicResource SecondaryBlueColor}" Click="btnMin_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <ContentControl>
+                        <Border x:Name="buttonBorder"
+                                BorderBrush="Transparent"
+                                BorderThickness="0,0,1,0"
+                                CornerRadius="5,0,0,5"
+                                Background="{DynamicResource PrimaryBlueColor}">
+
+                            <ContentPresenter
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"/>
+                        </Border>
+                    </ContentControl>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="buttonBorder" Value="{DynamicResource PrimaryGrayColor}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource TertiaryTextColor}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button x:Name="btnMax" Content=">" Width="40" FontSize="24" FontWeight="Black" Foreground="{DynamicResource SecondaryBlueColor}" Click="btnMax_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <ContentControl>
+                        <Border x:Name="buttonBorder"
+                                BorderBrush="Transparent"
+                                BorderThickness="1,0,0,0"
+                                CornerRadius="0,5,5,0"
+                                Background="{DynamicResource PrimaryBlueColor}">
+
+                            <ContentPresenter
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"/>
+                        </Border>
+                    </ContentControl>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="buttonBorder" Value="{DynamicResource PrimaryGrayColor}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </StackPanel>
+</UserControl>

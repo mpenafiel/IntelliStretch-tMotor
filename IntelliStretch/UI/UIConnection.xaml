@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="IntelliStretch.UI.UIConnection"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:UserControls="clr-namespace:IntelliStretch.UserControls"
+    Name="uiConnection">
+    <Grid Margin="80,0,80,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Image Grid.Column="0" Height="360" Source="{Binding DeviceImage, ElementName=uiConnection}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <Image Grid.Column="2"  Height="260" Source="../images/PC.png" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+            <Grid>
+                <UserControls:ImageButton x:Name="btnConnect" Image="../images/Connect.png" ImageMargin="20" BackColor="{DynamicResource PrimaryGrayColor}" ButtonCornerRadius="5" Text="Connect" Width="135" Height="175" Click="btnConnect_Click"/>
+                <UserControls:ImageButton x:Name="btnStart" Image="../images/Start.png" ImageMargin="20" Text="Start" Width="135" Height="175" ButtonCornerRadius="5" Visibility="Collapsed" Click="btnStart_Click"/>
+                <UserControls:WaitingControl x:Name="waitAnimation" Visibility="Collapsed" />
+            </Grid>
+            <TextBlock Height="43" Margin="0,20,0,0" Name="txtStatus" Foreground="{DynamicResource TertiaryTextColor}" TextAlignment="Center" FontSize="24" />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,169 @@
+﻿<UserControl x:Class="IntelliStretch.UI.UIStretching"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:UserControls="clr-namespace:IntelliStretch.UserControls"
+    xmlns:value_converters="clr-namespace:IntelliStretch.ValueConverters"
+    x:Name="uiStretching" Loaded="uiStretching_Loaded">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <value_converters:BoolScaleConverter x:Key="boolScaleConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/TabPanelStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <UserControls:ImageButton x:Name="btnStretchingCtrl" Margin="30,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="80" ButtonCornerRadius="5"
+                                  BackColor="{DynamicResource PrimaryGrayColor}" Image="../images/Start.png" Orientation="Horizontal" Text="Start  " FontSize="26.667" Click="btnStretchingCtrl_Click" ImageMargin="15" />
+        <UserControls:StopWatch x:Name="stopWatchStretch" Margin="32,128,0,0" Width="156" Height="64" Foreground="{DynamicResource TertiaryTextColor}" FontSize="53.333" 
+                   HorizontalAlignment="Left" VerticalAlignment="Top" Tick="stopWatchStretch_Tick" />
+
+        <Border Margin="32,0,0,20" VerticalAlignment="Bottom" Width="180" BorderBrush="{DynamicResource TertiaryTextColor}" BorderThickness="2" HorizontalAlignment="Left" CornerRadius="10">
+            <StackPanel>
+                <UserControls:FlatToggleButton x:Name="btnStretchMode" Margin="0,10" Height="60" Width="150" Content="Intelligent" Click="btnStretchMode_Click" Visibility="{Binding ModeSelectionVisibility, ElementName=uiStretching}"/>
+                <Button x:Name="btnDefaultStretch" Margin="0,10" Height="60" Width="150" Style="{DynamicResource GeneralButtonStyle}" Content="Default"  Click="btnDefaultStretch_Click" />                
+            </StackPanel>
+        </Border>
+        
+        <Grid Grid.Column="1">
+            <TabControl x:Name="tabStretching" Margin="0,30,20,20" TabStripPlacement="Right" Background="{x:Null}" Style="{StaticResource RightTabStyle}" SelectionChanged="tabStretching_SelectionChanged">
+                <!-- Config -->
+                <TabItem x:Name="tabConfig" Style="{StaticResource BtnTabItemStyle}">
+                    <TabItem.Header>
+                        <Image Source="../images/Options.png"/>
+                    </TabItem.Header>
+                    <Grid>
+                        <Border Background="{DynamicResource SecondaryBlueColor}" CornerRadius="5" >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="80" />
+                                </Grid.RowDefinitions>
+                                <GroupBox Margin="12,8" Header="General" FontWeight="Bold" Foreground="{DynamicResource TertiaryTextColor}" FontSize="18.667" BorderBrush="#FF0046D5">
+                                    <UniformGrid Columns="2">
+                                        <UserControls:TextSlider x:Name="sliderStretchDuration" Text="Duration [min]:" Minimum="1" Maximum="60"/>
+                                        <UserControls:TextSlider x:Name="sliderStretchHoldTime"  Text="Holding Time [sec]:" Maximum="60" />
+                                    </UniformGrid>
+                                </GroupBox>
+                                <GroupBox Grid.Row="1" Margin="12,8" Header="Velocity [deg/sec]" FontWeight="Bold" Foreground="{DynamicResource TertiaryTextColor}" FontSize="18.667" BorderBrush="#FF0046D5">
+                                    <UniformGrid Columns="2">
+                                        <UserControls:TextSlider x:Name="sliderStretchFlexV" Minimum="5" Maximum="60" TickFrequency="5"  
+                                                             Text="{Binding Path=FlexionName, ElementName=uiStretching, StringFormat={}{0}:}" />
+                                        <UserControls:TextSlider x:Name="sliderStretchExtV" Minimum="5" Maximum="60" TickFrequency="5"  
+                                                             Text="{Binding Path=ExtensionName, ElementName=uiStretching, StringFormat={}{0}:}" />
+                                    </UniformGrid>
+                                </GroupBox>
+                                <GroupBox Grid.Row="2" Margin="12,8" Header="Torque Limit [Nm]" FontWeight="Bold" Foreground="{DynamicResource TertiaryTextColor}" FontSize="18.667" BorderBrush="#FF0046D5">
+                                    <UniformGrid Columns="2">
+                                        <UserControls:TextSlider x:Name="sliderStretchFlexTq" Minimum="1" Maximum="{Binding FlexionTorqueMax, ElementName=uiStretching}"   
+                                                             Text="{Binding Path=FlexionName, ElementName=uiStretching, StringFormat={}{0}:}" />
+                                        <UserControls:TextSlider x:Name="sliderStretchExtTq"  Minimum="1" Maximum="{Binding ExtensionTorqueMax, ElementName=uiStretching}"   
+                                                             Text="{Binding Path=ExtensionName, ElementName=uiStretching, StringFormat={}{0}:}" />
+                                    </UniformGrid>
+                                </GroupBox>
+                                <Grid Grid.Row="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Button x:Name="btnSaveDefaultStretch" Content="Save" Width="180" Height="60" Style="{DynamicResource GeneralButtonStyle}" Click="btnSaveDefaultStretch_Click" />
+                                    <Button x:Name="btnCancelStretchProtocol" Grid.Column="2" Content="Cancel" Width="180" Height="60" Style="{DynamicResource GeneralButtonStyle2}" Click="btnCancelStretchProtocol_Click"/>
+                                    <Button x:Name="btnAcceptStretchProtocol" Grid.Column="3" Content="Accept" Width="180" Height="60" Style="{DynamicResource GeneralButtonStyle}" Click="btnAcceptStretchProtocol_Click"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+                </TabItem>
+                
+                <!-- Animation ankle demonstration -->
+                <TabItem x:Name="tabDemoAnkle" Style="{StaticResource BtnTabItemStyle}">
+                    <TabItem.Header>
+                        <Image Source="../images/Ankle_Stretching.png" />
+                    </TabItem.Header>
+                    <Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.63*" />
+                                <RowDefinition Height="0.12*" />
+                                <RowDefinition Height="0.25*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.25*"/>
+                                <ColumnDefinition Width="0.20*"/>
+                                <ColumnDefinition Width="0.12*"/>
+                                <ColumnDefinition Width="0.08*"/>
+                                <ColumnDefinition Width="0.35*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="../images/3D_grid.png" Stretch="Uniform" Margin="0,173,0,0" Grid.RowSpan="3" Grid.ColumnSpan="5" VerticalAlignment="Bottom" />
+                            <Image x:Name="imgLeg" Source="../images/leg_part.png" Stretch="Uniform" Grid.Column="2" VerticalAlignment="Bottom" Grid.ColumnSpan="2" />
+                            <Image x:Name="imgFoot" Source="../images/shoe.png" Stretch="Uniform" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2"  />
+                        </Grid> 
+                        <TextBlock Name="txtAnkleDataInfo" FontSize="24" Foreground="{DynamicResource TertiaryTextColor}" Height="180.054" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" />
+                    </Grid>
+                </TabItem>
+
+                <!-- Animation elbow demonstration -->
+                <TabItem x:Name="tabDemoElbow" Style="{StaticResource BtnTabItemStyle}">
+                    <TabItem.Header>
+                        <Image Source="../images/Elbow_Stretching.png" />
+                    </TabItem.Header>
+                    <Grid>
+                        <Grid RenderTransformOrigin="0.5,0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform ScaleX="{Binding IsReflected, ElementName=uiStretching, Converter={StaticResource boolScaleConverter}, Mode=OneWay}" ScaleY="1" />
+                            </Grid.RenderTransform>
+                            <Image Source="../images/3D_grid.png" Stretch="Uniform" Margin="0,173,0,0" />
+                            <Image Source="../images/Upper_arm.png" Margin="50" Stretch="Uniform" />
+                            <Image x:Name="imgForearm" Source="../images/Forearm.png" Margin="50" Stretch="Uniform" />                        
+                        </Grid>                     
+                        <TextBlock Name="txtElbowDataInfo" FontSize="24" Foreground="White" Height="180.054" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" />
+                    </Grid>
+                </TabItem>
+
+                <!-- Animation wrist demonstration -->
+                <TabItem x:Name="tabDemoWrist" Style="{StaticResource BtnTabItemStyle}">
+                    <TabItem.Header>
+                        <Image Source="../images/Wrist_Stretching.png" />
+                    </TabItem.Header>
+                    <Grid>
+                        <Grid RenderTransformOrigin="0.5,0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform ScaleX="{Binding IsReflected, ElementName=uiStretching, Converter={StaticResource boolScaleConverter}, Mode=OneWay}" ScaleY="1" />
+                            </Grid.RenderTransform>
+                            <Image Source="../images/3D_grid.png" Stretch="Uniform" Margin="0,173,0,0" />
+                            <Image x:Name="imgWrist" Source="../images/Wrist_hand_part.png" Margin="50" Stretch="Uniform" />
+                        </Grid>
+                        <TextBlock Name="txtWristDataInfo" FontSize="24" Foreground="White" Height="180.054" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" />
+                    </Grid>
+                </TabItem>
+
+                <!-- Animation knee demonstration -->
+                <TabItem x:Name="tabDemoKnee" Style="{StaticResource BtnTabItemStyle}">
+                    <TabItem.Header>
+                        <Image Source="../images/Knee_Stretching.png" />
+                    </TabItem.Header>
+                    <Grid>
+                        <Grid>
+                            <Image Source="../images/3D_grid.png" Stretch="Uniform" Margin="0,173,0,0" Grid.RowSpan="3" Grid.ColumnSpan="5" VerticalAlignment="Bottom" />
+                            <Image Source="../images/Knee_thigh_part.png" Stretch="Uniform" Grid.Column="2" VerticalAlignment="Bottom" Grid.ColumnSpan="2" />
+                            <Image x:Name="imgKnee" Source="../images/Knee_leg_part.png" Stretch="Uniform" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2"  />
+                        </Grid>
+                        <TextBlock Name="txtKneeDataInfo" FontSize="24" Foreground="White" Height="180.054" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" />
+                    </Grid>
+                </TabItem>
+
+            </TabControl>
+        </Grid>        
+    </Grid>
+</UserControl>

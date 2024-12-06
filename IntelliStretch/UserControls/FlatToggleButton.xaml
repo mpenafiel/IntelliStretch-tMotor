@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="IntelliStretch.UserControls.FlatToggleButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IntelliStretch.UserControls"
+             mc:Ignorable="d" x:Name="flatToggleButton">
+
+    <UserControl.Resources>
+        <!-- Start: Button Style -->
+        <Style TargetType="ToggleButton" x:Key="GeneralToggleButtonStyle">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource TertiaryTextColor}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid SnapsToDevicePixels="True">
+                            <Border CornerRadius="5"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Margin="{TemplateBinding Margin}"/>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  SnapsToDevicePixels="True"
+                                  RecognizesAccessKey="True"
+                                  Margin="{TemplateBinding Margin}"
+                                  ContentSource="Content"
+                                  Focusable="False"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background"
+                                    Value="{DynamicResource PrimaryGrayColor}"/>
+                                <Setter Property="Foreground"
+                                    Value="{DynamicResource SecondaryBlueColor}"/>
+                            </Trigger>
+
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background"
+                                        Value="{DynamicResource PrimaryBlueColor}"/>
+                                <Setter Property="Foreground"
+                                        Value="{DynamicResource PrimaryTextColor}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <!-- End: Button Style -->
+    </UserControl.Resources>
+    <Grid>
+        <ToggleButton
+            x:Name="btnToggle"
+            Content="{Binding Text, ElementName=flatToggleButton}"
+            Style="{StaticResource GeneralToggleButtonStyle}"
+            IsChecked="{Binding IsChecked, ElementName=flatToggleButton}"
+            BorderThickness="0"
+            Click="Button_Click">
+        </ToggleButton>
+    </Grid>
+</UserControl>
