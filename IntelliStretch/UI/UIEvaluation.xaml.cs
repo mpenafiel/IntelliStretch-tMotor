@@ -338,6 +338,8 @@ namespace IntelliStretch.UI
 
                 if (IsSavingData) sp.Start_SaveData(measureMode);
                 sp.IsUpdating = true;
+
+                  
             }
             else
             {
