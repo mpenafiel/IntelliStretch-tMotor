@@ -54,7 +54,7 @@
                 <UserControls:ImageButton 
                     x:Name="btnConnection" 
                     Text="Connection" 
-                    Image="../images/Connect.png" 
+                    Image="../images/no-connection.png" 
                     ImageMargin="20" 
                     Margin="20,28"
                     ButtonCornerRadius="5"
@@ -64,7 +64,7 @@
                 <UserControls:ImageButton
                     x:Name="btnPrelimSettings"
                     Text="Preliminary&#xa;Settings"
-                    Image="../images/Settings.png"
+                    Image="../images/prelim settings.png"
                     ImageMargin="20"
                     Margin="20,28"
                     ButtonCornerRadius="5"
@@ -75,7 +75,7 @@
                 <UserControls:ImageButton
                     x:Name="btnUsers" 
                     Text="Change&#xa;User"
-                    Image="../images/User.png"
+                    Image="../images/multiple-users-silhouette.png"
                     ImageMargin="20" 
                     Margin="20,28"
                     ButtonCornerRadius="5"
@@ -86,7 +86,7 @@
                 <UserControls:ImageButton
                     x:Name="btnGameLib" 
                     Text="Game&#xa;Library" 
-                    Image="../images/GameLib.png" 
+                    Image="../images/games.png" 
                     ImageMargin="20"
                     Margin="20,28"
                     ButtonCornerRadius="5"
@@ -96,7 +96,7 @@
                 <UserControls:ImageButton
                     x:Name="btnProtocol"
                     Text="Protocol"
-                    Image="../images/Options.png"
+                    Image="../images/control.png"
                     ImageMargin="20"
                     Margin="20,28"
                     ButtonCornerRadius="5"
@@ -116,7 +116,7 @@
                 <UserControls:ImageButton 
                     x:Name="btnGames"
                     Text="Active&#xa;Movement"
-                    Image="../images/Game.png"
+                    Image="../images/game new.png"
                     ImageMargin="20"
                     Margin="20,28"
                     ButtonCornerRadius="5"
@@ -126,7 +126,7 @@
                 <UserControls:ImageButton
                     x:Name="btnEvaluation"
                     Text="Evaluation"
-                    Image="../images/Range.png" 
+                    Image="../images/bar-graph.png" 
                     ImageMargin="20"
                     Margin="20,28" 
                     ButtonCornerRadius="5"
@@ -136,7 +136,7 @@
                 <UserControls:ImageButton
                     x:Name="btnReport"
                     Text="Report"
-                    Image="../images/Report.png"
+                    Image="../images/seo-report.png"
                     ImageMargin="20"
                     Margin="20,28"
                     ButtonCornerRadius="5"
