@@ -75,23 +75,23 @@
                             </Grid.RowDefinitions>
                             <GroupBox Margin="12,8" Header="General" FontSize="18.667"  Padding="10" BorderBrush="#FF0046D5"  Foreground="{DynamicResource TertiaryTextColor}">
                                 <UniformGrid Columns="2">
-                                    <UserControls:TextSlider x:Name="sliderStretchDuration" Text="Duration [min]:" Minimum="1" Maximum="100"/>
-                                    <UserControls:TextSlider x:Name="sliderStretchHoldTime"  Text="Holding Time [sec]:" Maximum="100" />
+                                    <UserControls:TextSlider x:Name="sliderStretchDuration" Text="Duration [min]:" Minimum="1" Maximum="60"/>
+                                    <UserControls:TextSlider x:Name="sliderStretchHoldTime"  Text="Holding Time [sec]:" Maximum="30" />
                                 </UniformGrid>
                             </GroupBox>
                             <GroupBox Grid.Row="1" Margin="12,8" Padding="10" Header="Velocity [deg/sec]" FontSize="18.667" BorderBrush="#FF0046D5"  Foreground="{DynamicResource TertiaryTextColor}">
                                 <UniformGrid Columns="2">
-                                    <UserControls:TextSlider x:Name="sliderStretchFlexV" Minimum="5" Maximum="60" TickFrequency="5" 
+                                    <UserControls:TextSlider x:Name="sliderStretchFlexV" Minimum="10" Maximum="30" TickFrequency="1" 
                                                              Text="{Binding Path=FlexionName, ElementName=uiProtocol, StringFormat={}{0}:}" />
-                                    <UserControls:TextSlider x:Name="sliderStretchExtV" Minimum="5" Maximum="30" TickFrequency="5" 
+                                    <UserControls:TextSlider x:Name="sliderStretchExtV" Minimum="10" Maximum="30" TickFrequency="1" 
                                                              Text="{Binding Path=ExtensionName, ElementName=uiProtocol, StringFormat={}{0}:}" />
                                 </UniformGrid>
                             </GroupBox>
                             <GroupBox Grid.Row="2" Margin="12,8" Padding="10" Header="Torque Limit [Nm]" FontSize="18.667" BorderBrush="#FF0046D5"  Foreground="{DynamicResource TertiaryTextColor}">
                                 <UniformGrid Columns="2">
-                                    <UserControls:TextSlider x:Name="sliderStretchFlexTq" Minimum="1" Maximum="{Binding FlexionTorqueMax, ElementName=uiProtocol}"  
+                                    <UserControls:TextSlider x:Name="sliderStretchFlexTq" Minimum="10" Maximum="{Binding FlexionTorqueMax, ElementName=uiProtocol}"  
                                                              Text="{Binding Path=FlexionName, ElementName=uiProtocol, StringFormat={}{0}:}" />
-                                    <UserControls:TextSlider x:Name="sliderStretchExtTq"  Minimum="1" Maximum="{Binding ExtensionTorqueMax, ElementName=uiProtocol}"  
+                                    <UserControls:TextSlider x:Name="sliderStretchExtTq"  Minimum="3" Maximum="{Binding ExtensionTorqueMax, ElementName=uiProtocol}"  
                                                              Text="{Binding Path=ExtensionName, ElementName=uiProtocol, StringFormat={}{0}:}" />
                                 </UniformGrid>
                             </GroupBox>
@@ -108,7 +108,7 @@
                             <GroupBox x:Name="groupAssist" Margin="12,8" Header="Assistive Settings" Foreground="{DynamicResource TertiaryTextColor}" FontSize="18.667" BorderBrush="#FF0046D5" Visibility="Visible">
                                 <UniformGrid Rows="3">
                                     <UserControls:TextSlider x:Name="sliderAssistLevel" Text="Assistive Level:" Visibility= "Collapsed" />
-                                    <UserControls:TextSlider x:Name="sliderAssistV" Text="Assistive Velocity:" Maximum="60" TickFrequency="5"/>
+                                    <UserControls:TextSlider x:Name="sliderAssistV" Text="Assistive Velocity:" Maximum="30" TickFrequency="1"/>
                                     <UserControls:TextSlider x:Name="sliderAssistDelay" Text="Delay Time [sec]:" />
                                 </UniformGrid>
                             </GroupBox>
