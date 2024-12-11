@@ -6,7 +6,7 @@
     xmlns:UI="clr-namespace:IntelliStretch.UI"
     xmlns:value_converters="clr-namespace:IntelliStretch.ValueConverters"
     Title="MainApp" x:Name="wndMainApp"
-    Width="1024" Height="640" Background="{DynamicResource PrimaryBlueColor}" WindowState="Maximized" WindowStyle="None" mc:Ignorable="d"
+    Width="1024" Height="640" Background="Coral" WindowState="Maximized" WindowStyle="None" mc:Ignorable="d"
     Loaded="wndMainApp_Loaded" KeyDown="wndMainApp_KeyDown">
     <Window.Resources>
         <ResourceDictionary>
