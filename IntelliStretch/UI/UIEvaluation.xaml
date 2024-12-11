@@ -95,7 +95,7 @@
                 <!-- AROM -->
                 <TabItem x:Name="tabAROM" Style="{StaticResource BtnTabItemStyle}" Tag="Active Range of Motion (AROM)">
                     <TabItem.Header>
-                        <Image Source="../images/Range.png" Margin="5"/>
+                        <Image Source="../images/bar-graph.png" Margin="5"/>
                     </TabItem.Header>
                     <Grid>
                         <Grid.RowDefinitions>

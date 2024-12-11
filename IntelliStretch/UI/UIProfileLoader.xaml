@@ -20,7 +20,7 @@
             <!-- Rectangle around a Userprofile-object -->
             <Border x:Name="personsBorder" Style="{StaticResource UserBorderStyle}">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="../images/User_icon.png" Margin="30,10" />
+                    <Image Source="../images/user icon.png" Margin="30,0" />
                     <StackPanel Orientation="Vertical">
                         <TextBlock Padding="0,10">
                             <TextBlock.Text>
