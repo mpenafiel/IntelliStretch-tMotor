@@ -609,8 +609,8 @@ namespace IntelliStretch.UI
                     vPlot1.Visibility = Visibility.Visible;
                     vPlot2.Visibility = Visibility.Visible;
 
-                    strength_v_FlexionGrid.SetValue(Grid.ColumnProperty, 1);
-                    strength_v_ExtensionGrid.SetValue(Grid.ColumnProperty, 1);
+                    strength_v_FlexionGrid.SetValue(Grid.ColumnProperty, 2);
+                    strength_v_ExtensionGrid.SetValue(Grid.ColumnProperty, 2);
 
                     vStrength.SetValue(Grid.ColumnSpanProperty, 1);
                     btnRecord.Visibility = Visibility.Visible;

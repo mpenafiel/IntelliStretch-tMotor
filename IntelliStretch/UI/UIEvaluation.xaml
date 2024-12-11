@@ -53,7 +53,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Text="EMG" Margin="15,10,0,0" VerticalAlignment="Bottom" FontWeight="DemiBold" FontSize="24" Foreground="{DynamicResource TertiaryTextColor}"/>
-                        <CheckBox Grid.Column="1" x:Name="cbDisplayEmg" FontSize="20" Margin="0,10,15,0" VerticalAlignment="Center" Foreground="{DynamicResource TertiaryTextColor}" HorizontalAlignment="Right" Checked="cbDisplayEmg_Changed" Unchecked="cbDisplayEmg_Changed"/>
+                        <CheckBox Grid.Column="1" x:Name="cbDisplayEmg" IsChecked="False" FontSize="20" Margin="0,10,15,0" VerticalAlignment="Center" Foreground="{DynamicResource TertiaryTextColor}" HorizontalAlignment="Right" Checked="cbDisplayEmg_Changed" Unchecked="cbDisplayEmg_Changed"/>
                     </Grid>
 
                     <Rectangle Height="2" Fill="{DynamicResource TertiaryTextColor}" Margin="10,0"/>
@@ -110,8 +110,9 @@
                             </Grid.RowDefinitions>
 
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300"></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="400"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
                             <UserControls:VerticalRangeFinder 
@@ -119,12 +120,13 @@
                                 Grid.Row="0"
                                 Grid.RowSpan="2"
                                 Grid.Column="0"
+                                Grid.ColumnSpan="2"
                                 Margin="0, 20" 
                                 HorizontalAlignment="Center" 
                                 FlexionName="{Binding FlexionName, ElementName=uiEvaluation}"
                                 ExtensionName="{Binding ExtensionName, ElementName=uiEvaluation}"/>
 
-                            <Grid Grid.Row="0" Grid.Column="1" x:Name="arom_v_flexionGrid" Margin="5,25"  HorizontalAlignment="Center">
+                            <Grid Grid.Row="0" Grid.Column="2" x:Name="arom_v_flexionGrid" Margin="5,25"  HorizontalAlignment="Center">
                                 <Grid.RowDefinitions>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
@@ -134,9 +136,9 @@
 
                             </Grid>
 
-                            <Grid Grid.Row="1" Grid.Column="1" x:Name="arom_v_extensionGrid" Margin="5,25"  HorizontalAlignment="Center">
+                            <Grid Grid.Row="1" Grid.Column="2" x:Name="arom_v_extensionGrid" Margin="5,25"  HorizontalAlignment="Center">
                                 <Border Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}"/>
-                                <Image Source="{Binding Path=FlexionImage, ElementName=uiEvaluation}"/>
+                                <Image Source="{Binding Path=ExtensionImage, ElementName=uiEvaluation}"/>
                             </Grid>
 
 
@@ -199,31 +201,31 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="300"></ColumnDefinition>
-                                <ColumnDefinition Width="400"></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="400"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <Grid Grid.Row="0" Grid.Column="1" x:Name="strength_v_FlexionGrid" Margin="5,25"  HorizontalAlignment="Center">
+                            <Grid Grid.Row="0" Grid.Column="2" x:Name="strength_v_FlexionGrid" Margin="5,25"  HorizontalAlignment="Center">
                                 <Border Grid.Row="0" Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}"/>
                                 <Image Grid.Row="0" Source="{Binding Path=FlexionImage, ElementName=uiEvaluation}"/>
 
                             </Grid>
 
-                            <Grid Grid.Row="1" Grid.Column="1" x:Name="strength_v_ExtensionGrid" Margin="5,25"  HorizontalAlignment="Center">
+                            <Grid Grid.Row="1" Grid.Column="2" x:Name="strength_v_ExtensionGrid" Margin="5,25"  HorizontalAlignment="Center">
                                 <Border Grid.Row="0" Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}"/>
                                 <Image Grid.Row="1" Source="{Binding Path=ExtensionImage, ElementName=uiEvaluation}" Visibility="Visible"/>
                             </Grid>
 
                             <ScottPlot:WpfPlot
                                 Grid.Row="0"
-                                Grid.Column="2"
+                                Grid.Column="1"
                                 x:Name="vPlot1"
                                 Background="Transparent"
                                 FontSize="24"
                                 Margin="20,20,0,20"/>
                             <ScottPlot:WpfPlot
                                 Grid.Row="1" 
-                                Grid.Column="2"
+                                Grid.Column="1"
                                 x:Name="vPlot2" 
                                 Background="Transparent"
                                 FontSize="24" 
