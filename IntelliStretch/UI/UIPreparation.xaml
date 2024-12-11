@@ -44,7 +44,7 @@
                         <TextBlock x:Name="txtCurrentUser" FontSize="44" FontWeight="DemiBold" Foreground="{DynamicResource SecondaryBlueColor}" VerticalAlignment="Bottom"/>
                         <TextBlock Text=" :" FontSize="40" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Bottom"/>
                     </StackPanel>
-                    <TextBlock Grid.Row="1" FontSize="68" Text="Welcome to IntelliStretch!" FontWeight="DemiBold" Foreground="{DynamicResource PrimaryTextColor}" TextWrapping="Wrap" 
+                    <TextBlock Grid.Row="1" FontSize="68" Text="Welcome to the variable Intellistretch!" FontWeight="DemiBold" Foreground="{DynamicResource PrimaryTextColor}" TextWrapping="Wrap" 
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 
                     <Image x:Name="greenArrow" Grid.Row="1" Source="../images/GreenArrow.png" Width="48" Height="48" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20" Cursor="Hand" MouseDown="gridInfo_MouseDown">
