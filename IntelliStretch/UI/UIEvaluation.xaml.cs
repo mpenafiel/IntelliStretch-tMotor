@@ -183,7 +183,6 @@ namespace IntelliStretch.UI
             }
 
             Check_CurrentUI();
-            cbDisplayEmg.IsChecked = true;
             sliderLockPosition.Maximum = generalProtocol.FlexionMax;
             sliderLockPosition.Minimum = generalProtocol.ExtensionMax;
 
@@ -469,14 +468,14 @@ namespace IntelliStretch.UI
         {
             if (btnMeasure.IsPressed)
             {
-                btnMeasure.Image = Utilities.GetImage("Stop.png");
+                btnMeasure.Image = Utilities.GetImage("Stop-new.png");
                 btnMeasure.Text = "Stop ";
                 mainApp.Buttons_Enabled(false);
                 tabItems_Enabled(false);
             }
             else
             {
-                btnMeasure.Image = Utilities.GetImage("Start.png");
+                btnMeasure.Image = Utilities.GetImage("Play-new.png");
                 btnMeasure.Text = "Measure ";
                 Apply_Measure();
                 mainApp.Buttons_Enabled(true);
