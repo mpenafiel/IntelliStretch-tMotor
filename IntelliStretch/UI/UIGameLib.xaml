@@ -60,19 +60,7 @@
             </Border.RenderTransform>
             <Grid x:Name="gridPopup">
 
-                <UserControls:ColorButton
-                    x:Name="btnCloseMenu"
-                    Margin="0,20,20,0"
-                    Color="DarkRed"
-                    GradientColor="IndianRed"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    Text="X"
-                    TextColor="WhiteSmoke"
-                    Width="28"
-                    Height="28"
-                    ButtonCornerRadius="14"
-                    Click="btnCloseMenu_Click"/>
+
 
                 <TabControl x:Name="tabGameLib" FontSize="20" Margin="0,20" SelectionChanged="tabGameLib_SelectionChanged" Width="800" Style="{DynamicResource TabControlStyle}">                 
                     <TabItem x:Name="tabGames" Header="Games" Style="{DynamicResource TabItemStyle}">
@@ -93,7 +81,21 @@
                         <ListBox x:Name="lstOnlineGames" Margin="10,20" Background="#FFEEEEEE" FontSize="32" FontWeight="Bold" HorizontalContentAlignment="Stretch"  ItemTemplate="{StaticResource localListTemplate}"/>
                     </TabItem>
                 </TabControl>
-                
+
+                <UserControls:ImageButton
+                    x:Name="btnCloseMenu"
+                    Margin="0,20,20,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Image="../images/button.png"
+                    Click="btnCloseMenu_Click"
+                    BackColor="Transparent"
+                    Width="28"
+                    Height="28"
+                    ImageMargin="0"
+                    ButtonCornerRadius="5"
+                    />
+
             </Grid>
         </Border>
     </Grid>

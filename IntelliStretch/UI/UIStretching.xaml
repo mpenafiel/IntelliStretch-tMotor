@@ -36,7 +36,7 @@
                 <!-- Config -->
                 <TabItem x:Name="tabConfig" Style="{StaticResource BtnTabItemStyle}">
                     <TabItem.Header>
-                        <Image Source="../images/control.png"/>
+                        <Image Source="../images/Options-new.png"/>
                     </TabItem.Header>
                     <Grid>
                         <Border Background="{DynamicResource SecondaryBlueColor}" CornerRadius="5" >

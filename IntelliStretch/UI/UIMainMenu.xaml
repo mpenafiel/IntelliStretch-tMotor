@@ -148,7 +148,7 @@
                 <UserControls:ImageButton
                     x:Name="btnExit"
                     Text="Exit"
-                    Image="../images/Exit.png" 
+                    Image="../images/power.png" 
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"
