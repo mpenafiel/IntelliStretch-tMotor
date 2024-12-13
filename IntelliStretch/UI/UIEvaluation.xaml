@@ -223,14 +223,16 @@
                                 x:Name="vPlot1"
                                 Background="Transparent"
                                 FontSize="24"
-                                Margin="20,20,0,20"/>
+                                Margin="20,20,0,20"
+                                Visibility="Collapsed"/>
                             <ScottPlot:WpfPlot
                                 Grid.Row="1" 
                                 Grid.Column="1"
                                 x:Name="vPlot2" 
                                 Background="Transparent"
                                 FontSize="24" 
-                                Margin="20,20,0,20"/>
+                                Margin="20,20,0,20"
+                                Visibility="Collapsed"/>
                             <UserControls:VerticalRangeFinder 
                                 Grid.Row="0"
                                 Grid.RowSpan="2" 

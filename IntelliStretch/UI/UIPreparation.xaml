@@ -69,7 +69,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock FontSize="32" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextColor}" Text="  •  Connect data cable to serial port." VerticalAlignment="Center" />
                     <TextBlock Grid.Row="1" FontSize="32" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextColor}" Text="  •  Connect emergency stop switch." VerticalAlignment="Center" />
-                    <TextBlock Grid.Row="2" FontSize="32" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextColor}" Text="  •  Connect power cord." VerticalAlignment="Center" />
+                    <TextBlock Grid.Row="2" FontSize="32" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextColor}" Text="  •  Attach external battery." VerticalAlignment="Center" />
                     <TextBlock Grid.Row="3" FontSize="39" TextWrapping="Wrap" Foreground="DarkRed"  FontWeight="Bold" Text="  Then, switch ON the power..." VerticalAlignment="Center" />
                 </Grid>                
             </Grid>
