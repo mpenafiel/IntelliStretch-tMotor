@@ -191,7 +191,7 @@ namespace IntelliStretch.UI
 
             if (btnStretchingCtrl.IsPressed)
             {
-                btnStretchingCtrl.Image = Utilities.GetImage("Stop.png");
+                btnStretchingCtrl.Image = Utilities.GetImage("Stop-new.png");
                 btnStretchingCtrl.Text = "Stop ";
 
                 if (sp.IsConnected)
@@ -225,7 +225,7 @@ namespace IntelliStretch.UI
                     if (mainApp.IntelliProtocol.System.IsSavingData) sp.Stop_SaveData();
                 }
                 stopWatchStretch.Stop();
-                btnStretchingCtrl.Image = Utilities.GetImage("Start.png");
+                btnStretchingCtrl.Image = Utilities.GetImage("Play-new.png");
                 btnStretchingCtrl.Text = "Start  ";
                 mainApp.Buttons_Enabled(true);
             }
