@@ -301,8 +301,12 @@ namespace IntelliStretch
 
                                             if (this.IsSaving)
                                             {
-                                                Int32[] data = Parse_Data(dataQueue);
-                                                await DataWriter(dataWriter, csvWriter, data);
+                                                if (dataQueue[0] == 'P')
+                                                {
+                                                    Int32[] data = Parse_Data(dataQueue);
+                                                    await DataWriter(dataWriter, csvWriter, data);
+                                                }
+                                                
                                                 //dataWriter.Write(dataQueue); // Remove line 12.19.2024 Michael
                                                 //dataWriter.WriteCmd(ankleData.anklePos.ToString() + " " + ankleData.ankleTorque.ToString() + " " + ankleData.ankleAm.ToString());  // save ankle data
                                             }
@@ -331,23 +335,22 @@ namespace IntelliStretch
 
         private int[] Parse_Data(string dataString)
         {
-            String[] spearator = { "P", "T", "A", "D", "W", "E" };
+            String[] spearator = { "P", "T", "A", "D", "E" };
             Int32 count = spearator.Length;
 
             String[] data_parse = dataString.Split(spearator, count, StringSplitOptions.RemoveEmptyEntries);
 
-            int[] data_array = new int[data_parse.Length];
+            int[] data_array = new int[5];
 
-            for ( int i = 0; i < data_parse.Length; i++ )
+            for ( int i = 0; i < 4; i++ )
             {
                 try
-                {
-                    if (data_parse[i] != null) data_array[i] = Int32.Parse(data_parse[i]);
+                {   
+                    if (data_parse[i] != "\r\n" || data_parse[i] != "\n") data_array[i] = Int32.Parse(data_parse[i]);
                 }
                 catch (FormatException e)
                 {
                     Console.WriteLine(data_parse[i] + " " + e.Message);
-                    //Console.WriteLine(e.Message);
                 }
             }
 
