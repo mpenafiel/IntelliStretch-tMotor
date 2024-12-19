@@ -340,9 +340,9 @@ namespace IntelliStretch
 
             String[] data_parse = dataString.Split(spearator, count, StringSplitOptions.RemoveEmptyEntries);
 
-            int[] data_array = new int[5];
+            int[] data_array = new int[data_parse.Length];
 
-            for ( int i = 0; i < 4; i++ )
+            for ( int i = 0; i < data_parse.Length; i++ )
             {
                 try
                 {   
