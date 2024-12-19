@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using CsvHelper;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
+using System.Dynamic;
+using System.Globalization;
 
 namespace IntelliStretch
 {
@@ -16,6 +19,7 @@ namespace IntelliStretch
         string dataQueue;
         AnkleData ankleData;
         StreamWriter dataWriter;
+        private CsvWriter csvWriter = null;
 
         public struct AnkleData
         {
@@ -170,8 +174,7 @@ namespace IntelliStretch
 
         public void Start_SaveData(string mode)
         {
-            string dataFile = DataDir + DataFilePrefix + "_" + mode + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".txt";
-            dataWriter = new StreamWriter(dataFile);
+            Create_Writer(mode);
             this.IsSaving = true;
         }
 
@@ -179,7 +182,36 @@ namespace IntelliStretch
         {
             this.IsSaving = false;
             // check if there is instance of datawriter and close it
-            if (dataWriter != null) dataWriter.Close();
+            WriterHandler();
+        }
+
+        private void Create_Writer(string mode)
+        {
+            string dataFile = DataDir + DataFilePrefix + "_" + mode + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".csv";
+            // create new instance of writer
+            if (dataWriter == null) dataWriter = new StreamWriter(dataFile);
+            // create new instance of csv writer
+            if (csvWriter == null) csvWriter = new CsvWriter(dataWriter, CultureInfo.InvariantCulture);
+        }
+
+        private void WriterHandler()
+        {
+            if (dataWriter != null)
+            {
+                csvWriter = null;
+                dataWriter.Close();
+                dataWriter = null;
+            }
+        }
+
+        static System.Threading.Tasks.Task DataWriter(StreamWriter streamWriter, CsvWriter csvWriter, int[] data_array)
+        {
+            foreach (int data in data_array)
+            {
+                csvWriter.WriteRecord(data);
+            }
+            csvWriter.NextRecord();
+            return System.Threading.Tasks.Task.CompletedTask;
         }
 
         private void Close_AllPorts()
@@ -211,9 +243,10 @@ namespace IntelliStretch
             Connect((sender as SerialPort).PortName);
         }
 
-        private void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private async void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             dataQueue += sp.ReadExisting(); // Read data, add to queue,08.22.2013.Yupeng
+            
             
             //try
             {
@@ -268,8 +301,9 @@ namespace IntelliStretch
 
                                             if (this.IsSaving)
                                             {
-                                                //dataWriter.Write(dataQueue +"\n");  // save ankle data
-                                                dataWriter.Write(dataQueue);
+                                                Int32[] data = Parse_Data(dataQueue);
+                                                await DataWriter(dataWriter, csvWriter, data);
+                                                //dataWriter.Write(dataQueue); // Remove line 12.19.2024 Michael
                                                 //dataWriter.WriteCmd(ankleData.anklePos.ToString() + " " + ankleData.ankleTorque.ToString() + " " + ankleData.ankleAm.ToString());  // save ankle data
                                             }
                                             if (this.IsUpdating && UpdateData != null) UpdateData(ankleData);  // update new ankle data
@@ -293,6 +327,31 @@ namespace IntelliStretch
                 }
             }
             //catch (TimeoutException) { MessageBox.Show("Receiving Delay."); }
+        }
+
+        private int[] Parse_Data(string dataString)
+        {
+            String[] spearator = { "P", "T", "A", "D", "W", "E" };
+            Int32 count = spearator.Length;
+
+            String[] data_parse = dataString.Split(spearator, count, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] data_array = new int[data_parse.Length];
+
+            for ( int i = 0; i < data_parse.Length; i++ )
+            {
+                try
+                {
+                    if (data_parse[i] != null) data_array[i] = Int32.Parse(data_parse[i]);
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine(data_parse[i] + " " + e.Message);
+                    //Console.WriteLine(e.Message);
+                }
+            }
+
+            return data_array;
         }
 
         private string[] Format_PortNames(string[] portNames)
