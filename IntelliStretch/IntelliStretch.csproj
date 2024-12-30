@@ -594,6 +594,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\Stop.png" />
+	<Resource Include="images\Stop-new.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Sounds\PageFlip.WAV" />
@@ -601,17 +602,23 @@
   <ItemGroup>
     <Resource Include="images\Apps.png" />
     <Resource Include="images\Navigator.png" />
+	<Resource Include="images\Navigator-new.png" />
     <Resource Include="images\Options.png" />
+	<Resource Include="images\Options-new.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\Close2.png" />
+	<Resource Include="images\CloseBtn.png" />
     <Resource Include="images\Info.png" />
+	<Resource Include="images\InfoBtn.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\User.png" />
+	  <Resource Include="images\User-new.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\User_icon.png" />
+	<Resource Include="images\User_icon-new.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\Elbow_Stretching.png" />
@@ -716,58 +723,35 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\foot_dorsi_og.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\games.png" />
-    <Resource Include="images\prelim settings.png" />
-    <Resource Include="images\seo-report.png" />
-    <Resource Include="images\user icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\multiple-users-silhouette.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\games.png" />
-  <ItemGroup>
-    <Resource Include="images\CloseBtn.png" />
-    <Resource Include="images\EMG.png" />
-    <Resource Include="images\Exit-new.png" />
     <Resource Include="images\foot_neutral_og.png" />
     <Resource Include="images\foot_plantar_og.png" />
+  </ItemGroup>
+  <ItemGroup>
+    
+    <Resource Include="images\EMG.png" />
+    <Resource Include="images\Exit-new.png" />
     <Resource Include="images\Game-new.png" />
     <Resource Include="images\GameLib-new.png" />
     <Resource Include="images\InfoBtn.png" />
-    <Resource Include="images\IntelliStretch_old.png" />
-    <Resource Include="images\Lock.png" />
+    <Resource Include="images\CloseBtn.png" />
     <Resource Include="images\Options-selected-new.png" />
     <Resource Include="images\PC-new.png" />
     <Resource Include="images\Range_selected-new.png" />
     <Resource Include="images\Report-new.png" />
-    <Resource Include="images\Scan.png" />
     <Resource Include="images\Settings-new.png" />
     <Resource Include="images\Start-new.png" />
     <Resource Include="images\Strength-new.png" />
-    <Resource Include="images\Upper_arm_old.png" />
     <Resource Include="images\User-new.png" />
     <Resource Include="images\User_icon-new.png" />
   </ItemGroup>
-  </ItemGroup>
+    
   <ItemGroup>
-    <Resource Include="images\multiple-users-silhouette.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\no-connection.png" />
-  <ItemGroup>
-    <Resource Include="images\monitor.png" />
-  </ItemGroup>
+    <Resource Include="images\Connect-new.png" />
     <Resource Include="images\Options-new.png" />
     <Resource Include="images\Range-new.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\Stop-new.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\monitor.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\HarfBuzzSharp.NativeAssets.macOS.7.3.0.3\build\net462\HarfBuzzSharp.NativeAssets.macOS.targets" Condition="Exists('..\packages\HarfBuzzSharp.NativeAssets.macOS.7.3.0.3\build\net462\HarfBuzzSharp.NativeAssets.macOS.targets')" />
