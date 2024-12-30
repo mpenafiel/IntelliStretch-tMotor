@@ -568,9 +568,7 @@
   <ItemGroup>
     <Resource Include="images\Background.png" />
     <Resource Include="images\Background_dim.png" />
-    <Resource Include="images\foot_angle_lines.png" />
-    <Resource Include="images\foot_neutral.png" />
-    <Resource Include="images\foot_plantar.png" />
+
     <Resource Include="images\Game.png" />
     <Resource Include="images\Protocol.png" />
     <Resource Include="images\Report.png" />
@@ -588,13 +586,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\3D_grid.png" />
-    <Resource Include="images\foot_dorsi.png" />
+
     <Resource Include="images\leg_part.png" />
     <Resource Include="images\shoe.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\Stop.png" />
-	<Resource Include="images\Stop-new.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Sounds\PageFlip.WAV" />
@@ -602,19 +599,14 @@
   <ItemGroup>
     <Resource Include="images\Apps.png" />
     <Resource Include="images\Navigator.png" />
-	<Resource Include="images\Navigator-new.png" />
     <Resource Include="images\Options.png" />
-	<Resource Include="images\Options-new.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\Close2.png" />
-	<Resource Include="images\CloseBtn.png" />
     <Resource Include="images\Info.png" />
-	<Resource Include="images\InfoBtn.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\User.png" />
-	  <Resource Include="images\User-new.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\User_icon.png" />
@@ -680,8 +672,6 @@
   <ItemGroup>
     <Resource Include="images\Range.png" />
     <Resource Include="images\Strength.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\GameLib.png" />
   </ItemGroup>
   <ItemGroup>
@@ -692,28 +682,20 @@
     <Folder Include="Fonts\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\Knee_Stretching.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\Knee_angle_lines.png" />
     <Resource Include="images\Knee_extension.png" />
     <Resource Include="images\Knee_flexion.png" />
     <Resource Include="images\Knee_neutral.png" />
+    <Resource Include="images\Knee_Stretching.png" />
+    <Resource Include="images\Knee_leg_part.png" />
+    <Resource Include="images\Knee_thigh_part.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\Wrist_extension.png" />
     <Resource Include="images\Wrist_flexion.png" />
     <Resource Include="images\Wrist_neutral.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\Wrist_angle_lines.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\Wrist_hand_part.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\Knee_leg_part.png" />
-    <Resource Include="images\Knee_thigh_part.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RehabGameLib\RehabGameLib.csproj">
@@ -725,10 +707,12 @@
     <Resource Include="images\foot_dorsi_og.png" />
     <Resource Include="images\foot_neutral_og.png" />
     <Resource Include="images\foot_plantar_og.png" />
+    <Resource Include="images\foot_angle_lines.png" />
+    <Resource Include="images\foot_dorsi.png" />
+    <Resource Include="images\foot_neutral.png" />
+    <Resource Include="images\foot_plantar.png" />
   </ItemGroup>
   <ItemGroup>
-    
-    <Resource Include="images\EMG.png" />
     <Resource Include="images\Exit-new.png" />
     <Resource Include="images\Game-new.png" />
     <Resource Include="images\GameLib-new.png" />
@@ -743,14 +727,9 @@
     <Resource Include="images\Strength-new.png" />
     <Resource Include="images\User-new.png" />
     <Resource Include="images\User_icon-new.png" />
-  </ItemGroup>
-    
-  <ItemGroup>
     <Resource Include="images\Connect-new.png" />
     <Resource Include="images\Options-new.png" />
     <Resource Include="images\Range-new.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\Stop-new.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
