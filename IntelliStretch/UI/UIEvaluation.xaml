@@ -191,7 +191,7 @@
                 <!-- Strength -->
                 <TabItem x:Name="tabStrength" Style="{StaticResource BtnTabItemStyle}" Tag="Strength Measure" VerticalAlignment="Top">
                     <TabItem.Header>
-                        <Image Source="../images/Strength.png"  Margin="5"/>
+                        <Image Source="../images/Strength-new.png"  Margin="1"/>
                     </TabItem.Header>
                     <Grid>
                         <Grid x:Name="vStrengthLayout">
