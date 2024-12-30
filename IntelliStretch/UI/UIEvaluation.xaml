@@ -40,7 +40,7 @@
                     <TextBlock Grid.Row="0" Text="{Binding SelectedItem.Tag, ElementName=tabEvaluation}" Margin="10,20,10,10" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextColor}" FontSize="28" FontWeight="DemiBold" HorizontalAlignment="Center"/>
                     <Border Panel.ZIndex="-1" Grid.Row="0" Background="{DynamicResource PrimaryBlueColor}" CornerRadius="5,5,0,0"/>
 
-                    <UserControls:ImageButton Grid.Row="1" x:Name="btnMeasure" ButtonCornerRadius="5" BackColor="{DynamicResource PrimaryGrayColor}" Width="168" VerticalAlignment="Top" Height="60" Image="../images/Play-new.png" ImageMargin="10" Orientation="Horizontal" Text="Measure " FontSize="24" Click="btnMeasure_Click" Margin="0,20"/>
+                    <UserControls:ImageButton Grid.Row="1" x:Name="btnMeasure" ButtonCornerRadius="5" BackColor="{DynamicResource PrimaryGrayColor}" Width="168" VerticalAlignment="Top" Height="60" Image="../images/Start-new.png" ImageMargin="10" Orientation="Horizontal" Text="Measure " FontSize="24" Click="btnMeasure_Click" Margin="0,20"/>
                 </Grid>
             </StackPanel>
 

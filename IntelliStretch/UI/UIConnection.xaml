@@ -14,7 +14,7 @@
         <Image Grid.Column="2"  Height="260" Source="../images/PC-new.png" HorizontalAlignment="Right" VerticalAlignment="Center" />
         <StackPanel Grid.Column="1" VerticalAlignment="Center">
             <Grid>
-                <UserControls:ImageButton x:Name="btnConnect" Image="../images/no-connection.png" ImageMargin="20" BackColor="{DynamicResource PrimaryGrayColor}" ButtonCornerRadius="5" Text="Connect" Width="135" Height="175" Click="btnConnect_Click"/>
+                <UserControls:ImageButton x:Name="btnConnect" Image="../images/Connect-new.png" ImageMargin="20" BackColor="{DynamicResource PrimaryGrayColor}" ButtonCornerRadius="5" Text="Connect" Width="135" Height="175" Click="btnConnect_Click"/>
                 <UserControls:ImageButton x:Name="btnStart" Image="../images/Start-new.png" ImageMargin="30" Text="Start" Width="135" Height="175" ButtonCornerRadius="5" Visibility="Collapsed" Click="btnStart_Click"/>
                 <UserControls:WaitingControl x:Name="waitAnimation" Visibility="Collapsed" />
             </Grid>

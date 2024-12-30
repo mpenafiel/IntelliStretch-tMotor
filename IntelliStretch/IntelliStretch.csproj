@@ -610,7 +610,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\User_icon.png" />
-	<Resource Include="images\User_icon-new.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\Elbow_Stretching.png" />

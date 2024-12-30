@@ -56,7 +56,7 @@
                 <UserControls:ImageButton 
                     x:Name="btnConnection" 
                     Text="Connection" 
-                    Image="../images/no-connection.png" 
+                    Image="../images/Connect-new.png" 
                     ImageMargin="20" 
                     Margin="5"
                     ButtonCornerRadius="5"
