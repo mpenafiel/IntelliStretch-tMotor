@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
 
         <UserControls:ImageButton x:Name="btnStretchingCtrl" Margin="30,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="80" ButtonCornerRadius="5"
-                                  BackColor="{DynamicResource PrimaryGrayColor}" Image="../images/Play-new.png" Orientation="Horizontal" Text="Start  " FontSize="26.667" Click="btnStretchingCtrl_Click" ImageMargin="15" />
+                                  BackColor="{DynamicResource PrimaryGrayColor}" Image="../images/Start-new.png" Orientation="Horizontal" Text="Start  " FontSize="26.667" Click="btnStretchingCtrl_Click" ImageMargin="15" />
         <UserControls:StopWatch x:Name="stopWatchStretch" Margin="32,128,0,0" Width="156" Height="64" Foreground="{DynamicResource TertiaryTextColor}" FontSize="53.333" 
                    HorizontalAlignment="Left" VerticalAlignment="Top" Tick="stopWatchStretch_Tick" />
 

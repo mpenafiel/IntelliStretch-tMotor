@@ -269,7 +269,7 @@ namespace IntelliStretch
                                             if (this.IsSaving)
                                             {
                                                 //dataWriter.Write(dataQueue +"\n");  // save ankle data
-                                                dataWriter.Write(dataQueue);
+                                                dataWriter.Write(dataQueue); 
                                                 //dataWriter.WriteCmd(ankleData.anklePos.ToString() + " " + ankleData.ankleTorque.ToString() + " " + ankleData.ankleAm.ToString());  // save ankle data
                                             }
                                             if (this.IsUpdating && UpdateData != null) UpdateData(ankleData);  // update new ankle data

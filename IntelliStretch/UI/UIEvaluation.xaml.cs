@@ -475,7 +475,7 @@ namespace IntelliStretch.UI
             }
             else
             {
-                btnMeasure.Image = Utilities.GetImage("Play-new.png");
+                btnMeasure.Image = Utilities.GetImage("Start-new.png");
                 btnMeasure.Text = "Measure ";
                 Apply_Measure();
                 mainApp.Buttons_Enabled(true);

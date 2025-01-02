@@ -87,7 +87,7 @@
                     Margin="0,20,20,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
-                    Image="../images/button.png"
+                    Image="../images/CloseBtn.png"
                     Click="btnCloseMenu_Click"
                     BackColor="Transparent"
                     Width="28"

@@ -225,7 +225,7 @@ namespace IntelliStretch.UI
                     if (mainApp.IntelliProtocol.System.IsSavingData) sp.Stop_SaveData();
                 }
                 stopWatchStretch.Stop();
-                btnStretchingCtrl.Image = Utilities.GetImage("Play-new.png");
+                btnStretchingCtrl.Image = Utilities.GetImage("Start-new.png");
                 btnStretchingCtrl.Text = "Start  ";
                 mainApp.Buttons_Enabled(true);
             }
