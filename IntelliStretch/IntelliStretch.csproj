@@ -568,9 +568,7 @@
   <ItemGroup>
     <Resource Include="images\Background.png" />
     <Resource Include="images\Background_dim.png" />
-    <Resource Include="images\foot_angle_lines.png" />
-    <Resource Include="images\foot_neutral.png" />
-    <Resource Include="images\foot_plantar.png" />
+
     <Resource Include="images\Game.png" />
     <Resource Include="images\Protocol.png" />
     <Resource Include="images\Report.png" />
@@ -588,7 +586,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\3D_grid.png" />
-    <Resource Include="images\foot_dorsi.png" />
+
     <Resource Include="images\leg_part.png" />
     <Resource Include="images\shoe.png" />
   </ItemGroup>
@@ -673,8 +671,6 @@
   <ItemGroup>
     <Resource Include="images\Range.png" />
     <Resource Include="images\Strength.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\GameLib.png" />
   </ItemGroup>
   <ItemGroup>
@@ -685,28 +681,20 @@
     <Folder Include="Fonts\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\Knee_Stretching.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\Knee_angle_lines.png" />
     <Resource Include="images\Knee_extension.png" />
     <Resource Include="images\Knee_flexion.png" />
     <Resource Include="images\Knee_neutral.png" />
+    <Resource Include="images\Knee_Stretching.png" />
+    <Resource Include="images\Knee_leg_part.png" />
+    <Resource Include="images\Knee_thigh_part.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\Wrist_extension.png" />
     <Resource Include="images\Wrist_flexion.png" />
     <Resource Include="images\Wrist_neutral.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\Wrist_angle_lines.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\Wrist_hand_part.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\Knee_leg_part.png" />
-    <Resource Include="images\Knee_thigh_part.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RehabGameLib\RehabGameLib.csproj">
@@ -716,38 +704,32 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\foot_dorsi_og.png" />
+    <Resource Include="images\foot_neutral_og.png" />
+    <Resource Include="images\foot_plantar_og.png" />
+    <Resource Include="images\foot_angle_lines.png" />
+    <Resource Include="images\foot_dorsi.png" />
+    <Resource Include="images\foot_neutral.png" />
+    <Resource Include="images\foot_plantar.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\bar-graph.png" />
-    <Resource Include="images\control.png" />
-    <Resource Include="images\foot.png" />
-    <Resource Include="images\game new.png" />
-    <Resource Include="images\games.png" />
-    <Resource Include="images\prelim settings.png" />
-    <Resource Include="images\seo-report.png" />
-    <Resource Include="images\user icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\multiple-users-silhouette.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\no-connection.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\Navigator-new.png" />
+    <Resource Include="images\Exit-new.png" />
+    <Resource Include="images\Game-new.png" />
+    <Resource Include="images\GameLib-new.png" />
+    <Resource Include="images\InfoBtn.png" />
+    <Resource Include="images\CloseBtn.png" />
+    <Resource Include="images\Options-selected-new.png" />
+    <Resource Include="images\PC-new.png" />
+    <Resource Include="images\Range_selected-new.png" />
+    <Resource Include="images\Report-new.png" />
+    <Resource Include="images\Settings-new.png" />
+    <Resource Include="images\Start-new.png" />
+    <Resource Include="images\Strength-new.png" />
+    <Resource Include="images\User-new.png" />
+    <Resource Include="images\User_icon-new.png" />
+    <Resource Include="images\Connect-new.png" />
     <Resource Include="images\Options-new.png" />
     <Resource Include="images\Range-new.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\button.png" />
-    <Resource Include="images\power.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\Play-new.png" />
     <Resource Include="images\Stop-new.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\monitor.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\HarfBuzzSharp.NativeAssets.macOS.7.3.0.3\build\net462\HarfBuzzSharp.NativeAssets.macOS.targets" Condition="Exists('..\packages\HarfBuzzSharp.NativeAssets.macOS.7.3.0.3\build\net462\HarfBuzzSharp.NativeAssets.macOS.targets')" />

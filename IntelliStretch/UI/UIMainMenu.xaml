@@ -44,7 +44,7 @@
                 
                 <UserControls:ImageButton
                     x:Name="btnCloseMenu"
-                    Image="../images/button.png"
+                    Image="../images/CloseBtn.png"
                     Grid.Column="4" 
                     Margin="0,3,36,4" 
                     HorizontalAlignment="Right"
@@ -56,7 +56,7 @@
                 <UserControls:ImageButton 
                     x:Name="btnConnection" 
                     Text="Connection" 
-                    Image="../images/no-connection.png" 
+                    Image="../images/Connect-new.png" 
                     ImageMargin="20" 
                     Margin="5"
                     ButtonCornerRadius="5"
@@ -66,7 +66,7 @@
                 <UserControls:ImageButton
                     x:Name="btnPrelimSettings"
                     Text="Preliminary&#xa;Settings"
-                    Image="../images/prelim settings.png"
+                    Image="../images/Settings-new.png"
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"
@@ -77,7 +77,7 @@
                 <UserControls:ImageButton
                     x:Name="btnUsers" 
                     Text="Change&#xa;User"
-                    Image="../images/multiple-users-silhouette.png"
+                    Image="../images/User-new.png"
                     ImageMargin="20" 
                     Margin="5"
                     ButtonCornerRadius="5"
@@ -88,7 +88,7 @@
                 <UserControls:ImageButton
                     x:Name="btnGameLib" 
                     Text="Game&#xa;Library" 
-                    Image="../images/games.png" 
+                    Image="../images/GameLib-new.png" 
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"
@@ -118,7 +118,7 @@
                 <UserControls:ImageButton 
                     x:Name="btnGames"
                     Text="Active&#xa;Movement"
-                    Image="../images/game new.png"
+                    Image="../images/Game-new.png"
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"
@@ -138,7 +138,7 @@
                 <UserControls:ImageButton
                     x:Name="btnReport"
                     Text="Report"
-                    Image="../images/seo-report.png"
+                    Image="../images/Report-new.png"
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"
@@ -148,7 +148,7 @@
                 <UserControls:ImageButton
                     x:Name="btnExit"
                     Text="Exit"
-                    Image="../images/power.png" 
+                    Image="../images/Exit-new.png" 
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"
