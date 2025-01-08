@@ -13,8 +13,8 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Border x:Name="bdrCheck" Margin="{Binding BorderMargin, ElementName=userCheckBox}" CornerRadius="5" Background="{Binding Background, ElementName=userCheckBox}" BorderThickness="{Binding CheckBorderThickness, ElementName=userCheckBox}" BorderBrush="{Binding BrushColor, ElementName=userCheckBox}" />
-        <Image x:Name="imgCheck" Margin="{Binding ImageMargin, ElementName=userCheckBox}" Source="../images/RedCheck.png" Visibility="{Binding IsChecked, ElementName=userCheckBox, Converter={StaticResource boolVisibilityConverter}}" />
+        <Border x:Name="bdrCheck" Margin="{Binding BorderMargin, ElementName=userCheckBox}" CornerRadius="5" Background="{Binding BackColor, ElementName=userCheckBox}" BorderThickness="{Binding CheckBorderThickness, ElementName=userCheckBox}" BorderBrush="{Binding BrushColor, ElementName=userCheckBox}" />
+        <Image x:Name="imgCheck" Margin="{Binding ImageMargin, ElementName=userCheckBox}" Source="../images/RedCheck.png" Visibility="{Binding IsChecked, ElementName=userCheckBox, Converter={StaticResource boolVisibilityConverter}}"/>
         <TextBlock x:Name="txtCheckText" Grid.Column="1" Margin="{Binding TextMargin, ElementName=userCheckBox}" Text="{Binding Text, ElementName=userCheckBox}" Foreground="{Binding TextColor, ElementName=userCheckBox}" VerticalAlignment="Center" />
     </Grid>
 </UserControl>
