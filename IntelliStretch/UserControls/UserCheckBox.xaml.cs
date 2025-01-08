@@ -29,6 +29,16 @@ namespace IntelliStretch.UserControls
             DependencyProperty.Register("Text", typeof(string), typeof(UserCheckBox), new UIPropertyMetadata(null));
 
 
+        public SolidColorBrush BrushColor
+        {
+            get { return (SolidColorBrush)GetValue(BrushColorProperty); }
+            set { SetValue(BrushColorProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TextColor.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty BrushColorProperty =
+            DependencyProperty.Register("BrushColor", typeof(SolidColorBrush), typeof(UserCheckBox), new UIPropertyMetadata(new SolidColorBrush(Colors.Black)));
+
         public SolidColorBrush TextColor
         {
             get { return (SolidColorBrush)GetValue(TextColorProperty); }
@@ -39,7 +49,15 @@ namespace IntelliStretch.UserControls
         public static readonly DependencyProperty TextColorProperty =
             DependencyProperty.Register("TextColor", typeof(SolidColorBrush), typeof(UserCheckBox), new UIPropertyMetadata(new SolidColorBrush(Colors.Black)));
 
+        public SolidColorBrush Background
+        {
+            get { return (SolidColorBrush)GetValue(BackgroundProperty); }
+            set { SetValue(BackgroundProperty, value); }
+        }
 
+        // Using a DependencyProperty as the backing store for TextColor.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty BackgroundProperty =
+            DependencyProperty.Register("Background", typeof(SolidColorBrush), typeof(UserCheckBox), new UIPropertyMetadata(new SolidColorBrush(Colors.White)));
 
         public bool IsChecked
         {
@@ -72,7 +90,7 @@ namespace IntelliStretch.UserControls
 
         // Using a DependencyProperty as the backing store for CheckBorderThickness.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CheckBorderThicknessProperty =
-            DependencyProperty.Register("CheckBorderThickness", typeof(double), typeof(UserCheckBox), new UIPropertyMetadata(1d));
+            DependencyProperty.Register("CheckBorderThickness", typeof(double), typeof(UserCheckBox), new UIPropertyMetadata(0d));
 
 
 

@@ -185,6 +185,7 @@ namespace IntelliStretch.UI
         {
             cboSampRate.Text = intelliProtocol.System.SamplingRate.ToString();
             tgBtnSave.IsChecked = intelliProtocol.System.IsSavingData;
+            ellipseSaveing.Fill = ((bool)tgBtnSave.IsChecked) ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
         }
 
         private void Load_GeneralSettings(Protocols.GeneralSettings protocol)
