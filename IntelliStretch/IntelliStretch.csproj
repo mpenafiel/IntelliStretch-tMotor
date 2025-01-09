@@ -734,7 +734,6 @@
     <Resource Include="images\Options-new.png" />
     <Resource Include="images\Range-new.png" />
     <Resource Include="images\Stop-new.png" />
-    <Resource Include="images\Navigator-new.png" />
     <Resource Include="images\ScrollDown.png" />
     <Resource Include="images\ScrollLeft.png" />
     <Resource Include="images\ScrollRight.png" />
