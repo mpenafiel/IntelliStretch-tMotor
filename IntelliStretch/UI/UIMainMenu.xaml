@@ -60,7 +60,7 @@
                     ImageMargin="20" 
                     Margin="5"
                     ButtonCornerRadius="5"
-                    BackColor="{DynamicResource SecondaryGrayColor}"
+                    BackColor="{DynamicResource PrimaryGrayColor}"
                     Grid.Row="1"
                     Grid.Column="1"/>
                 <UserControls:ImageButton
@@ -70,7 +70,7 @@
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"
-                    BackColor="{DynamicResource SecondaryGrayColor}"
+                    BackColor="{DynamicResource PrimaryGrayColor}"
                     Grid.Row="1"
                     Grid.Column="2" />
                 
@@ -81,7 +81,7 @@
                     ImageMargin="20" 
                     Margin="5"
                     ButtonCornerRadius="5"
-                    BackColor="{DynamicResource SecondaryGrayColor}"
+                    BackColor="{DynamicResource PrimaryGrayColor}"
                     Grid.Row="1"
                     Grid.Column="0" />
                 
@@ -92,7 +92,7 @@
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"
-                    BackColor="{DynamicResource SecondaryGrayColor}"
+                    BackColor="{DynamicResource PrimaryGrayColor}"
                     Grid.Row="2" 
                     Grid.Column="2" />
                 <UserControls:ImageButton
@@ -102,7 +102,7 @@
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"
-                    BackColor="{DynamicResource SecondaryGrayColor}"
+                    BackColor="{DynamicResource PrimaryGrayColor}"
                     Grid.Row="2"
                     Grid.Column="3" />
                 <UserControls:ImageButton
@@ -111,7 +111,7 @@
                     Image="{Binding JointImage, ElementName=uiMainMenu}"
                     ImageMargin="20"
                     ButtonCornerRadius="5"
-                    BackColor="{DynamicResource SecondaryGrayColor}"
+                    BackColor="{DynamicResource PrimaryGrayColor}"
                     Margin="5"
                     Grid.Row="1"
                     Grid.Column="3"/>
@@ -122,7 +122,7 @@
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"
-                    BackColor="{DynamicResource SecondaryGrayColor}"
+                    BackColor="{DynamicResource PrimaryGrayColor}"
                     Grid.Row="2" 
                     Grid.Column="0"/>
                 <UserControls:ImageButton
@@ -132,7 +132,7 @@
                     ImageMargin="20"
                     Margin="5" 
                     ButtonCornerRadius="5"
-                    BackColor="{DynamicResource SecondaryGrayColor}"
+                    BackColor="{DynamicResource PrimaryGrayColor}"
                     Grid.Row="1"
                     Grid.Column="4" />
                 <UserControls:ImageButton
@@ -142,7 +142,7 @@
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"
-                    BackColor="{DynamicResource SecondaryGrayColor}"
+                    BackColor="{DynamicResource PrimaryGrayColor}"
                     Grid.Row="2"
                     Grid.Column="1"/>
                 <UserControls:ImageButton
@@ -152,7 +152,7 @@
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"
-                    BackColor="{DynamicResource SecondaryGrayColor}"
+                    BackColor="{DynamicResource PrimaryGrayColor}"
                     Grid.Row="2"
                     Grid.Column="4" />
             </Grid>

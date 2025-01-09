@@ -5,9 +5,6 @@ using System.Windows.Media;
 
 namespace IntelliStretch.UserControls
 {
-    /// <summary>
-    /// Interaction logic for UserCheckBox.xaml
-    /// </summary>
     public partial class UserCheckBox : UserControl
     {
         public UserCheckBox()
@@ -29,6 +26,16 @@ namespace IntelliStretch.UserControls
             DependencyProperty.Register("Text", typeof(string), typeof(UserCheckBox), new UIPropertyMetadata(null));
 
 
+        public SolidColorBrush BrushColor
+        {
+            get { return (SolidColorBrush)GetValue(BrushColorProperty); }
+            set { SetValue(BrushColorProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TextColor.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty BrushColorProperty =
+            DependencyProperty.Register("BrushColor", typeof(SolidColorBrush), typeof(UserCheckBox), new UIPropertyMetadata(new SolidColorBrush(Colors.Gray)));
+
         public SolidColorBrush TextColor
         {
             get { return (SolidColorBrush)GetValue(TextColorProperty); }
@@ -39,7 +46,15 @@ namespace IntelliStretch.UserControls
         public static readonly DependencyProperty TextColorProperty =
             DependencyProperty.Register("TextColor", typeof(SolidColorBrush), typeof(UserCheckBox), new UIPropertyMetadata(new SolidColorBrush(Colors.Black)));
 
+        public SolidColorBrush BackColor
+        {
+            get { return (SolidColorBrush)GetValue(BackColorProperty); }
+            set { SetValue(BackColorProperty, value); }
+        }
 
+        // Using a DependencyProperty as the backing store for TextColor.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty BackColorProperty =
+            DependencyProperty.Register("BackColor", typeof(SolidColorBrush), typeof(UserCheckBox), new UIPropertyMetadata(new SolidColorBrush(Colors.White)));
 
         public bool IsChecked
         {
@@ -72,7 +87,7 @@ namespace IntelliStretch.UserControls
 
         // Using a DependencyProperty as the backing store for CheckBorderThickness.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CheckBorderThicknessProperty =
-            DependencyProperty.Register("CheckBorderThickness", typeof(double), typeof(UserCheckBox), new UIPropertyMetadata(1d));
+            DependencyProperty.Register("CheckBorderThickness", typeof(double), typeof(UserCheckBox), new UIPropertyMetadata(2d));
 
 
 
@@ -114,10 +129,22 @@ namespace IntelliStretch.UserControls
 
         #endregion
 
+        #region Routed Events
+        public event RoutedEventHandler CheckToggled
+        {
+            add { AddHandler(CheckToggledEvent, value); }
+            remove { RemoveHandler(CheckToggledEvent, value); }
+        }
+
+        public static readonly RoutedEvent CheckToggledEvent =
+            EventManager.RegisterRoutedEvent("CheckToggled", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UserCheckBox));
+        #endregion
 
         private void userCheckBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
             IsChecked = !IsChecked;
+            RaiseEvent(new RoutedEventArgs(CheckToggledEvent));
+
         }
     }
 }

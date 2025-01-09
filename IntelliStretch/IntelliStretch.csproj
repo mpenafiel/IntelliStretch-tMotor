@@ -261,9 +261,7 @@
     </Page>
     <Page Include="UI\UIGameLib.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="UI\UIReport.xaml">
       <SubType>Designer</SubType>
@@ -405,6 +403,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UserControls\VerticalScroller.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\WaitingControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -511,6 +513,9 @@
     <Compile Include="UserControls\VerticalRangeFinder.xaml.cs">
       <DependentUpon>VerticalRangeFinder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\VerticalScroller.xaml.cs">
+      <DependentUpon>VerticalScroller.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -568,7 +573,6 @@
   <ItemGroup>
     <Resource Include="images\Background.png" />
     <Resource Include="images\Background_dim.png" />
-
     <Resource Include="images\Game.png" />
     <Resource Include="images\Protocol.png" />
     <Resource Include="images\Report.png" />
@@ -586,7 +590,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\3D_grid.png" />
-
     <Resource Include="images\leg_part.png" />
     <Resource Include="images\shoe.png" />
   </ItemGroup>
@@ -730,6 +733,11 @@
     <Resource Include="images\Options-new.png" />
     <Resource Include="images\Range-new.png" />
     <Resource Include="images\Stop-new.png" />
+    <Resource Include="images\Navigator-new.png" />
+    <Resource Include="images\ScrollDown.png" />
+    <Resource Include="images\ScrollLeft.png" />
+    <Resource Include="images\ScrollRight.png" />
+    <Resource Include="images\ScrollUp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\HarfBuzzSharp.NativeAssets.macOS.7.3.0.3\build\net462\HarfBuzzSharp.NativeAssets.macOS.targets" Condition="Exists('..\packages\HarfBuzzSharp.NativeAssets.macOS.7.3.0.3\build\net462\HarfBuzzSharp.NativeAssets.macOS.targets')" />
