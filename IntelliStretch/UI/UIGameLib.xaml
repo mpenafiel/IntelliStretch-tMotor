@@ -70,11 +70,9 @@
                                 <RowDefinition Height="100" />
                             </Grid.RowDefinitions>
                             <ListBox x:Name="lstGames" Margin="10,20,10,0" Background="{DynamicResource SecondaryBlueColor}" BorderThickness="0" FontSize="32" FontWeight="Bold" HorizontalContentAlignment="Stretch" ItemTemplate="{StaticResource localListTemplate}"/>
-                            <Button x:Name="btnAddGame" Grid.Row="1" Margin="20,0,0,0" Content="Add Game" Style="{DynamicResource GeneralButtonStyle}" Width="180" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center"/>                            
-                            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                                <UserControls:ImageButton x:Name="btnItemUp" Margin="20,0" Image="../images/Arrow_Up.png" ImageMargin="8" BackColor="White" Width="60" Height="60" Click="btnItemUp_Click"/>
-                                <UserControls:ImageButton x:Name="btnItemDown" Margin="20,0" Image="../images/Arrow_Down.png" ImageMargin="8" BackColor="White" Width="60" Height="60" Click="btnItemDown_Click"/>
-                            </StackPanel>
+                            <Button x:Name="btnAddGame" Grid.Row="1" Margin="20,0,0,0" Content="Add Game" Style="{DynamicResource GeneralButtonStyle}" Width="180" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                            <UserControls:VerticalScroller Grid.Row="1" Height="60" HorizontalAlignment="Right" VerticalAlignment="Center" ButtonMinClick="btnItemDown_Click" ButtonMaxClick="btnItemUp_Click" Margin="20,0"/>
                         </Grid>
                     </TabItem>
                     <TabItem x:Name="tabOnlineGames" Header="Online Game Library" Visibility="Collapsed">

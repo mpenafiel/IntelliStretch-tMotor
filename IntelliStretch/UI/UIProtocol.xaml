@@ -57,8 +57,53 @@
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Save Data File:" FontSize="16" Margin="12,0" VerticalAlignment="Center" />
-                                        <ToggleButton x:Name="tgBtnSave" Width="100" Height="30" Margin="5" Click="tgBtnSave_Click">
-                                            <Ellipse x:Name="ellipseSaveing" Width="24" Height="24" Fill="Red" />
+                                        <ToggleButton x:Name="tgBtnSave" Width="100" Height="40" Margin="5,0" Click="tgBtnSave_Click" BorderThickness="0">
+                                            <Ellipse x:Name="ellipseSaveing" Width="24" Height="24" Fill="Red" Stroke="Black"  StrokeThickness="1.5"/>
+
+                                            <ToggleButton.Template>
+                                                <ControlTemplate TargetType="ToggleButton">
+                                                    <ContentControl>
+                                                        <Border x:Name="buttonBorder"
+                                                            BorderBrush="DimGray"
+                                                            BorderThickness="0"
+                                                            CornerRadius="5">
+
+                                                            <ContentPresenter
+                                                                VerticalAlignment="Center"
+                                                                HorizontalAlignment="Center"/>
+                                                            <Border.Background >
+                                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                    <GradientStop Color="White" Offset="0.2"/>
+                                                                    <GradientStop Color="White" Offset="1"/>
+                                                                </LinearGradientBrush>
+                                                            </Border.Background>
+                                                        </Border>
+
+                                                    </ContentControl>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="true">
+                                                            <Setter Property="Background" TargetName="buttonBorder">
+                                                                <Setter.Value>
+                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                        <GradientStop Color="#BBC1D1" Offset="0.2"/>
+                                                                        <GradientStop Color="#BBC1D1" Offset="1"/>
+                                                                    </LinearGradientBrush>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                        <Trigger Property="IsChecked" Value="true">
+                                                            <Setter Property="Background" TargetName="buttonBorder">
+                                                                <Setter.Value>
+                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                        <GradientStop Color="#348EF6" Offset="0.2"/>
+                                                                        <GradientStop Color="#348EF6" Offset="1"/>
+                                                                    </LinearGradientBrush>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </ToggleButton.Template>
                                         </ToggleButton>
                                     </StackPanel>
                                 </UniformGrid>
@@ -128,7 +173,7 @@
                                                 <ComboBoxItem>Y</ComboBoxItem>
                                             </ComboBox>
                                         </StackPanel>
-                                        <UserControls:UserCheckBox x:Name="chkNoLoading" Height="36" Text=" No Loading..." Foreground="{DynamicResource TertiaryTextColor}" FontSize="16" IsChecked="True" />
+                                        <UserControls:UserCheckBox x:Name="chkNoLoading" Height="36" Text=" No Loading..." BrushColor="{DynamicResource SecondaryGrayColor}" CheckBorderThickness="2" Foreground="{DynamicResource TertiaryTextColor}" FontSize="16" IsChecked="True" />
                                     </UniformGrid>
                                     <UserControls:TextSlider x:Name="sliderResistScale" Grid.Row="1" Text="Scaling Factor:" Maximum="20" />
                                     <UserControls:TextSlider Grid.Row="2" x:Name="sliderResistance" Text="Resistance:"/>

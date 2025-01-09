@@ -11,7 +11,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid>
-                            <Image Source="../images/Info.png"/>
+                            <Image Source="../images/InfoBtn.png"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsFocused" Value="True"/>
@@ -31,7 +31,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid>
-                            <Image Source="../images/Close2.png"/>
+                            <Image Source="../images/CloseBtn.png"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsFocused" Value="True"/>
@@ -71,7 +71,7 @@
             <ProgressBar Margin="10,0" Grid.Column="1" Maximum="100" Value="{Binding AssistLevel, ElementName=uiGameCtrlPanel}" VerticalAlignment="Center" Height="30"/>
   
         </Grid>        
-        <Border Name="bdrBtnPanel" Margin="5" Width="160" Background="#4CD8D8D8" CornerRadius="10,10,10,10" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" >
+        <Border Name="bdrBtnPanel" Margin="5,5,32,5" Width="120" Background="#4CD8D8D8" CornerRadius="5,5,5,5" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" >
             <Border.RenderTransform>
                 <TranslateTransform/>
             </Border.RenderTransform>

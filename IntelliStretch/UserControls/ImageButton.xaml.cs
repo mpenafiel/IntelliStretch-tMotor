@@ -27,7 +27,6 @@ namespace IntelliStretch.UserControls
             DependencyProperty.Register("Text", typeof(string), typeof(ImageButton), new UIPropertyMetadata(""));
 
 
-
         public ImageSource Image
         {
             get { return (ImageSource)GetValue(ImageProperty); }
@@ -83,8 +82,6 @@ namespace IntelliStretch.UserControls
         // Using a DependencyProperty as the backing store for Orientation.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty OrientationProperty =
             DependencyProperty.Register("Orientation", typeof(Orientation), typeof(ImageButton), new FrameworkPropertyMetadata(Orientation.Vertical));
-
-
 
 
         public bool IsReflected
