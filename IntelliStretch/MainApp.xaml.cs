@@ -294,7 +294,7 @@ namespace IntelliStretch
             // Set backdrivable
             if (sp.IsConnected)
             {
-                sp.WriteCmd("BK");
+                sp.WriteCmd("ST");//used to be BK, changed to ST by gio jan 16 2025
                 //if (sysProtocol.HasSensor) sp.WriteCmd("MO");  // === Del by Yupeng Jan.18.2011
                 sp.UpdateData = new IntelliSerialPort.DelegateUpdateData(uiPrelimSettings.Update_DataInfo);
                 sp.IsUpdating = true;
@@ -431,11 +431,11 @@ namespace IntelliStretch
             if (sp.IsConnected)                                         // === Add by Yupeng Jan.18.2011
             {                                                           // === Add by Yupeng Jan.18.2011
                 sp.WriteCmd("ST");                                      // ===== Add by Michael, Aug.16.2024
-                sp.WriteCmd("BK");                                     // === Add by Yupeng Jan.18.2011
+                //sp.WriteCmd("BK");                                     // === Add by Yupeng Jan.18.2011changed to ST by gio jan 16 2025 // removed by gio 16_jan_2025
 
                 
 
-                if (sysProtocol.HasSensor) sp.WriteCmd("MO");          // === Add by Yupeng Jan.18.2011
+               // if (sysProtocol.HasSensor) sp.WriteCmd("MO");          // === Add by Yupeng Jan.18.2011
             }
             btnNext_Click(null, null);
         }
