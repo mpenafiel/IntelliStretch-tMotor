@@ -143,7 +143,7 @@ namespace IntelliStretch.UserControls
                 // Initialize search positions
                 activeDorsiPos = newScrPos;
                 activePlantarPos = newScrPos;
-                rectAROM.Height = activePlantarPos - activeDorsiPos;
+                rectAROM.Height = Math.Abs(activePlantarPos - activeDorsiPos);
                 Canvas.SetTop(pnlADorsiMax, activeDorsiPos);
                 Canvas.SetTop(pnlAPlantarMax, activePlantarPos);
                 this.ActiveFlexionMax = currentPos;
@@ -158,7 +158,7 @@ namespace IntelliStretch.UserControls
                     this.ActiveFlexionMax = currentPos;
                     Canvas.SetTop(pnlADorsiMax, newScrPos);
                     activeDorsiPos = newScrPos;
-                    rectAROM.Height = activePlantarPos - activeDorsiPos;
+                    rectAROM.Height = Math.Abs(activePlantarPos - activeDorsiPos);
                     Canvas.SetTop(rectAROM, activeDorsiPos);
                     txtActiveFlexionMax.Text = currentPos.ToString("#0.0");
                 }
@@ -167,7 +167,7 @@ namespace IntelliStretch.UserControls
                     this.ActiveExtensionMax = currentPos;
                     Canvas.SetTop(pnlAPlantarMax, newScrPos);
                     activePlantarPos = newScrPos;
-                    rectAROM.Height = activePlantarPos - activeDorsiPos;
+                    rectAROM.Height = Math.Abs(activePlantarPos - activeDorsiPos);
                     Canvas.SetTop(rectAROM, activeDorsiPos);
                     txtActiveExtensionMax.Text = currentPos.ToString("#0.0");
                 }
