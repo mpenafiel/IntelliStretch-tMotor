@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using System.IO;
-using IntelliStretch.UI;
+using IntelliStretch.UI;       
 using NationalInstruments.DAQmx;
 using System.Diagnostics;
 
