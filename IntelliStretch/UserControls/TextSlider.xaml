@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     x:Name="textSlider" Margin="20,0">
     <UniformGrid Rows="2">
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Cursor="Arrow">
             <TextBlock Text="{Binding Text, ElementName=textSlider}" FontSize="{Binding TextFontSize, ElementName=textSlider}" VerticalAlignment="Center" />
             <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Foreground="Red" FontWeight="Bold" FontSize="{Binding TextFontSize, ElementName=textSlider}" Text="{Binding Value, ElementName=sliderValue}" />
         </StackPanel>

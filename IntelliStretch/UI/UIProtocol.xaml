@@ -120,8 +120,9 @@
                             </Grid.RowDefinitions>
                             <GroupBox Margin="12,8" Header="General" FontSize="18.667"  Padding="10" BorderBrush="#FF0046D5"  Foreground="{DynamicResource TertiaryTextColor}">
                                 <UniformGrid Columns="2">
-                                    <UserControls:TextSlider x:Name="sliderStretchDuration" Text="Duration [min]:" Minimum="1" Maximum="60"/>
-                                    <UserControls:TextSlider x:Name="sliderStretchHoldTime"  Text="Holding Time [sec]:" Maximum="30" />
+                                    <UserControls:TextSlider x:Name="sliderStretchDuration" Text="Duration [min]:" Minimum="1" Maximum="30
+                                                             "/>
+                                    <UserControls:TextSlider x:Name="sliderStretchHoldTime"  Text="Holding Time [sec]:" Maximum="15" />
                                 </UniformGrid>
                             </GroupBox>
                             <GroupBox Grid.Row="1" Margin="12,8" Padding="10" Header="Velocity [deg/sec]" FontSize="18.667" BorderBrush="#FF0046D5"  Foreground="{DynamicResource TertiaryTextColor}">

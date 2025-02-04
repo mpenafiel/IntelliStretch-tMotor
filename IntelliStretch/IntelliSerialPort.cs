@@ -335,18 +335,19 @@ namespace IntelliStretch
 
         private int[] Parse_Data(string dataString)
         {
-            String[] spearator = { "P", "T", "A", "D", "E" };
+            String[] spearator = { "P", "T", "A", "D", "E"};
             Int32 count = spearator.Length;
 
             String[] data_parse = dataString.Split(spearator, count, StringSplitOptions.RemoveEmptyEntries);
 
-            int[] data_array = new int[data_parse.Length];
+            Int32[] data_array = new Int32[data_parse.Length];
 
             for ( int i = 0; i < data_parse.Length; i++ )
             {
                 try
-                {   
-                    if (data_parse[i] != "\r\n" || data_parse[i] != "\n") data_array[i] = Int32.Parse(data_parse[i]);
+                {
+                    var isNumeric = Int32.TryParse(data_parse[i], out Int32 n);
+                    if (isNumeric) data_array[i] = n;
                 }
                 catch (FormatException e)
                 {

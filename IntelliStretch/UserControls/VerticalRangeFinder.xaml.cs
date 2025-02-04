@@ -146,6 +146,8 @@ namespace IntelliStretch.UserControls
                 rectAROM.Height = Math.Abs(activePlantarPos - activeDorsiPos);
                 Canvas.SetTop(pnlADorsiMax, activeDorsiPos);
                 Canvas.SetTop(pnlAPlantarMax, activePlantarPos);
+                Canvas.SetRight(pnlAPlantarMax, 0);
+                Canvas.SetRight(pnlADorsiMax, 0);
                 this.ActiveFlexionMax = currentPos;
                 this.ActiveExtensionMax = currentPos;
                 this.IsInitialPos = false;
@@ -157,6 +159,8 @@ namespace IntelliStretch.UserControls
                 {
                     this.ActiveFlexionMax = currentPos;
                     Canvas.SetTop(pnlADorsiMax, newScrPos);
+                    Canvas.SetRight(pnlAPlantarMax, 0);
+                    Canvas.SetRight(pnlADorsiMax, 0);
                     activeDorsiPos = newScrPos;
                     rectAROM.Height = Math.Abs(activePlantarPos - activeDorsiPos);
                     Canvas.SetTop(rectAROM, activeDorsiPos);
@@ -166,6 +170,8 @@ namespace IntelliStretch.UserControls
                 {
                     this.ActiveExtensionMax = currentPos;
                     Canvas.SetTop(pnlAPlantarMax, newScrPos);
+                    Canvas.SetRight(pnlAPlantarMax, 0);
+                    Canvas.SetRight(pnlADorsiMax, 0);
                     activePlantarPos = newScrPos;
                     rectAROM.Height = Math.Abs(activePlantarPos - activeDorsiPos);
                     Canvas.SetTop(rectAROM, activeDorsiPos);
@@ -210,6 +216,8 @@ namespace IntelliStretch.UserControls
             Canvas.SetTop(pnlCurrentPos, neutralPos);
             Canvas.SetTop(pnlADorsiMax, neutralPos);
             Canvas.SetTop(pnlAPlantarMax, neutralPos);
+            Canvas.SetRight(pnlAPlantarMax, 0);
+            Canvas.SetRight(pnlADorsiMax, 0);
             rectAROM.Height = 0;
 
         }
