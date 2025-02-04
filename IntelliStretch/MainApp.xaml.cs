@@ -15,7 +15,7 @@ namespace IntelliStretch
     public partial class MainApp : Window
     {
 
-        readonly System.Windows.Forms.Timer DAQStatusTimer = new System.Windows.Forms.Timer() { Interval = 100, Enabled = true };
+        //readonly System.Windows.Forms.Timer DAQStatusTimer = new System.Windows.Forms.Timer() { Interval = 100, Enabled = true };
         static bool dispError = false;
         DigitalSingleChannelWriter LEDwriter = null;
         bool[] dataArray = new bool[8];
@@ -26,7 +26,7 @@ namespace IntelliStretch
         {
             InitializeComponent();
 
-            DAQStatusTimer.Tick += (s, e) =>
+            /*DAQStatusTimer.Tick += (s, e) =>
             {
                 try
                 {
@@ -88,7 +88,7 @@ namespace IntelliStretch
                     digitalWriteTask?.Dispose();
                     digitalWriteTask = null;
                 }
-            };
+            };*/
         }
    
         #endregion
