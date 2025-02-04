@@ -21,8 +21,18 @@
     </UserControl.Resources>
 
     <Grid Background="#C2222222">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="82*"/>
+            <ColumnDefinition Width="184*"/>
+            <ColumnDefinition Width="267*"/>
+            <ColumnDefinition Width="267*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="154*"/>
+            <RowDefinition Height="481*"/>
+        </Grid.RowDefinitions>
         <Border x:Name="bdrProtocol" Background="{DynamicResource PrimaryTextColor}" BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
-                HorizontalAlignment="Center" VerticalAlignment="Center" Height="635" Width="800">
+                HorizontalAlignment="Center" VerticalAlignment="Top" Height="635" Width="800" Grid.RowSpan="2" Grid.Column="2">
             <Border.RenderTransform>
                 <TranslateTransform/>
             </Border.RenderTransform>
@@ -120,9 +130,8 @@
                             </Grid.RowDefinitions>
                             <GroupBox Margin="12,8" Header="General" FontSize="18.667"  Padding="10" BorderBrush="#FF0046D5"  Foreground="{DynamicResource TertiaryTextColor}">
                                 <UniformGrid Columns="2">
-                                    <UserControls:TextSlider x:Name="sliderStretchDuration" Text="Duration [min]:" Minimum="1" Maximum="30
-                                                             "/>
-                                    <UserControls:TextSlider x:Name="sliderStretchHoldTime"  Text="Holding Time [sec]:" Maximum="15" />
+                                    <UserControls:TextSlider x:Name="sliderStretchDuration" Text="Duration [min]:" Minimum="1" Maximum="60"/>
+                                    <UserControls:TextSlider x:Name="sliderStretchHoldTime"  Text="Holding Time [sec]:" Maximum="20" />
                                 </UniformGrid>
                             </GroupBox>
                             <GroupBox Grid.Row="1" Margin="12,8" Padding="10" Header="Velocity [deg/sec]" FontSize="18.667" BorderBrush="#FF0046D5"  Foreground="{DynamicResource TertiaryTextColor}">
@@ -179,8 +188,8 @@
                                     <UserControls:TextSlider x:Name="sliderResistScale" Grid.Row="1" Text="Scaling Factor:" Maximum="20" />
                                     <UserControls:TextSlider Grid.Row="2" x:Name="sliderResistance" Text="Resistance:"/>
                                     <!-- <UniformGrid Grid.Row="2" Columns="2" IsEnabled="{Binding IsChecked, ElementName=chkNoLoading, Mode=Default, Converter={StaticResource boolReverseConverter}}"> -->
-                                        <!--<UserControls:TextSlider x:Name="sliderResistFlex" Text="{Binding Path=FlexionName, ElementName=uiProtocol, StringFormat={}{0} Resistance:}" />-->
-                                        <!--<UserControls:TextSlider x:Name="sliderResistExt" Text="{Binding Path=ExtensionName, ElementName=uiProtocol, StringFormat={}{0} Resistance:}" />-->
+                                    <!--<UserControls:TextSlider x:Name="sliderResistFlex" Text="{Binding Path=FlexionName, ElementName=uiProtocol, StringFormat={}{0} Resistance:}" />-->
+                                    <!--<UserControls:TextSlider x:Name="sliderResistExt" Text="{Binding Path=ExtensionName, ElementName=uiProtocol, StringFormat={}{0} Resistance:}" />-->
                                     <!--</UniformGrid>-->
                                 </Grid>
                             </GroupBox>
