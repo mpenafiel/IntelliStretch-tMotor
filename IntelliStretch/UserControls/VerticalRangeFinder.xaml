@@ -18,13 +18,6 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Rectangle Fill="Blue" Grid.Column="0" Grid.RowSpan="4"/>
-
-            <Rectangle Fill="Yellow" Grid.Column="1" Grid.RowSpan="4"/>
-
-            <Rectangle Fill="Green" Grid.Column="2" Grid.RowSpan="4"/>
-
-
             <Border Grid.Row="0" Grid.ColumnSpan="3" x:Name="ShowBorder" Width="300" Padding="5" BorderThickness="0" Background="Black" CornerRadius="12" Visibility="Collapsed">
                 <TextBlock Grid.Row="0" Grid.ColumnSpan="3" x:Name="ShowTextBlock" TextWrapping="Wrap" Foreground="WhiteSmoke" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Padding="10,5"/>
             </Border>
