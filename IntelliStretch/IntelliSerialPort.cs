@@ -351,7 +351,7 @@ namespace IntelliStretch
                 }
                 catch (FormatException e)
                 {
-                    Console.WriteLine(data_parse[i] + "[]" + e.Message);
+                    Console.WriteLine(data_parse[i] + " " + e.Message);
                 }
             }
 
