@@ -30,8 +30,8 @@
 
         <Border Margin="32,0,0,20" VerticalAlignment="Bottom" Width="180" BorderBrush="{DynamicResource TertiaryTextColor}" BorderThickness="2" HorizontalAlignment="Left" CornerRadius="10" Grid.Row="1">
             <StackPanel>
-                <UserControls:FlatToggleButton x:Name="btnStretchMode" Margin="0,10" Height="60" Width="150" Content="Intelligent" Click="btnStretchMode_Click" Visibility="{Binding ModeSelectionVisibility, ElementName=uiStretching}"/>
-                <Button x:Name="btnDefaultStretch" Margin="0,10" Height="60" Width="150" Style="{DynamicResource GeneralButtonStyle}" Content="Default"  Click="btnDefaultStretch_Click" />
+                <UserControls:FlatButton x:Name="btnDefaultStretch" Margin="0,10" Height="60" Width="140" FontSize="20" Text="Default" Click="btnSaveDefaultStretch_Click"/>
+                <UserControls:FlatToggleButton x:Name="btnStretchMode" Margin="0,10" Height="40" Width="140" FontSize="20" Text="Intelligent" Click="btnStretchMode_Click" Visibility="{Binding ModeSelectionVisibility, ElementName=uiStretching}"/>
             </StackPanel>
         </Border>
 
