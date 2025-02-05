@@ -203,11 +203,14 @@ namespace IntelliStretch.UI
                     {
                         // Intelligent mode
                         if (mainApp.IntelliProtocol.System.IsSavingData) sp.Start_SaveData("Stretching_Intelligent");
+
+                        sp.WriteCmd("IN0");
                     }   
                     else
                     {
-                        sp.WriteCmd("HT0");  // No holding time
-                        sp.WriteCmd("IF");  // Basic stretching
+                        //sp.WriteCmd("HT0");  // No holding time
+                        //sp.WriteCmd("IF");  // Basic stretching
+                        sp.WriteCmd("BA0");
                         if (mainApp.IntelliProtocol.System.IsSavingData) sp.Start_SaveData("Stretching_Basic");
                     }
 
@@ -300,9 +303,9 @@ namespace IntelliStretch.UI
                 sp.WriteCmd("ML10");  // Stretching level = 10
                 if (btnStretchMode.IsChecked)
                     //sp.WriteCmd("HT0");
-                    sp.WriteCmd("BA");
+                    sp.WriteCmd("BA0");
                 else
-                    sp.WriteCmd("IN");
+                    sp.WriteCmd("IN0");
                 //sp.WriteCmd($"HT{protocol.HoldingTime}");  // Stretching holding time
 
                 sp.WriteCmd($"HT{protocol.HoldingTime}");  // Stretching holding time
@@ -345,7 +348,7 @@ namespace IntelliStretch.UI
                     // If stretching is going on, switch to basic stretching
                     //sp.WriteCmd("HT0");  // No holding time
                     //sp.WriteCmd("IF");  // Basic stretching
-                    sp.WriteCmd("BA"); // Basic stretching
+                    sp.WriteCmd("BA0"); // Basic stretching
                 }
             }
             else
@@ -356,7 +359,7 @@ namespace IntelliStretch.UI
                     // If stretching is going on, switch to intelligent stretching
                     //sp.WriteCmd($"HT{customStretch.HoldingTime}");  // Reset holding time
                     //sp.WriteCmd("IS");  //  Intellistretching
-                    sp.WriteCmd("IN"); // Intellistretching
+                    sp.WriteCmd("IN0"); // Intellistretching
                 }
             }
         }
