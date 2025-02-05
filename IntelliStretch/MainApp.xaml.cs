@@ -188,7 +188,7 @@ namespace IntelliStretch
             {
                 sysProtocol = new Protocols.System();
                 sysProtocol.Joint = Protocols.Joint.All;  // Default = All-In-One version
-                sysProtocol.HasSensor = false;  // Default = NO sensor
+                sysProtocol.HasSensor = true;  // Default = HAS sensor
                 Utilities.SaveToXML<Protocols.System>(sysProtocol, sysFile);
             }
             else
