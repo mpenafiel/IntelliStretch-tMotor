@@ -195,7 +195,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
-                                <RowDefinition Height="60" />
+                                <!-- <RowDefinition Height="60" /> -->
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="300"></ColumnDefinition>
@@ -248,7 +248,8 @@
                                 Text="Lock Position:"
                                 Foreground="{DynamicResource TertiaryTextColor}" 
                                 TextFontSize="22"
-                                ValueChanged="sliderLockPosition_ValueChanged"/>
+                                ValueChanged="sliderLockPosition_ValueChanged"
+                                Visibility="Collapsed"/>
                         </Grid>
                         <Grid x:Name="hStrengthLayout">
                             <Grid.RowDefinitions>
@@ -298,7 +299,8 @@
                                 Text="Lock Position:"
                                 Foreground="{DynamicResource TertiaryTextColor}" 
                                 TextFontSize="22"
-                                ValueChanged="sliderLockPosition_ValueChanged"/>
+                                ValueChanged="sliderLockPosition_ValueChanged"
+                                Visibility="Collapsed"/>
                         </Grid>
                     </Grid>
                 </TabItem>
