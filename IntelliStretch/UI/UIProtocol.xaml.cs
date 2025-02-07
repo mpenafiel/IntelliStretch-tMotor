@@ -553,7 +553,22 @@ namespace IntelliStretch.UI
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
+            physicalChannelComboBox1.Items.Clear(); physicalChannelComboBox2.Items.Clear();
 
+            string[] newChannels = DaqSystem.Local.GetPhysicalChannels(PhysicalChannelTypes.AI, PhysicalChannelAccess.External);
+
+            foreach (string channel in newChannels)
+            {
+                physicalChannelComboBox1.Items.Add(channel); physicalChannelComboBox2.Items.Add(channel);
+            }
+
+            if (physicalChannelComboBox1.Items.Count > 0)
+                physicalChannelComboBox1.SelectedIndex = 1; //Set physical channel to ai1
+
+            if (physicalChannelComboBox2.Items.Count > 1)
+                physicalChannelComboBox2.SelectedIndex = 3; //Set physical channel to ai3
+
+            tabCtrlConfig.SelectedIndex = 3;
         }
 
         private void tgBtnSave_Click(object sender, RoutedEventArgs e)

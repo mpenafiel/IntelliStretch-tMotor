@@ -58,15 +58,43 @@
 
                     <Rectangle Height="2" Fill="{DynamicResource TertiaryTextColor}" Margin="10,0"/>
 
-                    <StackPanel Margin="40,10,20,10" >
+                    <StackPanel x:Name="emgStack"  Margin="30,10,10,10" Visibility="Collapsed">
 
                         <UserControls:FlatToggleButton
                             x:Name="btnRecord"
                             Text="Record"
                             FontSize="20"
                             Height="40"
-                            Width="120"
-                            Visibility="Collapsed"/>
+                            Width="120"/>
+
+                        <TextBlock Margin="0,10,0,0" Text="Multiplier" VerticalAlignment="Bottom" FontWeight="SemiBold" FontSize="20" Foreground="{DynamicResource TertiaryTextColor}"/>
+                        <Rectangle Height="2" Fill="{DynamicResource TertiaryTextColor}"/>
+                        <Grid Margin="0,10,0,0">
+                            <TextBlock Text="Dorsiflexion:" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="{DynamicResource TertiaryTextColor}"/>
+                            <!-- <UserControls:FlatToggleButton x:Name="x1" Height="30" Width="30" Text="1x" IsChecked="True" Margin="0,0,10,0" Click="x1_Click"/> -->
+                            <ComboBox x:Name="DorsiMultiplier" Margin="10,0" SelectedIndex="0" HorizontalAlignment="Right">
+                                <ComboBoxItem>1</ComboBoxItem>
+                                <ComboBoxItem>2</ComboBoxItem>
+                                <ComboBoxItem>5</ComboBoxItem>
+                                <ComboBoxItem>10</ComboBoxItem>
+                                <ComboBoxItem>20</ComboBoxItem>
+                                <ComboBoxItem>50</ComboBoxItem>
+                                <ComboBoxItem>100</ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
+
+                        <Grid Margin="0,10,0,0">
+                            <TextBlock Text="Plantarflexion:" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="{DynamicResource TertiaryTextColor}"/>
+                            <ComboBox x:Name="Plantarmultiplier" Margin="10,0" SelectedIndex="0" HorizontalAlignment="Right">
+                                <ComboBoxItem>1</ComboBoxItem>
+                                <ComboBoxItem>2</ComboBoxItem>
+                                <ComboBoxItem>5</ComboBoxItem>
+                                <ComboBoxItem>10</ComboBoxItem>
+                                <ComboBoxItem>20</ComboBoxItem>
+                                <ComboBoxItem>50</ComboBoxItem>
+                                <ComboBoxItem>100</ComboBoxItem>
+                            </ComboBox>
+                        </Grid>                        
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Visibility="{Binding IsSelected, ElementName=tabStrength, Converter={StaticResource bvConverter}, ConverterParameter=true}">
@@ -195,7 +223,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
-                                <RowDefinition Height="60" />
+                                <!-- <RowDefinition Height="60" /> -->
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="300"></ColumnDefinition>
@@ -203,13 +231,13 @@
                                 <ColumnDefinition Width="400"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <Grid Grid.Row="0" Grid.Column="2" x:Name="strength_v_FlexionGrid" Margin="5,25"  HorizontalAlignment="Center">
+                            <Grid Grid.Row="0" Grid.Column="2" x:Name="strength_v_FlexionGrid" Margin="5,25"  HorizontalAlignment="Center" Cursor="Arrow">
                                 <Border Grid.Row="0" Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}"/>
                                 <Image Grid.Row="0" Source="{Binding Path=FlexionImage, ElementName=uiEvaluation}"/>
 
                             </Grid>
 
-                            <Grid Grid.Row="1" Grid.Column="2" x:Name="strength_v_ExtensionGrid" Margin="5,25"  HorizontalAlignment="Center">
+                            <Grid Grid.Row="1" Grid.Column="2" x:Name="strength_v_ExtensionGrid" Margin="5,25"  HorizontalAlignment="Center" Cursor="Arrow">
                                 <Border Grid.Row="0" Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}"/>
                                 <Image Grid.Row="1" Source="{Binding Path=ExtensionImage, ElementName=uiEvaluation}" Visibility="Visible"/>
                             </Grid>
@@ -248,7 +276,8 @@
                                 Text="Lock Position:"
                                 Foreground="{DynamicResource TertiaryTextColor}" 
                                 TextFontSize="22"
-                                ValueChanged="sliderLockPosition_ValueChanged"/>
+                                ValueChanged="sliderLockPosition_ValueChanged"
+                                Visibility="Collapsed"/>
                         </Grid>
                         <Grid x:Name="hStrengthLayout">
                             <Grid.RowDefinitions>
@@ -262,12 +291,12 @@
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <Grid Grid.Row="1" Grid.Column="1" x:Name="strength_h_FlexionGrid" Margin="10"  HorizontalAlignment="Center">
+                            <Grid Grid.Row="1" Grid.Column="1" x:Name="strength_h_FlexionGrid" Margin="10"  HorizontalAlignment="Center" Cursor="Arrow">
                                 <Border Grid.Row="0"  Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}"/>
                                 <Image Source="{Binding Path=FlexionImage, ElementName=uiEvaluation}"/>
                             </Grid>
 
-                            <Grid Grid.Row="1" Grid.Column="0" x:Name="strength_h_ExtensionGrid" Margin="10" HorizontalAlignment="Center">
+                            <Grid Grid.Row="1" Grid.Column="0" x:Name="strength_h_ExtensionGrid" Margin="10" HorizontalAlignment="Center" Cursor="Arrow">
                                 <Border Grid.Row="0" Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}"/>
                                 <Image Grid.Row="1" Source="{Binding Path=ExtensionImage, ElementName=uiEvaluation}" Visibility="Visible"/>
                             </Grid>
@@ -298,7 +327,8 @@
                                 Text="Lock Position:"
                                 Foreground="{DynamicResource TertiaryTextColor}" 
                                 TextFontSize="22"
-                                ValueChanged="sliderLockPosition_ValueChanged"/>
+                                ValueChanged="sliderLockPosition_ValueChanged"
+                                Visibility="Collapsed"/>
                         </Grid>
                     </Grid>
                 </TabItem>

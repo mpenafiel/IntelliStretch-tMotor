@@ -14,12 +14,12 @@ using NationalInstruments;
 using NationalInstruments.DAQmx;
 using static IntelliStretch.Protocols;
 using System.Linq;
+using OpenTK.Graphics.OpenGL;
+using ScottPlot.AxisPanels;
+using System.Diagnostics;
 
 namespace IntelliStretch.UI
 {
-    /// <summary>
-    /// Interaction logic for UIEvaluation.xaml
-    /// </summary>
     public partial class UIEvaluation : UserControl
     {
         #region Plot Components
@@ -37,10 +37,15 @@ namespace IntelliStretch.UI
         private AnalogMultiChannelReader analogInReader;
         private NationalInstruments.DAQmx.Task myTask;
         private NationalInstruments.DAQmx.Task runningTask;
+        NationalInstruments.DAQmx.Task digitalWriteTask = null;
         private AsyncCallback analogCallback;
         private AnalogWaveform<double>[] data;
 
         public bool isStreamingDAQ = false;
+
+        DigitalSingleChannelWriter LEDwriter = null;
+        bool[] dataArray = new bool[8];
+
 
         #endregion
 
@@ -239,6 +244,7 @@ namespace IntelliStretch.UI
             plot.Plot.FigureBackground.Color = ScottPlot.Colors.Transparent;
             plot.Plot.Grid.MajorLineColor = ScottPlot.Colors.LightSlateGray;
 
+            /* Original styling removes tick marks
             //remove default frame and add left and bottom axes
             plot.Plot.Axes.Frameless();
             ScottPlot.AxisPanels.LeftAxis leftAxis = plot.Plot.Axes.AddLeftAxis();
@@ -248,9 +254,38 @@ namespace IntelliStretch.UI
             leftAxis.FrameLineStyle.Width = 3;
             leftAxis.Color(ScottPlot.Colors.Gray);
 
+
             //Style bottom axis
             bottomAxis.FrameLineStyle.Width = 3;
             bottomAxis.Color(ScottPlot.Colors.Gray);
+
+            */
+
+            // New styling with tick marks
+
+            // Remove top and right axes
+            plot.Plot.Axes.Right.FrameLineStyle.Width = 0;
+            plot.Plot.Axes.Top.FrameLineStyle.Width = 0;
+            ScottPlot.AxisPanels.LeftAxis leftAxis = (LeftAxis)plot.Plot.Axes.Left;
+            ScottPlot.AxisPanels.BottomAxis bottomAxis = (BottomAxis)plot.Plot.Axes.Bottom;
+
+            // Style left axis
+            leftAxis.MajorTickStyle.Length = 8;
+            leftAxis.MajorTickStyle.Width = 1.5f;
+            leftAxis.MinorTickStyle.Length = 4;
+            leftAxis.MinorTickStyle.Width = 1.5f;
+            leftAxis.TickLabelStyle.FontSize = 20;
+            leftAxis.FrameLineStyle.Width = 3;
+            leftAxis.Color(ScottPlot.Colors.Gray);
+            leftAxis.LabelText = "Amplitude (mV)";
+
+            // Style axis
+            bottomAxis.TickLabelStyle.IsVisible = false;
+            bottomAxis.MajorTickStyle.Length = 0;
+            bottomAxis.MinorTickStyle.Length = 0;
+            bottomAxis.FrameLineStyle.Width = 3;
+            bottomAxis.Color(ScottPlot.Colors.Gray);
+
 
             plot.Refresh();
         }
@@ -302,16 +337,53 @@ namespace IntelliStretch.UI
                             analogInReader = new AnalogMultiChannelReader(myTask.Stream);
                             analogCallback = new AsyncCallback(AnalogInCallback);
 
+                            
+
                             // Use SynchronizeCallbacks to specify that the object 
                             // marshals callbacks across threads appropriately.
                             analogInReader.SynchronizeCallbacks = true;
                             analogInReader.BeginReadWaveform(daqProtocol.SampPerChan,
                                 analogCallback, myTask);
 
-                            if ((bool)btnRecord.IsChecked) Create_Writer();
+                            if ((bool)btnRecord.IsChecked)
+                            {
+                                Create_Writer();
+                            }
                             isStreamingDAQ = true;
-                        }
 
+                            // Create and handle digital task
+
+                            if (digitalWriteTask == null)
+                            {
+                                digitalWriteTask = new NationalInstruments.DAQmx.Task();
+
+                                digitalWriteTask.DOChannels.CreateChannel(intelliProtocol.DAQ.DigitalChannel, "",
+                                        ChannelLineGrouping.OneChannelForAllLines);
+
+                                dataArray[0] = false;
+                                dataArray[1] = false;
+                                dataArray[2] = false;
+                                dataArray[3] = false;
+                                dataArray[4] = false;
+                                dataArray[5] = false;
+                                dataArray[6] = false;
+                                dataArray[7] = false;
+
+                                LEDwriter = new DigitalSingleChannelWriter(digitalWriteTask.Stream);
+
+                                if (isStreamingDAQ && btnRecord.IsChecked)
+                                {
+                                    dataArray[0] = true;
+                                    dataArray[1] = true;
+                                }
+                                else if (isStreamingDAQ)
+                                {
+                                    dataArray[0] = true;
+                                }
+
+                                LEDwriter.WriteSingleSampleMultiLine(true, dataArray);
+                            }
+                        }
                     }
                     catch (DaqException exception)
                     {
@@ -321,6 +393,8 @@ namespace IntelliStretch.UI
                         runningTask = null;
                         isStreamingDAQ = false;
                         myTask.Dispose();
+                        digitalWriteTask?.Dispose();
+                        digitalWriteTask = null;
                         sp.IsUpdating = false;
                         WriterHandler();
                         if (IsSavingData) sp.Stop_SaveData();
@@ -347,6 +421,17 @@ namespace IntelliStretch.UI
                     runningTask = null;
                     myTask.Dispose();
                     isStreamingDAQ = false;
+                }
+
+                if (digitalWriteTask !=null && LEDwriter != null)
+                {
+                    dataArray[0] = false;
+                    dataArray[1] = false;
+
+                    LEDwriter.WriteSingleSampleMultiLine(true, dataArray);
+
+                    digitalWriteTask?.Dispose();
+                    digitalWriteTask = null;
                 }
                 WriterHandler();
                 sp.IsUpdating = false;
@@ -378,6 +463,10 @@ namespace IntelliStretch.UI
                 writer.Close();
                 writer = null;
             }
+            if (LEDwriter != null)
+            {
+                LEDwriter = null;
+            }
         }
 
         static async System.Threading.Tasks.Task DataWriter(StreamWriter writer, CsvWriter csv, double[,] data)
@@ -405,6 +494,9 @@ namespace IntelliStretch.UI
                     //Console.WriteLine(data.Length);
 
                     int counter = 0;
+
+                    //scale data according to designated multiplier
+
 
                     //perform additional tasks if recording
                     if ((bool)btnRecord.IsChecked && writer != null && csv != null)
@@ -472,6 +564,8 @@ namespace IntelliStretch.UI
                 btnMeasure.Text = "Stop ";
                 mainApp.Buttons_Enabled(false);
                 tabItems_Enabled(false);
+
+                btnRecord.IsEnabled = false;
             }
             else
             {
@@ -480,6 +574,8 @@ namespace IntelliStretch.UI
                 Apply_Measure();
                 mainApp.Buttons_Enabled(true);
                 tabItems_Enabled(true);
+
+                btnRecord.IsEnabled = true;
             }
         }
 
@@ -612,7 +708,7 @@ namespace IntelliStretch.UI
                     strength_v_ExtensionGrid.SetValue(Grid.ColumnProperty, 2);
 
                     vStrength.SetValue(Grid.ColumnSpanProperty, 1);
-                    btnRecord.Visibility = Visibility.Visible;
+                    emgStack.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -623,7 +719,7 @@ namespace IntelliStretch.UI
                     strength_v_ExtensionGrid.SetValue(Grid.ColumnProperty, 2);
 
                     vStrength.SetValue(Grid.ColumnSpanProperty, 2);
-                    btnRecord.Visibility = Visibility.Collapsed;
+                    emgStack.Visibility = Visibility.Collapsed;
                 }
             }
             else if (intelliProtocol.General.Joint == Protocols.Joint.Elbow | intelliProtocol.General.Joint == Protocols.Joint.Wrist)
@@ -644,7 +740,7 @@ namespace IntelliStretch.UI
 
                     hStrength.SetValue(Grid.RowProperty, 2);
                     hStrength.SetValue(Grid.RowSpanProperty, 1);
-                    btnRecord.Visibility = Visibility.Visible;
+                    emgStack.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -656,7 +752,7 @@ namespace IntelliStretch.UI
 
                     hStrength.SetValue(Grid.RowProperty, 1);
                     hStrength.SetValue(Grid.RowSpanProperty, 2);
-                    btnRecord.Visibility = Visibility.Collapsed;
+                    emgStack.Visibility = Visibility.Collapsed;
 
                     strength_h_ExtensionGrid.VerticalAlignment = System.Windows.VerticalAlignment.Center;
                     strength_h_FlexionGrid.VerticalAlignment = System.Windows.VerticalAlignment.Center;
@@ -681,6 +777,38 @@ namespace IntelliStretch.UI
             }
         }
 
+        private void switch_EMG_Scale(object sender, RoutedEventArgs e)
+        {
+            /*if (x1.IsChecked)
+            {
+                x1.IsChecked = true;
+                x10.IsChecked = false;
+                x50.IsChecked = false;
+                x100.IsChecked = false;
+            }
+            else if (x10.IsChecked)
+            {
+                x1.IsChecked = false;
+                x10.IsChecked = true;
+                x50.IsChecked = false;
+                x100.IsChecked = false;
+            }
+            else if (x50.IsChecked)
+            {
+                x1.IsChecked = false;
+                x10.IsChecked = false;
+                x50.IsChecked = true;
+                x100.IsChecked = false;
+            }
+            else if (x10.IsChecked)
+            {
+                x1.IsChecked = false;
+                x10.IsChecked = false;
+                x50.IsChecked = false;
+                x100.IsChecked = true;
+            }*/
+        }
+
         private void btnFlexion_Click(object sender, RoutedEventArgs e)
         {
             btnFlexion.IsChecked = true;
@@ -691,6 +819,38 @@ namespace IntelliStretch.UI
         {
             btnFlexion.IsChecked = false;
             btnExtension.IsChecked = true;
+        }
+
+        private void x1_Click(object sender, RoutedEventArgs e)
+        {
+            //x1.IsChecked = true;
+            //x10.IsChecked = false;
+            //x50.IsChecked = false;
+            //x100.IsChecked = false;
+        }
+
+        private void x10_Click(object sender, RoutedEventArgs e)
+        {
+            //x1.IsChecked = false;
+            //x10.IsChecked = true;
+            //x50.IsChecked = false;
+            //x100.IsChecked = false;
+        }
+
+        private void x50_Click(object sender, RoutedEventArgs e)
+        {
+            //x1.IsChecked = false;
+            //x10.IsChecked = false;
+            //x50.IsChecked = true;
+            //x100.IsChecked = false;
+        }
+
+        private void x100_Click(object sender, RoutedEventArgs e)
+        {
+            //x1.IsChecked = false;
+            //x10.IsChecked = false;
+            //x50.IsChecked = false;
+            //x100.IsChecked = true;
         }
     }
 }
