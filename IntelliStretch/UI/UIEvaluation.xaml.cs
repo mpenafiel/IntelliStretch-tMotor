@@ -199,7 +199,7 @@ namespace IntelliStretch.UI
 
         private void InitializePlots(ScottPlot.WPF.WpfPlot plot1, ScottPlot.WPF.WpfPlot plot2)
         {
-            //StylePlot(plot1);
+            StylePlot(plot1);
             StylePlot(plot2);
 
             Streamer1 = plot1.Plot.Add.DataStreamer(3000);
@@ -271,6 +271,7 @@ namespace IntelliStretch.UI
             leftAxis.TickLabelStyle.FontSize = 20;
             leftAxis.FrameLineStyle.Width = 3;
             leftAxis.Color(ScottPlot.Colors.Gray);
+            leftAxis.LabelText = "Amplitude (mV)";
 
             // Style axis
             bottomAxis.TickLabelStyle.IsVisible = false;
