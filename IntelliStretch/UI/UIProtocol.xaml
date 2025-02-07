@@ -21,18 +21,8 @@
     </UserControl.Resources>
 
     <Grid Background="#C2222222">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="82*"/>
-            <ColumnDefinition Width="184*"/>
-            <ColumnDefinition Width="267*"/>
-            <ColumnDefinition Width="267*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="154*"/>
-            <RowDefinition Height="481*"/>
-        </Grid.RowDefinitions>
         <Border x:Name="bdrProtocol" Background="{DynamicResource PrimaryTextColor}" BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
-                HorizontalAlignment="Center" VerticalAlignment="Top" Height="635" Width="800" Grid.RowSpan="2" Grid.Column="2">
+                HorizontalAlignment="Center" VerticalAlignment="Center" Height="635" Width="800" Grid.RowSpan="2" Grid.Column="2">
             <Border.RenderTransform>
                 <TranslateTransform/>
             </Border.RenderTransform>

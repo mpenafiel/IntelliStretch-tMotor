@@ -14,12 +14,11 @@ using NationalInstruments;
 using NationalInstruments.DAQmx;
 using static IntelliStretch.Protocols;
 using System.Linq;
+using OpenTK.Graphics.OpenGL;
+using ScottPlot.AxisPanels;
 
 namespace IntelliStretch.UI
 {
-    /// <summary>
-    /// Interaction logic for UIEvaluation.xaml
-    /// </summary>
     public partial class UIEvaluation : UserControl
     {
         #region Plot Components
@@ -200,7 +199,7 @@ namespace IntelliStretch.UI
 
         private void InitializePlots(ScottPlot.WPF.WpfPlot plot1, ScottPlot.WPF.WpfPlot plot2)
         {
-            StylePlot(plot1);
+            //StylePlot(plot1);
             StylePlot(plot2);
 
             Streamer1 = plot1.Plot.Add.DataStreamer(3000);
@@ -239,6 +238,7 @@ namespace IntelliStretch.UI
             plot.Plot.FigureBackground.Color = ScottPlot.Colors.Transparent;
             plot.Plot.Grid.MajorLineColor = ScottPlot.Colors.LightSlateGray;
 
+            /* Original styling removes tick marks
             //remove default frame and add left and bottom axes
             plot.Plot.Axes.Frameless();
             ScottPlot.AxisPanels.LeftAxis leftAxis = plot.Plot.Axes.AddLeftAxis();
@@ -248,9 +248,37 @@ namespace IntelliStretch.UI
             leftAxis.FrameLineStyle.Width = 3;
             leftAxis.Color(ScottPlot.Colors.Gray);
 
+
             //Style bottom axis
             bottomAxis.FrameLineStyle.Width = 3;
             bottomAxis.Color(ScottPlot.Colors.Gray);
+
+            */
+
+            // New styling with tick marks
+
+            // Remove top and right axes
+            plot.Plot.Axes.Right.FrameLineStyle.Width = 0;
+            plot.Plot.Axes.Top.FrameLineStyle.Width = 0;
+            ScottPlot.AxisPanels.LeftAxis leftAxis = (LeftAxis)plot.Plot.Axes.Left;
+            ScottPlot.AxisPanels.BottomAxis bottomAxis = (BottomAxis)plot.Plot.Axes.Bottom;
+
+            // Style left axis
+            leftAxis.MajorTickStyle.Length = 8;
+            leftAxis.MajorTickStyle.Width = 1.5f;
+            leftAxis.MinorTickStyle.Length = 4;
+            leftAxis.MinorTickStyle.Width = 1.5f;
+            leftAxis.TickLabelStyle.FontSize = 20;
+            leftAxis.FrameLineStyle.Width = 3;
+            leftAxis.Color(ScottPlot.Colors.Gray);
+
+            // Style axis
+            bottomAxis.TickLabelStyle.IsVisible = false;
+            bottomAxis.MajorTickStyle.Length = 0;
+            bottomAxis.MinorTickStyle.Length = 0;
+            bottomAxis.FrameLineStyle.Width = 3;
+            bottomAxis.Color(ScottPlot.Colors.Gray);
+
 
             plot.Refresh();
         }
@@ -612,7 +640,7 @@ namespace IntelliStretch.UI
                     strength_v_ExtensionGrid.SetValue(Grid.ColumnProperty, 2);
 
                     vStrength.SetValue(Grid.ColumnSpanProperty, 1);
-                    btnRecord.Visibility = Visibility.Visible;
+                    emgStack.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -623,7 +651,7 @@ namespace IntelliStretch.UI
                     strength_v_ExtensionGrid.SetValue(Grid.ColumnProperty, 2);
 
                     vStrength.SetValue(Grid.ColumnSpanProperty, 2);
-                    btnRecord.Visibility = Visibility.Collapsed;
+                    emgStack.Visibility = Visibility.Collapsed;
                 }
             }
             else if (intelliProtocol.General.Joint == Protocols.Joint.Elbow | intelliProtocol.General.Joint == Protocols.Joint.Wrist)
@@ -644,7 +672,7 @@ namespace IntelliStretch.UI
 
                     hStrength.SetValue(Grid.RowProperty, 2);
                     hStrength.SetValue(Grid.RowSpanProperty, 1);
-                    btnRecord.Visibility = Visibility.Visible;
+                    emgStack.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -656,7 +684,7 @@ namespace IntelliStretch.UI
 
                     hStrength.SetValue(Grid.RowProperty, 1);
                     hStrength.SetValue(Grid.RowSpanProperty, 2);
-                    btnRecord.Visibility = Visibility.Collapsed;
+                    emgStack.Visibility = Visibility.Collapsed;
 
                     strength_h_ExtensionGrid.VerticalAlignment = System.Windows.VerticalAlignment.Center;
                     strength_h_FlexionGrid.VerticalAlignment = System.Windows.VerticalAlignment.Center;
@@ -681,6 +709,38 @@ namespace IntelliStretch.UI
             }
         }
 
+        private void switch_EMG_Scale(object sender, RoutedEventArgs e)
+        {
+            /*if (x1.IsChecked)
+            {
+                x1.IsChecked = true;
+                x10.IsChecked = false;
+                x50.IsChecked = false;
+                x100.IsChecked = false;
+            }
+            else if (x10.IsChecked)
+            {
+                x1.IsChecked = false;
+                x10.IsChecked = true;
+                x50.IsChecked = false;
+                x100.IsChecked = false;
+            }
+            else if (x50.IsChecked)
+            {
+                x1.IsChecked = false;
+                x10.IsChecked = false;
+                x50.IsChecked = true;
+                x100.IsChecked = false;
+            }
+            else if (x10.IsChecked)
+            {
+                x1.IsChecked = false;
+                x10.IsChecked = false;
+                x50.IsChecked = false;
+                x100.IsChecked = true;
+            }*/
+        }
+
         private void btnFlexion_Click(object sender, RoutedEventArgs e)
         {
             btnFlexion.IsChecked = true;
@@ -691,6 +751,38 @@ namespace IntelliStretch.UI
         {
             btnFlexion.IsChecked = false;
             btnExtension.IsChecked = true;
+        }
+
+        private void x1_Click(object sender, RoutedEventArgs e)
+        {
+            //x1.IsChecked = true;
+            //x10.IsChecked = false;
+            //x50.IsChecked = false;
+            //x100.IsChecked = false;
+        }
+
+        private void x10_Click(object sender, RoutedEventArgs e)
+        {
+            //x1.IsChecked = false;
+            //x10.IsChecked = true;
+            //x50.IsChecked = false;
+            //x100.IsChecked = false;
+        }
+
+        private void x50_Click(object sender, RoutedEventArgs e)
+        {
+            //x1.IsChecked = false;
+            //x10.IsChecked = false;
+            //x50.IsChecked = true;
+            //x100.IsChecked = false;
+        }
+
+        private void x100_Click(object sender, RoutedEventArgs e)
+        {
+            //x1.IsChecked = false;
+            //x10.IsChecked = false;
+            //x50.IsChecked = false;
+            //x100.IsChecked = true;
         }
     }
 }
