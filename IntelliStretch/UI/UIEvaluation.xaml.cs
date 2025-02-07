@@ -17,6 +17,7 @@ using System.Linq;
 using OpenTK.Graphics.OpenGL;
 using ScottPlot.AxisPanels;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace IntelliStretch.UI
 {
@@ -93,6 +94,9 @@ namespace IntelliStretch.UI
         public string DataFilePrefix { get; set; }
 
         private Protocols.DaqProtocol daqProtocol;
+
+        UIElementCollection emgChildren;
+        List<System.Windows.Controls.ComboBox> emgMultipliers = new List<ComboBox>();
 
         #endregion
 
@@ -191,6 +195,8 @@ namespace IntelliStretch.UI
             sliderLockPosition.Maximum = generalProtocol.FlexionMax;
             sliderLockPosition.Minimum = generalProtocol.ExtensionMax;
 
+            emgMultipliers.Add(DorsiMultiplier); emgMultipliers.Add(PlantarMultiplier);
+
             // Add event handler
             sp.UpdateData = new IntelliSerialPort.DelegateUpdateData(Update_UI);
             sp.WriteCmd("BK");
@@ -279,7 +285,7 @@ namespace IntelliStretch.UI
             leftAxis.Color(ScottPlot.Colors.Gray);
             leftAxis.LabelText = "Amplitude (mV)";
 
-            // Style axis
+            // Style bottom axis
             bottomAxis.TickLabelStyle.IsVisible = false;
             bottomAxis.MajorTickStyle.Length = 0;
             bottomAxis.MinorTickStyle.Length = 0;
@@ -491,12 +497,8 @@ namespace IntelliStretch.UI
                 {
                     // Read the available data from the channels
                     data = analogInReader.EndReadWaveform(ar);
-                    //Console.WriteLine(data.Length);
 
                     int counter = 0;
-
-                    //scale data according to designated multiplier
-
 
                     //perform additional tasks if recording
                     if ((bool)btnRecord.IsChecked && writer != null && csv != null)
@@ -520,10 +522,22 @@ namespace IntelliStretch.UI
                     {
                         int count = waveform.Samples.Count();
                         double[] dataPerCh = new double[waveform.GetRawData().Length];
+                        double[] scaledData = new double[waveform.GetRawData().Length];
 
+                        //double multiplier = (double)emgMultipliers[counter].SelectedItem;
+                        // Grab content of combobox
+                        string multiplier_string = (emgMultipliers[counter].SelectedItem as ComboBoxItem).Content.ToString();
+                        double multiplier = Convert.ToDouble(multiplier_string);
+
+                        //scale data according to designated multiplier
                         dataPerCh = waveform.GetRawData();
 
-                        dataStreamers[counter].AddRange(dataPerCh);
+                        for(int i=0; i< waveform.GetRawData().Length; i++)
+                        {
+                            scaledData[i] = dataPerCh[i] * multiplier;
+                        }
+
+                        dataStreamers[counter].AddRange(scaledData);
                         // slide marker to the left
                         plots[counter].Plot.GetPlottables<Marker>()
                             .ToList()

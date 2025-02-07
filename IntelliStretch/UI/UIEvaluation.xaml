@@ -85,7 +85,7 @@
 
                         <Grid Margin="0,10,0,0">
                             <TextBlock Text="Plantarflexion:" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="{DynamicResource TertiaryTextColor}"/>
-                            <ComboBox x:Name="Plantarmultiplier" Margin="10,0" SelectedIndex="0" HorizontalAlignment="Right">
+                            <ComboBox x:Name="PlantarMultiplier" Margin="10,0" SelectedIndex="0" HorizontalAlignment="Right">
                                 <ComboBoxItem>1</ComboBoxItem>
                                 <ComboBoxItem>2</ComboBoxItem>
                                 <ComboBoxItem>5</ComboBoxItem>
