@@ -16,6 +16,7 @@ using static IntelliStretch.Protocols;
 using System.Linq;
 using OpenTK.Graphics.OpenGL;
 using ScottPlot.AxisPanels;
+using System.Diagnostics;
 
 namespace IntelliStretch.UI
 {
@@ -36,10 +37,15 @@ namespace IntelliStretch.UI
         private AnalogMultiChannelReader analogInReader;
         private NationalInstruments.DAQmx.Task myTask;
         private NationalInstruments.DAQmx.Task runningTask;
+        NationalInstruments.DAQmx.Task digitalWriteTask = null;
         private AsyncCallback analogCallback;
         private AnalogWaveform<double>[] data;
 
         public bool isStreamingDAQ = false;
+
+        DigitalSingleChannelWriter LEDwriter = null;
+        bool[] dataArray = new bool[8];
+
 
         #endregion
 
@@ -331,16 +337,53 @@ namespace IntelliStretch.UI
                             analogInReader = new AnalogMultiChannelReader(myTask.Stream);
                             analogCallback = new AsyncCallback(AnalogInCallback);
 
+                            
+
                             // Use SynchronizeCallbacks to specify that the object 
                             // marshals callbacks across threads appropriately.
                             analogInReader.SynchronizeCallbacks = true;
                             analogInReader.BeginReadWaveform(daqProtocol.SampPerChan,
                                 analogCallback, myTask);
 
-                            if ((bool)btnRecord.IsChecked) Create_Writer();
+                            if ((bool)btnRecord.IsChecked)
+                            {
+                                Create_Writer();
+                            }
                             isStreamingDAQ = true;
-                        }
 
+                            // Create and handle digital task
+
+                            if (digitalWriteTask == null)
+                            {
+                                digitalWriteTask = new NationalInstruments.DAQmx.Task();
+
+                                digitalWriteTask.DOChannels.CreateChannel(intelliProtocol.DAQ.DigitalChannel, "",
+                                        ChannelLineGrouping.OneChannelForAllLines);
+
+                                dataArray[0] = false;
+                                dataArray[1] = false;
+                                dataArray[2] = false;
+                                dataArray[3] = false;
+                                dataArray[4] = false;
+                                dataArray[5] = false;
+                                dataArray[6] = false;
+                                dataArray[7] = false;
+
+                                LEDwriter = new DigitalSingleChannelWriter(digitalWriteTask.Stream);
+
+                                if (isStreamingDAQ && btnRecord.IsChecked)
+                                {
+                                    dataArray[0] = true;
+                                    dataArray[1] = true;
+                                }
+                                else if (isStreamingDAQ)
+                                {
+                                    dataArray[0] = true;
+                                }
+
+                                LEDwriter.WriteSingleSampleMultiLine(true, dataArray);
+                            }
+                        }
                     }
                     catch (DaqException exception)
                     {
@@ -350,6 +393,8 @@ namespace IntelliStretch.UI
                         runningTask = null;
                         isStreamingDAQ = false;
                         myTask.Dispose();
+                        digitalWriteTask?.Dispose();
+                        digitalWriteTask = null;
                         sp.IsUpdating = false;
                         WriterHandler();
                         if (IsSavingData) sp.Stop_SaveData();
@@ -376,6 +421,17 @@ namespace IntelliStretch.UI
                     runningTask = null;
                     myTask.Dispose();
                     isStreamingDAQ = false;
+                }
+
+                if (digitalWriteTask !=null && LEDwriter != null)
+                {
+                    dataArray[0] = false;
+                    dataArray[1] = false;
+
+                    LEDwriter.WriteSingleSampleMultiLine(true, dataArray);
+
+                    digitalWriteTask?.Dispose();
+                    digitalWriteTask = null;
                 }
                 WriterHandler();
                 sp.IsUpdating = false;
@@ -406,6 +462,10 @@ namespace IntelliStretch.UI
                 csv = null;
                 writer.Close();
                 writer = null;
+            }
+            if (LEDwriter != null)
+            {
+                LEDwriter = null;
             }
         }
 
@@ -504,6 +564,8 @@ namespace IntelliStretch.UI
                 btnMeasure.Text = "Stop ";
                 mainApp.Buttons_Enabled(false);
                 tabItems_Enabled(false);
+
+                btnRecord.IsEnabled = false;
             }
             else
             {
@@ -512,6 +574,8 @@ namespace IntelliStretch.UI
                 Apply_Measure();
                 mainApp.Buttons_Enabled(true);
                 tabItems_Enabled(true);
+
+                btnRecord.IsEnabled = true;
             }
         }
 
