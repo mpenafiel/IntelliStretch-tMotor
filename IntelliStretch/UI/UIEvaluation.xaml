@@ -58,7 +58,7 @@
 
                     <Rectangle Height="2" Fill="{DynamicResource TertiaryTextColor}" Margin="10,0"/>
 
-                    <StackPanel x:Name="emgStack"  Margin="40,10,20,10" Visibility="Collapsed">
+                    <StackPanel x:Name="emgStack"  Margin="30,10,10,10" Visibility="Collapsed">
 
                         <UserControls:FlatToggleButton
                             x:Name="btnRecord"
@@ -70,7 +70,7 @@
                         <TextBlock Margin="0,10,0,0" Text="Multiplier" VerticalAlignment="Bottom" FontWeight="SemiBold" FontSize="20" Foreground="{DynamicResource TertiaryTextColor}"/>
                         <Rectangle Height="2" Fill="{DynamicResource TertiaryTextColor}"/>
                         <Grid Margin="0,10,0,0">
-                            <TextBlock Text="Dorsi:" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="{DynamicResource TertiaryTextColor}"/>
+                            <TextBlock Text="Dorsiflexion:" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="{DynamicResource TertiaryTextColor}"/>
                             <!-- <UserControls:FlatToggleButton x:Name="x1" Height="30" Width="30" Text="1x" IsChecked="True" Margin="0,0,10,0" Click="x1_Click"/> -->
                             <ComboBox x:Name="DorsiMultiplier" Margin="10,0" SelectedIndex="0" HorizontalAlignment="Right">
                                 <ComboBoxItem>1</ComboBoxItem>
@@ -84,7 +84,7 @@
                         </Grid>
 
                         <Grid Margin="0,10,0,0">
-                            <TextBlock Text="Plantar:" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="{DynamicResource TertiaryTextColor}"/>
+                            <TextBlock Text="Plantarflexion:" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="{DynamicResource TertiaryTextColor}"/>
                             <ComboBox x:Name="Plantarmultiplier" Margin="10,0" SelectedIndex="0" HorizontalAlignment="Right">
                                 <ComboBoxItem>1</ComboBoxItem>
                                 <ComboBoxItem>2</ComboBoxItem>

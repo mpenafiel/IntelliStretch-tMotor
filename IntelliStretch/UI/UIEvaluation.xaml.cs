@@ -435,6 +435,9 @@ namespace IntelliStretch.UI
 
                     int counter = 0;
 
+                    //scale data according to designated multiplier
+
+
                     //perform additional tasks if recording
                     if ((bool)btnRecord.IsChecked && writer != null && csv != null)
                     {
