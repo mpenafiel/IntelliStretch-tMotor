@@ -6,7 +6,7 @@
     xmlns:UI="clr-namespace:IntelliStretch.UI"
     xmlns:value_converters="clr-namespace:IntelliStretch.ValueConverters"
     Title="MainApp" x:Name="wndMainApp"
-    Width="1024" Height="640" Background="{DynamicResource PrimaryBlueColor}" WindowState="Maximized" WindowStyle="None" mc:Ignorable="d"
+    Width="1024" Height="640" Background="{DynamicResource background}" WindowState="Maximized" WindowStyle="None" mc:Ignorable="d"
     Loaded="wndMainApp_Loaded" KeyDown="wndMainApp_KeyDown">
     <Window.Resources>
         <ResourceDictionary>
@@ -66,7 +66,7 @@
     </Window.Resources>
     
     <Grid>
-        <Grid x:Name="gridBackground" Background="{DynamicResource PrimaryBlueColor}" Visibility="{Binding IsSelected, ElementName=tabPrelimSettings, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=true}" />
+        <Grid x:Name="gridBackground" Background="{DynamicResource background_dim}" Visibility="{Binding IsSelected, ElementName=tabPrelimSettings, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=true}" />
         <Grid x:Name="gridMain">
             <!--Three rows-->
             <Grid.RowDefinitions>
@@ -96,7 +96,7 @@
             
             
             <!--Middle - Content-->
-            <Border Background="{DynamicResource PrimaryTextColor}" Grid.Row="1" VerticalAlignment="Stretch" Padding="50" Margin="80,15,80,30" CornerRadius="5">
+            <Border Grid.Row="1" VerticalAlignment="Stretch" Padding="50" Margin="80,15,80,30" CornerRadius="5">
                 <Grid>
                     <TabControl x:Name="tabContent"  Background="{x:Null}" Style="{StaticResource ContentTabStyle}" Visibility="Hidden" FocusVisualStyle="{x:Null}">
 
