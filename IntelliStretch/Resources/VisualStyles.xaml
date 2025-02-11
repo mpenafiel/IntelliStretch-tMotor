@@ -352,12 +352,12 @@
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Ellipse 
                             Name="Ellipse" 
-                            Fill="{StaticResource PrimaryBlueColor}"
+                            Fill="Green"
                             Stroke="{StaticResource NormalBorderBrush}"
                             StrokeThickness="0" />
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Ellipse" Property="Fill" Value="{StaticResource PrimaryGrayColor}"/>
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{StaticResource DarkBrush}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="Ellipse" Property="Fill" Value="{StaticResource DisabledBackgroundBrush}"/>

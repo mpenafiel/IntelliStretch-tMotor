@@ -39,7 +39,7 @@
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="Red"/>
                         <Setter Property="BorderBrush" Value="Black"/>
-                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Foreground" Value="White"/>
                         <Setter Property="FontWeight" Value="DemiBold"/>
                         <Setter Property="Padding" Value="5"/>
                         <Setter Property="Template">
@@ -84,7 +84,7 @@
                             </Setter.Value>
                         </Setter>
                         <Setter Property="BorderBrush" Value="Black"/>
-                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Foreground" Value="Black"/>
                         <Setter Property="FontWeight" Value="DemiBold"/>
                         <Setter Property="Padding" Value="5"/>
                         <Setter Property="Template">
@@ -205,7 +205,7 @@
                                             <Style TargetType="Button">
                                                 <Setter Property="Background" Value="Red"/>
                                                 <Setter Property="BorderBrush" Value="Black"/>
-                                                <Setter Property="Foreground" Value="Black"/>
+                                                <Setter Property="Foreground" Value="White"/>
                                                 <Setter Property="FontWeight" Value="DemiBold"/>
                                                 <Setter Property="Padding" Value="5"/>
                                                 <Setter Property="Template">
