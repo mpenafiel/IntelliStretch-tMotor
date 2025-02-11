@@ -34,9 +34,88 @@
         <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="15,0,30,0">
             <TextBlock Text="Stretch Mode" Margin="15,10,0,0" VerticalAlignment="Bottom" FontWeight="DemiBold" FontSize="24" Foreground="{DynamicResource PrimaryTextColor}"/>
             <Rectangle Height="2" Fill="{DynamicResource PrimaryTextColor}" Margin="10,0"/>
+            <Button x:Name="btnDefaultStretch" Margin="0,10" Grid.Column="2" Height="50" Width="150" Content="Default" FontSize="24" Click="btnDefaultStretch_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Red"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontWeight" Value="DemiBold"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightGray"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="Gray"/>
+                            </Trigger>
+                        </Style.Triggers>
 
-            <UserControls:FlatButton x:Name="btnDefaultStretch" Margin="0,10" Height="40" Width="140" FontSize="20" Text="Default" Click="btnDefaultStretch_Click"/>
-            <UserControls:FlatToggleButton x:Name="btnStretchMode" Margin="0,10" Height="40" Width="140" FontSize="20" Text="Intelligent" Click="btnStretchMode_Click" Visibility="{Binding ModeSelectionVisibility, ElementName=uiStretching}"/>
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5" />
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <ToggleButton x:Name="btnStretchMode" Margin="0,10" Grid.Column="2" 
+                          Click="btnStretchMode_Click" Height="50" Width="150" Content="Intelligent"
+                          FontSize="24" Visibility="{Binding ModeSelectionVisibility, ElementName=uiStretching}">
+                <ToggleButton.Style>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                                    <GradientStop Color="Yellow" Offset="0.1"/>
+                                    <GradientStop Color="Red" Offset="0.5"/>
+                                </LinearGradientBrush>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="DemiBold"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ToggleButton">
+                                    <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="1">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightGray"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="Yellow"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </Style.Triggers>
+
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5" />
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </ToggleButton.Style>
+            </ToggleButton>
         </StackPanel>
 
             <Grid Grid.Column="1" Grid.RowSpan="2">
@@ -47,7 +126,7 @@
                         <Image Source="../images/Options.png"/>
                     </TabItem.Header>
                     <Grid>
-                        <Border Background="{DynamicResource SecondaryBlueColor}" CornerRadius="5" >
+                        <Border Background="#E1C8C8C8" CornerRadius="5" >
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
@@ -55,13 +134,13 @@
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="80" />
                                 </Grid.RowDefinitions>
-                                <GroupBox Margin="12,8" Header="General" FontWeight="Bold" Foreground="{DynamicResource TertiaryTextColor}" FontSize="18.667" BorderBrush="#FF0046D5">
+                                <GroupBox Margin="12,8" Header="General" FontWeight="Bold" Foreground="Black" FontSize="18.667" BorderBrush="#FF0046D5">
                                     <UniformGrid Columns="2">
                                         <UserControls:TextSlider x:Name="sliderStretchDuration" Text="Duration [min]:" Minimum="1" Maximum="60"/>
                                         <UserControls:TextSlider x:Name="sliderStretchHoldTime"  Text="Holding Time [sec]:" Maximum="60" />
                                     </UniformGrid>
                                 </GroupBox>
-                                <GroupBox Grid.Row="1" Margin="12,8" Header="Velocity [deg/sec]" FontWeight="Bold" Foreground="{DynamicResource TertiaryTextColor}" FontSize="18.667" BorderBrush="#FF0046D5">
+                                <GroupBox Grid.Row="1" Margin="12,8" Header="Velocity [deg/sec]" FontWeight="Bold" Foreground="Black" FontSize="18.667" BorderBrush="#FF0046D5">
                                     <UniformGrid Columns="2">
                                         <UserControls:TextSlider x:Name="sliderStretchFlexV" Minimum="5" Maximum="60" TickFrequency="5"  
                                                              Text="{Binding Path=FlexionName, ElementName=uiStretching, StringFormat={}{0}:}" />
@@ -69,7 +148,7 @@
                                                              Text="{Binding Path=ExtensionName, ElementName=uiStretching, StringFormat={}{0}:}" />
                                     </UniformGrid>
                                 </GroupBox>
-                                <GroupBox Grid.Row="2" Margin="12,8" Header="Torque Limit [Nm]" FontWeight="Bold" Foreground="{DynamicResource TertiaryTextColor}" FontSize="18.667" BorderBrush="#FF0046D5">
+                                <GroupBox Grid.Row="2" Margin="12,8" Header="Torque Limit [Nm]" FontWeight="Bold" Foreground="Black" FontSize="18.667" BorderBrush="#FF0046D5">
                                     <UniformGrid Columns="2">
                                         <UserControls:TextSlider x:Name="sliderStretchFlexTq" Minimum="1" Maximum="{Binding FlexionTorqueMax, ElementName=uiStretching}"   
                                                              Text="{Binding Path=FlexionName, ElementName=uiStretching, StringFormat={}{0}:}" />
@@ -84,9 +163,115 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Button x:Name="btnSaveDefaultStretch" Content="Save" Width="180" Height="60" Style="{DynamicResource GeneralButtonStyle}" Click="btnSaveDefaultStretch_Click" />
-                                    <Button x:Name="btnCancelStretchProtocol" Grid.Column="2" Content="Cancel" Width="180" Height="60" Style="{DynamicResource GeneralButtonStyle2}" Click="btnCancelStretchProtocol_Click"/>
-                                    <Button x:Name="btnAcceptStretchProtocol" Grid.Column="3" Content="Accept" Width="180" Height="60" Style="{DynamicResource GeneralButtonStyle}" Click="btnAcceptStretchProtocol_Click"/>
+                                    <Button x:Name="sdfg" Content="Save" Width="180" Height="60" Style="{DynamicResource GeneralButtonStyle}" Click="btnSaveDefaultStretch_Click" />
+                                    <Button x:Name="btnSaveDefaultStretch" Grid.Column="0" Height="60" Width="180" Content="Save" FontSize="24" Click="btnSaveDefaultStretch_Click">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Background" Value="LightSteelBlue"/>
+                                                <Setter Property="BorderBrush" Value="Black"/>
+                                                <Setter Property="Foreground" Value="Black"/>
+                                                <Setter Property="FontWeight" Value="DemiBold"/>
+                                                <Setter Property="Padding" Value="5"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Background="{TemplateBinding Background}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="1">
+                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="LightGray"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsPressed" Value="True">
+                                                        <Setter Property="Background" Value="Gray"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+
+                                                <Style.Resources>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="CornerRadius" Value="5" />
+                                                    </Style>
+                                                </Style.Resources>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                    <Button x:Name="btnCancelStretchProtocol" Grid.Column="2" Height="60" Width="180" Content="Cancel" FontSize="24" Click="btnCancelStretchProtocol_Click">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Background" Value="Red"/>
+                                                <Setter Property="BorderBrush" Value="Black"/>
+                                                <Setter Property="Foreground" Value="Black"/>
+                                                <Setter Property="FontWeight" Value="DemiBold"/>
+                                                <Setter Property="Padding" Value="5"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Background="{TemplateBinding Background}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="1">
+                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="LightGray"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsPressed" Value="True">
+                                                        <Setter Property="Background" Value="Gray"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+
+                                                <Style.Resources>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="CornerRadius" Value="5" />
+                                                    </Style>
+                                                </Style.Resources>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                    <Button x:Name="btnAcceptStretchProtocol" Grid.Column="3" Height="60" Width="180" Content="Accept" FontSize="24" Click="btnAcceptStretchProtocol_Click">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Background" Value="Green"/>
+                                                <Setter Property="BorderBrush" Value="Black"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                                <Setter Property="FontWeight" Value="DemiBold"/>
+                                                <Setter Property="Padding" Value="5"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Background="{TemplateBinding Background}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="1">
+                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="LightGray"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsPressed" Value="True">
+                                                        <Setter Property="Background" Value="Gray"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+
+                                                <Style.Resources>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="CornerRadius" Value="5" />
+                                                    </Style>
+                                                </Style.Resources>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
                                 </Grid>
                             </Grid>
                         </Border>

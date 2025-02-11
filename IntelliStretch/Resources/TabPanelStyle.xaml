@@ -32,10 +32,10 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="bdrTabItem" Property="Background" Value="{DynamicResource PrimaryBlueColor}" />
+                            <Setter TargetName="bdrTabItem" Property="Background" Value="#7EFFFF00" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="False">
-                            <Setter TargetName="bdrTabItem" Property="Background" Value="{DynamicResource SecondaryBlueColor}" />
+                            <Setter TargetName="bdrTabItem" Property="Background" Value="#7EA0A0A0" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

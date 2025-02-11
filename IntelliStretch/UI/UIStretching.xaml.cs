@@ -199,7 +199,7 @@ namespace IntelliStretch.UI
                     sp.WriteCmd("ML10");  // Reset Stretching level = 10, Max level
                     sp.WriteCmd("IS");  // Start IntelliStretch
 
-                    if (!btnStretchMode.IsChecked)
+                    if (btnStretchMode.IsChecked == false)
                     {
                         // Intelligent mode
                         if (mainApp.IntelliProtocol.System.IsSavingData) sp.Start_SaveData("Stretching_Intelligent");
@@ -301,7 +301,7 @@ namespace IntelliStretch.UI
             if (sp.IsConnected)
             {
                 sp.WriteCmd("ML10");  // Stretching level = 10
-                if (btnStretchMode.IsChecked)
+                if (btnStretchMode.IsChecked == true)
                     //sp.WriteCmd("HT0");
                     sp.WriteCmd("BA0");
                 else
@@ -340,9 +340,9 @@ namespace IntelliStretch.UI
 
         private void btnStretchMode_Click(object sender, RoutedEventArgs e)
         {
-            if (btnStretchMode.IsChecked)
+            if (btnStretchMode.IsChecked == true)
             {
-                btnStretchMode.Text = "Basic";
+                btnStretchMode.Content = "Basic";
                 if (sp.IsConnected)
                 {
                     // If stretching is going on, switch to basic stretching
@@ -353,7 +353,7 @@ namespace IntelliStretch.UI
             }
             else
             {
-                btnStretchMode.Text = "Intelligent";
+                btnStretchMode.Content = "Intelligent";
                 if (sp.IsConnected)
                 {
                     // If stretching is going on, switch to intelligent stretching
