@@ -17,7 +17,7 @@ namespace IntelliStretch.UI
             InitializeComponent();
         }
 
-        List<GameInfo> gameLibrary, onlineGameLib;
+        List<Games.GameInfo> gameLibrary, onlineGameLib;
         MainApp mainApp;
         Storyboard sbSlideIn, sbSlideOut;
 
@@ -82,7 +82,7 @@ namespace IntelliStretch.UI
 
         private void Switch_ListItems(int index1, int index2)
         {
-            GameInfo tempGame = gameLibrary[index1];
+            Games.GameInfo tempGame = gameLibrary[index1];
             gameLibrary[index1] = gameLibrary[index2];
             gameLibrary[index2] = tempGame;
             lstGames.Items.Refresh();
@@ -93,7 +93,7 @@ namespace IntelliStretch.UI
         {
             if (tabGameLib.SelectedItem == tabOnlineGames)
             {
-                onlineGameLib = Utilities.ReadFromXML<List<GameInfo>>("http://www.rehabtek.com/IntelliStretch/Games/gamelist.xml", false);
+                onlineGameLib = Utilities.ReadFromXML<List<Games.GameInfo>>("http://www.rehabtek.com/IntelliStretch/Games/gamelist.xml", false);
                 if (lstOnlineGames.ItemsSource == null) lstOnlineGames.ItemsSource = onlineGameLib;  // list data binding
                 lstOnlineGames.Items.Refresh();
             }
@@ -103,7 +103,7 @@ namespace IntelliStretch.UI
         private void btnDeleteGame_Click(object sender, RoutedEventArgs e)
         {
             mainApp.uiGames.IsChanged = true;
-            gameLibrary.Remove(lstGames.SelectedItem as GameInfo);
+            gameLibrary.Remove(lstGames.SelectedItem as Games.GameInfo);
             lstGames.Items.Refresh();
         }
 
