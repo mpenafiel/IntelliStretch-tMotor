@@ -6,6 +6,8 @@ using System.Configuration;
 using System.IO;
 using System.Threading;
 using System.Diagnostics;
+using System.Windows.Documents;
+using System.Collections.Generic;
 
 namespace IntelliStretch
 {
@@ -51,6 +53,24 @@ namespace IntelliStretch
 
                 // Start splash window and main app
                 splashScreen.Close(TimeSpan.FromMilliseconds(300));
+
+                // Check default profile files
+                string appPath = AppDomain.CurrentDomain.BaseDirectory;
+
+                List<Games.GameInfo> gameProfiles = new List<Games.GameInfo>();
+
+                // Check Game System
+                string gamesFile = appPath + @"Games\gamelist.xml";
+
+                if (!File.Exists(gamesFile))
+                {
+                    string gamesFolder = appPath + "Games";
+                    if (!Directory.Exists(gamesFolder))   // Create settings folder if it does not exist
+                        Directory.CreateDirectory(gamesFolder);
+
+
+                    Utilities.SaveToXML<List<Games.GameInfo>>(gameProfiles, gamesFile);
+                }
                 app.Run();
 
             }            

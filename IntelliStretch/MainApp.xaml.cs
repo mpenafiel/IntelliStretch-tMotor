@@ -191,7 +191,6 @@ namespace IntelliStretch
             else
                 sysProtocol = Utilities.ReadFromXML<Protocols.System>(sysFile, true); // Read system settings if available
 
-
             // Check default user protocol
             string defaultFile = appPath + @"Profiles\Default.xml";
 

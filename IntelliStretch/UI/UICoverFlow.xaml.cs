@@ -32,14 +32,14 @@ namespace IntelliStretch.UI
         IntelliSerialPort sp;
         MainApp mainApp;
 
-        List<GameInfo> gameLibrary = new List<GameInfo>(), gameList = new List<GameInfo>(); // Game list
+        List<Games.GameInfo> gameLibrary = new List<Games.GameInfo>(), gameList = new List<Games.GameInfo>(); // Game list
         Protocols.GeneralSettings generalSettings;
         Protocols.GameProtocol gameProtocol;
         Protocols.SystemSettings systemSettings;
 
         string gamePath;
-        RehabGameBase rehabGame;        
-        GameInfo selectedGame;
+        RehabGameBase rehabGame;
+        Games.GameInfo selectedGame;
         GameControl gameControl;
         int newTarget;
         object objMutex = new object();
@@ -264,7 +264,7 @@ namespace IntelliStretch.UI
 
         #region Properties
 
-        public List<GameInfo> GameLibrary 
+        public List<Games.GameInfo> GameLibrary 
         {
             get { return gameLibrary; }
             set { gameLibrary = value; }
@@ -330,20 +330,20 @@ namespace IntelliStretch.UI
         private void Load_GameLibrary()
         {
             gamePath = AppDomain.CurrentDomain.BaseDirectory + "Games\\";
-            gameLibrary = Utilities.ReadFromXML<List<GameInfo>>(gamePath + "gamelist.xml", true);
+            gameLibrary = Utilities.ReadFromXML<List<Games.GameInfo>>(gamePath + "gamelist.xml", true);
             IsChanged = true;
         }
 
         public void Save_GameLibrary()
         {
             if (MessageBox.Show("Do you want to save this game list for future treatment?", "Hint", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                Utilities.SaveToXML<List<GameInfo>>(gameLibrary, gamePath + "gamelist.xml");
+                Utilities.SaveToXML<List<Games.GameInfo>>(gameLibrary, gamePath + "gamelist.xml");
         }
 
         private void Load_GameList()
         {
             gameList.Clear();
-            foreach (GameInfo game in gameLibrary)
+            foreach (Games.GameInfo game in gameLibrary)
             {
                 if (game.IsInUse)
                     gameList.Add(game);
@@ -408,7 +408,7 @@ namespace IntelliStretch.UI
         {
             List<string> images = new List<string>();
 
-            foreach (GameInfo game in gameList)
+            foreach (Games.GameInfo game in gameList)
                 images.Add(gamePath + game.Name + @"\" + game.Preview);
 
             return images;
@@ -596,7 +596,7 @@ namespace IntelliStretch.UI
         {
             Globals.Sound.pageSound.Play();
             this.CurrentMidIndex = gameIndex;
-            GameInfo currentGame = gameList[gameIndex];
+            Games.GameInfo currentGame = gameList[gameIndex];
             this.GameTitle = currentGame.Name;
             this.GameDescription = currentGame.Description;
             if (currentGame.GameMode == GameMode.Assistive)
