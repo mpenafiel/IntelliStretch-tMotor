@@ -163,7 +163,6 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Button x:Name="sdfg" Content="Save" Width="180" Height="60" Style="{DynamicResource GeneralButtonStyle}" Click="btnSaveDefaultStretch_Click" />
                                     <Button x:Name="btnSaveDefaultStretch" Grid.Column="0" Height="60" Width="180" Content="Save" FontSize="24" Click="btnSaveDefaultStretch_Click">
                                         <Button.Style>
                                             <Style TargetType="Button">

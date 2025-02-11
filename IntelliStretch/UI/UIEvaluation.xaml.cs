@@ -377,7 +377,7 @@ namespace IntelliStretch.UI
 
                                 LEDwriter = new DigitalSingleChannelWriter(digitalWriteTask.Stream);
 
-                                if (isStreamingDAQ && btnRecord.IsChecked)
+                                if (isStreamingDAQ && btnRecord.IsChecked==true)
                                 {
                                     dataArray[0] = true;
                                     dataArray[1] = true;
@@ -441,7 +441,7 @@ namespace IntelliStretch.UI
                 }
                 WriterHandler();
                 sp.IsUpdating = false;
-                if (btnLock.IsChecked) switch_Device_Mode();
+                if (btnLock.IsChecked == true) switch_Device_Mode();
                 if (IsSavingData)
                 {
                     sp.Stop_SaveData();
@@ -613,13 +613,13 @@ namespace IntelliStretch.UI
 
         private void switch_Device_Mode()
         {
-            if (btnBackdrivable.IsChecked)
+            if (btnBackdrivable.IsChecked == true)
             {
                 btnBackdrivable.IsChecked = false;
                 btnLock.IsChecked = true;
                 if (sp.IsConnected) sp.WriteCmd("LK");//change from BK to RL Yupeng 04.2013 //change from RL to BK, Michael 08.20.2024
             }
-            else if (btnLock.IsChecked)
+            else if (btnLock.IsChecked == true)
             {
                 btnBackdrivable.IsChecked = true;
                 btnLock.IsChecked = false;
@@ -629,7 +629,7 @@ namespace IntelliStretch.UI
 
         private void sliderLockPosition_ValueChanged(object sender, RoutedEventArgs e)
         {
-            if (btnLock.IsChecked) btnLock.IsChecked = false;
+            if (btnLock.IsChecked == true) btnLock.IsChecked = false;
         }
 
         private void tabEvaluation_SelectionChanged(object sender, SelectionChangedEventArgs e)
