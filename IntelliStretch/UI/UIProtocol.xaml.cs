@@ -185,7 +185,7 @@ namespace IntelliStretch.UI
         {
             cboSampRate.Text = intelliProtocol.System.SamplingRate.ToString();
             tgBtnSave.IsChecked = intelliProtocol.System.IsSavingData;
-            ellipseSaveing.Fill = ((bool)tgBtnSave.IsChecked) ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
+            //ellipseSaveing.Fill = ((bool)tgBtnSave.IsChecked) ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red); // From the previous version, based on toggle button
         }
 
         private void Load_GeneralSettings(Protocols.GeneralSettings protocol)
@@ -570,12 +570,5 @@ namespace IntelliStretch.UI
 
             tabCtrlConfig.SelectedIndex = 3;
         }
-
-        private void tgBtnSave_Click(object sender, RoutedEventArgs e)
-        {
-            ellipseSaveing.Fill = ((bool)tgBtnSave.IsChecked) ? new SolidColorBrush(Colors.Green) : new SolidColorBrush(Colors.Red);
-
-        }
-
     }
 }

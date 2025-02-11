@@ -11,6 +11,8 @@
 
     <SolidColorBrush x:Key="PrimaryGrayColor" Color="#BBC1D1"/>
     <SolidColorBrush x:Key="SecondaryGrayColor" Color="Gray"/>
+    <SolidColorBrush x:Key="TertiaryGrayColor" Color="#828282"/>
+    
 
 
     <!-- Slider styles -->
@@ -222,7 +224,7 @@
     
     <!-- Start: TextBox Style -->
     <Style x:Key="TextBoxStyle" TargetType="TextBox">
-        <Setter Property="Foreground" Value="{StaticResource TertiaryTextColor}"/>
+        <Setter Property="Foreground" Value="Black"/>
         <Setter Property="BorderThickness" Value="0"/>
 
         <Style.Resources>
@@ -238,9 +240,9 @@
     <Style x:Key="TabItemStyle" TargetType="TabItem">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{DynamicResource SecondaryTextColor}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Margin" Value="0 0 5 0"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Margin" Value="0 0 3 0"/>
         <Setter Property="Width" Value="100"/>
         <Setter Property="Padding" Value="10"/>
         <Setter Property="FontWeight" Value="Bold"/>
@@ -266,16 +268,18 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background"
-                                    Value="{DynamicResource SecondaryBlueColor}"/>
+                                    Value="LightGray"/>
                             <Setter Property="Foreground"
-                                    Value="{DynamicResource PrimaryGrayColor}"/>
+                                    Value="Black"/>
 
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Background"
-                                    Value="{DynamicResource PrimaryBlueColor}"/>
+                                    Value="Yellow"/>
                             <Setter Property="Foreground"
-                                    Value="{DynamicResource PrimaryTextColor}"/>
+                                    Value="Black"/>
+                            <Setter Property="BorderBrush"
+                                    Value="Black"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -286,7 +290,7 @@
 
     <!-- Start: TabControl Styles -->
     <Style x:Key="TabControlStyle" TargetType="TabControl">
-        <Setter Property="Background" Value="{DynamicResource SecondaryBlueColor}"/>
+        <Setter Property="Background" Value="LightGray"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="5"/>
@@ -350,12 +354,12 @@
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Ellipse 
                             Name="Ellipse" 
-                            Fill="{StaticResource PrimaryBlueColor}"
+                            Fill="Green"
                             Stroke="{StaticResource NormalBorderBrush}"
                             StrokeThickness="0" />
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Ellipse" Property="Fill" Value="{StaticResource PrimaryGrayColor}"/>
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{StaticResource DarkBrush}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="Ellipse" Property="Fill" Value="{StaticResource DisabledBackgroundBrush}"/>

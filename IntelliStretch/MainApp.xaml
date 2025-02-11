@@ -6,7 +6,7 @@
     xmlns:UI="clr-namespace:IntelliStretch.UI"
     xmlns:value_converters="clr-namespace:IntelliStretch.ValueConverters"
     Title="MainApp" x:Name="wndMainApp"
-    Width="1024" Height="640" Background="{DynamicResource PrimaryBlueColor}" WindowState="Maximized" WindowStyle="None" mc:Ignorable="d"
+    Width="1024" Height="640" Background="{DynamicResource background}" WindowState="Maximized" WindowStyle="None" mc:Ignorable="d"
     Loaded="wndMainApp_Loaded" KeyDown="wndMainApp_KeyDown">
     <Window.Resources>
         <ResourceDictionary>
@@ -18,10 +18,11 @@
             <!-- Start: Button Style -->
             <Style TargetType="Button" x:Key="BtnNext">
                 <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="Background" Value="{DynamicResource SecondaryBlueColor}"/>
-                <Setter Property="Foreground" Value="{DynamicResource PrimaryBlueColor}"/>
+                <Setter Property="Background" Value="#FFECE550"/>
+                <Setter Property="Foreground" Value="Black"/>
                 <Setter Property="FontSize" Value="24"/>
                 <Setter Property="Height" Value="50"/>
+                <Setter Property="Width" Value="150"/>
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="Padding" Value="5"/>
                 <Setter Property="Template">
@@ -44,7 +45,7 @@
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background"
-                                    Value="{DynamicResource PrimaryGrayColor}"/>
+                                    Value="{DynamicResource TertiaryTextColor}"/>
                                     <Setter Property="Foreground"
                                     Value="{DynamicResource PrimaryTextColor}"/>
 
@@ -66,7 +67,7 @@
     </Window.Resources>
     
     <Grid>
-        <Grid x:Name="gridBackground" Background="{DynamicResource PrimaryBlueColor}" Visibility="{Binding IsSelected, ElementName=tabPrelimSettings, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=true}" />
+        <Grid x:Name="gridBackground" Background="{DynamicResource background_dim}" Visibility="{Binding IsSelected, ElementName=tabPrelimSettings, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=true}" />
         <Grid x:Name="gridMain">
             <!--Three rows-->
             <Grid.RowDefinitions>
@@ -76,7 +77,7 @@
             </Grid.RowDefinitions>
             
             <!--Header - Title-->
-            <TextBlock Margin="80,0,0,0" Text="{Binding SelectedItem.Header, ElementName=tabContent}" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextColor}" FontSize="48" FontWeight="DemiBold" FontFamily="Aptos" 
+            <TextBlock Margin="80,0,0,0" Text="{Binding SelectedItem.Header, ElementName=tabContent}" TextWrapping="Wrap" Foreground="Yellow" FontSize="48" FontWeight="DemiBold" FontFamily="Aptos" 
                        HorizontalAlignment="Left" VerticalAlignment="Bottom"  Visibility="{Binding IsSelected, ElementName=tabGames, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=false}"/>
             <StackPanel Margin="100,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="{Binding IsSelected, ElementName=tabGames, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=true}" >
                 <TextBlock x:Name="txtGameTitle" Text="{Binding GameTitle, ElementName=uiGames, Mode=OneWay}" FontFamily="Comic Sans MS" FontSize="68" FontWeight="Bold" Foreground="{DynamicResource PrimaryTextColor}" />
@@ -96,7 +97,7 @@
             
             
             <!--Middle - Content-->
-            <Border Background="{DynamicResource PrimaryTextColor}" Grid.Row="1" VerticalAlignment="Stretch" Padding="50" Margin="80,15,80,30" CornerRadius="5">
+            <Border Grid.Row="1" VerticalAlignment="Stretch" Padding="50" Margin="80,15,80,30" CornerRadius="5">
                 <Grid>
                     <TabControl x:Name="tabContent"  Background="{x:Null}" Style="{StaticResource ContentTabStyle}" Visibility="Hidden" FocusVisualStyle="{x:Null}">
 
@@ -144,9 +145,13 @@
 
             
             <!--Bottom - Navigation bar-->
-            <UserControls:ImageButton x:Name="btnNavigator" Grid.Row="2" Margin="32,0,0,12" Image="images/Navigator-new.png" ImageMargin="8" ButtonCornerRadius="5" BackColor="{DynamicResource PrimaryGrayColor}"
-                                                     Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="btnNavigator_Click" />
-            
+            <UserControls:ImageButton x:Name="btnNavigator"
+                                      Grid.Row="2"
+                                      Margin="32,0,0,12" Image="images/Navigator.png" 
+                                      ImageMargin="8" ButtonCornerRadius="5"
+                                      BackColor="#828282"
+                                      Width="80" Height="80"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="btnNavigator_Click" />
+
 
             <Button
                 x:Name="btnNext"
@@ -154,12 +159,47 @@
                 Content="Next"
                 Margin="0,0,40,20"
                 Width="120"
-                Height="60"
+                Height="50"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Click="btnNext_Click"
-                Style="{DynamicResource BtnNext}"
-                Visibility="Hidden"/>
+                Visibility="Hidden"
+                FontSize="24">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Yellow"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontWeight" Value="DemiBold"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightGray"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="Gray"/>
+                            </Trigger>
+                        </Style.Triggers>
+
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5" />
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </Button.Style>
+            </Button>
             <TextBlock x:Name="txtGameDescription" Grid.Row="2" Margin="120,0,180,0" Text="{Binding GameDescription, ElementName=uiGames, Mode=OneWay}" FontSize="28" TextAlignment="Center" TextWrapping="Wrap" 
                        Foreground="WhiteSmoke"  Visibility="{Binding IsSelected, ElementName=tabGames, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=true}"/>
         </Grid>

@@ -27,9 +27,6 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="0" Grid.RowSpan="2" Panel.ZIndex="-2" CornerRadius="5" Background="{DynamicResource SecondaryBlueColor}">
-            </Border>
-
             <StackPanel Grid.Row="0">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -37,10 +34,14 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="{Binding SelectedItem.Tag, ElementName=tabEvaluation}" Margin="10,20,10,10" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextColor}" FontSize="28" FontWeight="DemiBold" HorizontalAlignment="Center"/>
-                    <Border Panel.ZIndex="-1" Grid.Row="0" Background="{DynamicResource PrimaryBlueColor}" CornerRadius="5,5,0,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding SelectedItem.Tag, ElementName=tabEvaluation}" Margin="10" TextWrapping="Wrap"
+                               Foreground="{DynamicResource PrimaryTextColor}" 
+                               FontSize="32" HorizontalAlignment="Center"/>
+                    <Border Panel.ZIndex="-1" Grid.Row="0" Background="Transparent" CornerRadius="5,5,0,0"/>
 
-                    <UserControls:ImageButton Grid.Row="1" x:Name="btnMeasure" ButtonCornerRadius="5" Foreground="{DynamicResource PrimaryTextColor}" BackColor="{DynamicResource PrimaryGrayColor}" Width="168" VerticalAlignment="Top" Height="60" Image="../images/Start-new.png" ImageMargin="10" Orientation="Horizontal" Text="Measure " FontSize="24" Click="btnMeasure_Click" Margin="0,20"/>
+                    <UserControls:ImageButton Grid.Row="1" x:Name="btnMeasure" ButtonCornerRadius="5" Foreground="{DynamicResource PrimaryTextColor}" 
+                                              BackColor="{DynamicResource TertiaryGrayColor}" Width="168" VerticalAlignment="Top" Height="60" 
+                                              Image="../images/Start.png" ImageMargin="10" Orientation="Horizontal" Text="Measure " FontSize="24" Click="btnMeasure_Click" Margin="0,20"/>
                 </Grid>
             </StackPanel>
 
@@ -52,25 +53,60 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Text="EMG" Margin="15,10,0,0" VerticalAlignment="Bottom" FontWeight="DemiBold" FontSize="24" Foreground="{DynamicResource TertiaryTextColor}"/>
-                        <UserControls:UserCheckBox Grid.Column="1" x:Name="cbDisplayEmg" Height="36" CheckBorderThickness="2" BrushColor="{DynamicResource SecondaryGrayColor}" IsChecked="False" FontSize="20" Margin="0,0,0,0" VerticalAlignment="Center" CheckToggled="cbDisplayEmg_Changed" Foreground="{DynamicResource TertiaryTextColor}" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Column="0" Text="EMG" Margin="15,10,0,0" VerticalAlignment="Bottom" FontWeight="Regular" FontSize="28" Foreground="{DynamicResource PrimaryTextColor}"/>
+                        <UserControls:UserCheckBox Grid.Column="1" x:Name="cbDisplayEmg" Height="36" CheckBorderThickness="2" BrushColor="{DynamicResource TertiaryGrayColor}" IsChecked="False" FontSize="20" Margin="0,0,0,0" VerticalAlignment="Center" CheckToggled="cbDisplayEmg_Changed" Foreground="{DynamicResource TertiaryTextColor}" HorizontalAlignment="Right"/>
                     </Grid>
 
-                    <Rectangle Height="2" Fill="{DynamicResource TertiaryTextColor}" Margin="10,0"/>
+                    <Rectangle Height="1" Fill="{DynamicResource PrimaryTextColor}" Margin="10,0"/>
 
                     <StackPanel x:Name="emgStack"  Margin="30,10,10,10" Visibility="Collapsed">
 
-                        <UserControls:FlatToggleButton
-                            x:Name="btnRecord"
-                            Text="Record"
-                            FontSize="20"
-                            Height="40"
-                            Width="120"/>
+                        <ToggleButton x:Name="btnRecord"
+                                        Content="Record"
+                                        FontSize="20"
+                                        Height="40"
+                                        Width="120">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="FontWeight" Value="DemiBold"/>
+                                    <Setter Property="Padding" Value="5"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="1">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightGray"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="Red"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
 
-                        <TextBlock Margin="0,10,0,0" Text="Multiplier" VerticalAlignment="Bottom" FontWeight="SemiBold" FontSize="20" Foreground="{DynamicResource TertiaryTextColor}"/>
-                        <Rectangle Height="2" Fill="{DynamicResource TertiaryTextColor}"/>
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5" />
+                                        </Style>
+                                    </Style.Resources>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+
+                        <TextBlock Margin="0,5,0,0" Text="Multiplier" VerticalAlignment="Bottom" FontWeight="Regular" FontSize="20" Foreground="{DynamicResource PrimaryTextColor}"/>
+                        <Rectangle Height="2" Fill="{DynamicResource PrimaryTextColor}"/>
                         <Grid Margin="0,10,0,0">
-                            <TextBlock Text="Dorsiflexion:" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="{DynamicResource TertiaryTextColor}"/>
+                            <TextBlock Text="Dorsiflexion:" VerticalAlignment="Center" FontSize="18" Foreground="{DynamicResource PrimaryTextColor}"/>
                             <!-- <UserControls:FlatToggleButton x:Name="x1" Height="30" Width="30" Text="1x" IsChecked="True" Margin="0,0,10,0" Click="x1_Click"/> -->
                             <ComboBox x:Name="DorsiMultiplier" Margin="10,0" SelectedIndex="0" HorizontalAlignment="Right">
                                 <ComboBoxItem>1</ComboBoxItem>
@@ -83,9 +119,9 @@
                             </ComboBox>
                         </Grid>
 
-                        <Grid Margin="0,10,0,0">
-                            <TextBlock Text="Plantarflexion:" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="{DynamicResource TertiaryTextColor}"/>
-                            <ComboBox x:Name="Plantarmultiplier" Margin="10,0" SelectedIndex="0" HorizontalAlignment="Right">
+                        <Grid Margin="0,5,0,0">
+                            <TextBlock Text="Plantarflexion:" VerticalAlignment="Center" FontSize="18" Foreground="{DynamicResource PrimaryTextColor}"/>
+                            <ComboBox x:Name="PlantarMultiplier" Margin="10,0" SelectedIndex="0" HorizontalAlignment="Right">
                                 <ComboBoxItem>1</ComboBoxItem>
                                 <ComboBoxItem>2</ComboBoxItem>
                                 <ComboBoxItem>5</ComboBoxItem>
@@ -98,21 +134,187 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Visibility="{Binding IsSelected, ElementName=tabStrength, Converter={StaticResource bvConverter}, ConverterParameter=true}">
-                    <TextBlock Text="Measure" Margin="15,10,0,0" VerticalAlignment="Bottom" FontWeight="DemiBold" FontSize="24" Foreground="{DynamicResource TertiaryTextColor}"/>
-                    <Rectangle Height="2" Fill="{DynamicResource TertiaryTextColor}" Margin="10,0"/>
+                    <TextBlock Text="Measure" Margin="15,10,0,0" VerticalAlignment="Bottom" FontSize="28" Foreground="{DynamicResource PrimaryTextColor}"/>
+                    <Rectangle Height="1" Fill="{DynamicResource PrimaryTextColor}" Margin="10,0"/>
 
                     <StackPanel Margin="40,10,20,10">
-                        <UserControls:FlatToggleButton x:Name="btnFlexion" Height="40" Width="160" FontSize="20" Margin="0,0,0,10" Text="Dorsiflexion" IsChecked="True" Click="btnFlexion_Click"/>
-                        <UserControls:FlatToggleButton x:Name="btnExtension" Height="40" Width="160" FontSize="20" Text="Plantarflexion" Click="btnExtension_Click"/>
+                        <ToggleButton x:Name="btnFlexion"
+                                      Margin="0,0,0,10"
+                                        Content="Dorsiflexion"
+                                        FontSize="20"
+                                        Height="40"
+                                        Width="160"
+                                        IsChecked="True"
+                                        Click="btnFlexion_Click">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="FontWeight" Value="Regular"/>
+                                    <Setter Property="Padding" Value="5"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="1">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Gray"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="Green"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5" />
+                                        </Style>
+                                    </Style.Resources>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                        <ToggleButton x:Name="btnExtension"
+                                        Content="Plantarflexion"
+                                        FontSize="20"
+                                        Height="40"
+                                        Width="160"
+                                        Click="btnExtension_Click">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="FontWeight" Value="Regular"/>
+                                    <Setter Property="Padding" Value="5"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="1">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Gray"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="Green"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5" />
+                                        </Style>
+                                    </Style.Resources>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Visibility="{Binding IsSelected, ElementName=tabStrength, Converter={StaticResource bvConverter}, ConverterParameter=true}">
-                    <TextBlock Text="Device" Margin="15,10,0,0" VerticalAlignment="Bottom" FontWeight="DemiBold" FontSize="24" Foreground="{DynamicResource TertiaryTextColor}"/>
-                    <Rectangle Height="2" Fill="{DynamicResource TertiaryTextColor}" Margin="10,0"/>
+                    <TextBlock Text="Device" Margin="15,10,0,0" VerticalAlignment="Bottom" FontSize="28" Foreground="{DynamicResource PrimaryTextColor}"/>
+                    <Rectangle Height="1" Fill="{DynamicResource PrimaryTextColor}" Margin="10,0"/>
 
                     <StackPanel Margin="40,10,20,10">
-                        <UserControls:FlatToggleButton x:Name="btnBackdrivable" Height="40" Width="120" FontSize="20" Margin="0,0,0,10" Text="Unlock" IsChecked="True" Click="btnBackdrivable_Click"/>
-                        <UserControls:FlatToggleButton x:Name="btnLock" Height="40" Width="120" FontSize="20" Text="Lock" Click="btnLock_Click"/>
+                        <ToggleButton x:Name="btnBackdrivable"
+                                      Margin="0,0,0,10"
+                                        Content="Unlock"
+                                        FontSize="20"
+                                        Height="40"
+                                        Width="120"
+                                        IsChecked="True"
+                                        Click="btnBackdrivable_Click">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="FontWeight" Value="Regular"/>
+                                    <Setter Property="Padding" Value="5"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Gray"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="Yellow"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5" />
+                                        </Style>
+                                    </Style.Resources>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                        <ToggleButton x:Name="btnLock"
+                                        Content="Lock"
+                                        FontSize="20"
+                                        Height="40"
+                                        Width="120"
+                                        Click="btnLock_Click">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="FontWeight" Value="Regular"/>
+                                    <Setter Property="Padding" Value="5"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="1">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Gray"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="Yellow"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5" />
+                                        </Style>
+                                    </Style.Resources>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
                     </StackPanel>
                 </StackPanel>
 
@@ -124,7 +326,7 @@
                 <!-- AROM -->
                 <TabItem x:Name="tabAROM" Style="{StaticResource BtnTabItemStyle}" Tag="Active Range of Motion (AROM)">
                     <TabItem.Header>
-                        <Image Source="../images/Range-new.png" Margin="5"/>
+                        <Image Source="../images/Range.png" Margin="5"/>
                     </TabItem.Header>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -206,7 +408,8 @@
 
                             </Grid>
                         </Grid>
-                        <UserControls:TextSlider Grid.Row="1" x:Name="sliderResistance" Foreground="{DynamicResource TertiaryTextColor}" TextFontSize="22" Text="Resistance" UserControls:TextSlider.ValueChanged="sliderResistance_ValueChanged"/>
+                        <UserControls:TextSlider Grid.Row="1" x:Name="sliderResistance" Foreground="{DynamicResource PrimaryTextColor}" TextFontSize="24" 
+                                                 Text="Resistance" UserControls:TextSlider.ValueChanged="sliderResistance_ValueChanged"/>
                         <!--<UniformGrid Grid.Row="1" Grid.ColumnSpan="2" Columns="2" UserControls:TextSlider.ValueChanged="sliderResistance_ValueChanged">-->
                             <!--<UserControls:TextSlider x:Name="sliderResistFlex" Foreground="{DynamicResource TertiaryTextColor}" TextFontSize="22" Text="{Binding Path=FlexionName, ElementName=uiEvaluation, StringFormat={}{0} Resistance:}" />-->
                             <!--<UserControls:TextSlider x:Name="sliderResistExt" Foreground="{DynamicResource TertiaryTextColor}" TextFontSize="22" Text="{Binding Path=ExtensionName, ElementName=uiEvaluation, StringFormat={}{0} Resistance:}" />-->
@@ -216,7 +419,7 @@
                 <!-- Strength -->
                 <TabItem x:Name="tabStrength" Style="{StaticResource BtnTabItemStyle}" Tag="Strength Measure" VerticalAlignment="Top">
                     <TabItem.Header>
-                        <Image Source="../images/Strength-new.png"  Margin="1"/>
+                        <Image Source="../images/Strength.png"  Margin="1"/>
                     </TabItem.Header>
                     <Grid>
                         <Grid x:Name="vStrengthLayout">

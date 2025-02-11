@@ -9,11 +9,12 @@
     <UserControl.Resources>
         <!-- Start: Button Style -->
         <Style TargetType="Button" x:Key="SetButtonStyle">
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderThickness" Value="0,1,1,1"/>
+            <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="SnapsToDevicePixels" Value="true"/>
-            <Setter Property="Background" Value="{DynamicResource PrimaryBlueColor}"/>
+            <Setter Property="Background" Value="#FF1039F2"/>
             <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}"/>
-            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="FontWeight" Value="Regular"/>
             <Setter Property="Padding" Value="5"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -34,11 +35,11 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background"
-                            Value="{DynamicResource PrimaryGrayColor}"/>
-                                <Setter Property="Foreground"
-                            Value="{DynamicResource SecondaryBlueColor}"/>
-
+                                <Setter Property="Background" Value="LightGray"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="Gray"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -58,7 +59,8 @@
     <Grid>
             <Border x:Name="bdrHighlight" BorderThickness="2" CornerRadius="5">
             <StackPanel Margin="10,5">
-                <TextBlock x:Name="lblName" Height="24" Text="{Binding Caption, ElementName=flatTextButton}" TextWrapping="Wrap" Foreground="{DynamicResource TertiaryTextColor}" FontSize="16"/>
+                <TextBlock x:Name="lblName" Height="24" Text="{Binding Caption, ElementName=flatTextButton}" 
+                           TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextColor}" FontSize="16" FontWeight="Regular"/>
                 <StackPanel Orientation= "Horizontal">
                     <TextBox x:Name="txtNeutral"
                              Text="{Binding TextBoxText, ElementName=flatTextButton}"
@@ -68,13 +70,15 @@
                              Padding="10,0"
                              FontSize="16"
                              IsReadOnly="True"
-                             VerticalContentAlignment="Center">
+                             VerticalContentAlignment="Center"
+                             FontWeight="DemiBold">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="5,0,0,5"/>
                             </Style>
                             <Style TargetType="{x:Type TextBox}">
-                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="BorderThickness" Value="1,1,0,1"/>
+                                <Setter Property="BorderBrush" Value="Black"/>
                             </Style>
                         </TextBox.Resources>
                     </TextBox>

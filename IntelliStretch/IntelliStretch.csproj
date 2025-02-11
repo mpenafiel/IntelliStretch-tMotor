@@ -283,6 +283,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\FlatColorButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\FlatTextButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -452,6 +456,9 @@
     </Compile>
     <Compile Include="UserControls\FlatButton.xaml.cs">
       <DependentUpon>FlatButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FlatColorButton.xaml.cs">
+      <DependentUpon>FlatColorButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FlatTextButton.xaml.cs">
       <DependentUpon>FlatTextButton.xaml</DependentUpon>
@@ -721,7 +728,7 @@
     <Resource Include="images\InfoBtn.png" />
     <Resource Include="images\CloseBtn.png" />
     <Resource Include="images\Options-selected-new.png" />
-	<Resource Include="images\Navigator-new.png" />
+    <Resource Include="images\Navigator-new.png" />
     <Resource Include="images\PC-new.png" />
     <Resource Include="images\Range_selected-new.png" />
     <Resource Include="images\Report-new.png" />

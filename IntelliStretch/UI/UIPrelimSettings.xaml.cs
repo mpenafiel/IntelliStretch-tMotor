@@ -143,7 +143,7 @@ namespace IntelliStretch.UI
         {
             txtDataInfo.Dispatcher.Invoke(new Action(delegate
             {
-                txtDataInfo.Text = "Position (deg): " + newAnkleData.anklePos.ToString("#0.0") + "\u00B0"
+                txtDataInfo.DialogText = "Position (deg): " + newAnkleData.anklePos.ToString("#0.0") + "\u00B0"
                                 + "\r\nTorque (Nm): " + newAnkleData.ankleTorque.ToString("#0.0")
                                 + "\r\nCurrent Level: " + (newAnkleData.ankleAm * 100).ToString() + "%";
             }));
@@ -265,7 +265,7 @@ namespace IntelliStretch.UI
         private void exRangeBdr_GotFocus(object sender, RoutedEventArgs e)
         {
             sliderValuePicker.Visibility = Visibility.Hidden;
-            exRangeBdr.BorderBrush = new SolidColorBrush(Colors.Red);
+            exRangeBdr.BorderBrush = new SolidColorBrush(Colors.Yellow);
             Update_JointImage(imgNeutral);
 
         }

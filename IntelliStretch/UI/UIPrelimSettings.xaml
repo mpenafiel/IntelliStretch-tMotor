@@ -18,50 +18,90 @@
 
         <Slider Grid.Column="0" x:Name="sliderValuePicker" Margin="20" Orientation="Vertical" SmallChange="1" IsSnapToTickEnabled="True" ValueChanged="sliderValuePicker_ValueChanged" Opacity="0.0"/>
 
-        <Grid RenderTransformOrigin="0.5,0.5" Grid.Column="2" HorizontalAlignment="Right" Margin="50">
+        <Grid RenderTransformOrigin="0.5,0.5" Grid.Column="2" HorizontalAlignment="Right">
             <Grid.RenderTransform>
                 <ScaleTransform ScaleX="{Binding IsReflected, ElementName=uiPrelimSettings, Converter={StaticResource boolScaleConverter}, Mode=OneWay}" ScaleY="1" />
             </Grid.RenderTransform>
-            <Image Source="{Binding GuideLinesImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Margin="50"/>
-            <Image x:Name="imgNeutral" Source="{Binding NeutralImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Margin="50"/>
-            <Image x:Name="imgFlexion" Source="{Binding FlexionImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Visibility="Collapsed" Margin="50"/>
-            <Image x:Name="imgExtension" Source="{Binding ExtensionImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Visibility="Collapsed" Margin="50"/>
-
-            <Border Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}" Panel.ZIndex="-1"/>
+            <Image Source="{Binding GuideLinesImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right"/>
+            <Image x:Name="imgNeutral" Source="{Binding NeutralImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right"/>
+            <Image x:Name="imgFlexion" Source="{Binding FlexionImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Visibility="Collapsed"/>
+            <Image x:Name="imgExtension" Source="{Binding ExtensionImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Visibility="Collapsed"/>
         </Grid>
 
+        <UserControls:EmbeddedDialog
+            DialogText="Please make sure your stop switch is enabled !" 
+            HeaderColor="Yellow"
+            DialogTitle="Caution" DialogWidth="240" 
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+            Grid.Column="2"/>
+
         <StackPanel Grid.Column="1">
-            <Border Background="{DynamicResource SecondaryBlueColor}" CornerRadius="5" Padding="10">
-                <StackPanel>
-                    <TextBlock 
+            <StackPanel>
+                <TextBlock 
                         Height="24" 
                         Text="Neutral Position" 
                         TextWrapping="Wrap" 
-                        FontWeight="Bold"
-                        Foreground="{DynamicResource TertiaryTextColor}"
+                        FontWeight="Regular"
+                        Foreground="{DynamicResource PrimaryTextColor}"
                         FontSize="16"
                         Margin="10,5,5,0"/>
-                    <Button
+                <Button
                         x:Name="setNeutral"
                         Content="Set zero"
                         GotFocus="setting_GotFocus"
-                        Style="{DynamicResource GeneralButtonStyle}"
                         Click="btnSetNeutral_Click" 
-                        Height="28"
-                        FontSize="12"
-                        Margin="5,0,5,5"/>
+                        Height="36"
+                        FontSize="16"
+                        Margin="5,0,5,5">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FF1039F2"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Regular"/>
+                            <Setter Property="Padding" Value="5"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="Gray"/>
+                                </Trigger>
+                            </Style.Triggers>
 
-                    <UserControls:FlatTextButton x:Name="setFlexion" FontWeight="Bold" Caption="{Binding FlexionName, ElementName=uiPrelimSettings, StringFormat=Max {0}:}" ButtonText="Measure" GotFocus="setting_GotFocus" ButtonClick="Measure_ButtonClick"/>
+                            <Style.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5" />
+                                </Style>
+                            </Style.Resources>
+                        </Style>
+                    </Button.Style>
+                </Button>
 
-                    <UserControls:FlatTextButton x:Name="setExtension" FontWeight="Bold" Caption="{Binding ExtensionName, ElementName=uiPrelimSettings, StringFormat=Max {0}:}" Margin="0,5" 
+                <UserControls:FlatTextButton x:Name="setFlexion" FontWeight="Bold" Caption="{Binding FlexionName, ElementName=uiPrelimSettings, StringFormat=Max {0}:}" ButtonText="Measure" GotFocus="setting_GotFocus" ButtonClick="Measure_ButtonClick"/>
+
+                <UserControls:FlatTextButton x:Name="setExtension" FontWeight="Bold" Caption="{Binding ExtensionName, ElementName=uiPrelimSettings, StringFormat=Max {0}:}" Margin="0,5" 
                          ButtonText="Measure" GotFocus="setting_GotFocus" ButtonClick="Measure_ButtonClick"/>
 
-                    <Border x:Name="exRangeBdr" BorderThickness="2" CornerRadius="5" Grid.Row="4" GotFocus="exRangeBdr_GotFocus"  LostFocus="exRangeBdr_LostFocus" >
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel Margin="10,5">
-                                <TextBlock  Height="24" Text="Extra Range" TextWrapping="Wrap" Foreground="{DynamicResource TertiaryTextColor}" FontSize="16" FontWeight="Bold"/>
-                                <StackPanel Orientation= "Horizontal">
-                                    <TextBox
+                <Border x:Name="exRangeBdr" BorderThickness="2" CornerRadius="5" Grid.Row="4" GotFocus="exRangeBdr_GotFocus"  LostFocus="exRangeBdr_LostFocus" >
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Margin="10,5">
+                            <TextBlock  Height="24" Text="Extra Range" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextColor}" FontSize="16" FontWeight="Regular"/>
+                            <StackPanel Orientation= "Horizontal">
+                                <TextBox
                                         x:Name="setExRange"
                                         Height="28"
                                         Width="100"
@@ -69,46 +109,70 @@
                                         Padding="10,0"
                                         FontSize="16"
                                         IsReadOnly="True"
-                                        FontWeight="Bold"
+                                        FontWeight="DemiBold"
                                         VerticalContentAlignment="Center">
-                                        <TextBox.Resources>
-                                            <Style TargetType="{x:Type Border}">
-                                                <Setter Property="CornerRadius" Value="5"/>
-                                            </Style>
-                                            <Style TargetType="{x:Type TextBox}">
-                                                <Setter Property="BorderThickness" Value="0"/>
-                                            </Style>
-                                        </TextBox.Resources>
-                                    </TextBox>
-                                </StackPanel>
+                                    <TextBox.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius" Value="5"/>
+                                        </Style>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                        </Style>
+                                    </TextBox.Resources>
+                                </TextBox>
                             </StackPanel>
-                            <UserControls:HorizontalScroller x:Name="exRangeScroller" Margin="0,5" VerticalAlignment="Bottom" HorizontalAlignment="Center" ButtonMinClick="exRangeScroller_ButtonMinClick" ButtonMaxClick="exRangeScroller_ButtonMaxClick"/>
                         </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Border>
-            
+                        <UserControls:HorizontalScroller x:Name="exRangeScroller" Margin="0,5" VerticalAlignment="Bottom" HorizontalAlignment="Center" ButtonMinClick="exRangeScroller_ButtonMinClick" ButtonMaxClick="exRangeScroller_ButtonMaxClick"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
 
-            <Button x:Name="btnApplyGeneralSettings" Style="{DynamicResource GeneralButtonStyle}" Content="Set" Height="50" Margin="0,5,0,0" HorizontalAlignment="Stretch" Click="btnApplyGeneralSettings_Click"/>
+            <Button x:Name="btnApplyGeneralSettings" Content="Set" Height="50" Margin="0,25,0,0" 
+                    HorizontalAlignment="Stretch" Click="btnApplyGeneralSettings_Click" FontSize="24">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Red"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Regular"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="1">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightGray"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="Gray"/>
+                            </Trigger>
+                        </Style.Triggers>
 
-            <Border Background="{DynamicResource PrimaryBlueColor}" Grid.Row="1" Height="50" Margin="0,10,0,0" CornerRadius="5,5,0,0">
-                <Grid>
-                    <TextBlock Text="Control Measures" Margin="10,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" Foreground="{DynamicResource PrimaryTextColor}"/>
-                </Grid>
-            </Border>
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5" />
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </Button.Style>
+            </Button>
 
-            <Border Background="{DynamicResource SecondaryBlueColor}" Grid.Row="2" CornerRadius="0,0,5,5" Margin="0,0,0,10">
-                <Grid Margin="10,20">
-                    <TextBlock x:Name="txtDataInfo"
-                FontSize="20" 
-                TextWrapping="Wrap" 
-                TextAlignment="Justify"
-                FontWeight="SemiBold"
-                Foreground="{DynamicResource TertiaryTextColor}"/>
-                </Grid>
-            </Border>
-
-            <UserControls:EmbeddedDialog Grid.Row="3" DialogText="Please make sure your stop switch is enabled !" DialogTitle="Caution" DialogWidth="240" VerticalAlignment="Bottom"/>
+            <UserControls:EmbeddedDialog
+                Margin="0,25"
+                x:Name="txtDataInfo"
+                DialogTitle="Control Feedback" DialogWidth="240" 
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Grid.Column="2"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -19,7 +19,7 @@
                             <Setter Property="BorderThickness" Value="0"/>
                             <Setter Property="Effect">
                                 <Setter.Value>
-                                    <DropShadowEffect ShadowDepth="0" Color="DimGray" BlurRadius="10" />
+                                    <DropShadowEffect ShadowDepth="4" Color="DimGray" BlurRadius="10" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -50,8 +50,13 @@
                         <ScaleTransform ScaleX="{Binding IsReflected, ElementName=imageButton, Converter={StaticResource boolScaleConverter}, Mode=OneWay}" ScaleY="1" />
                     </Image.RenderTransform>
                 </Image>
-                <TextBlock Text="{Binding Text, ElementName=imageButton}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{Binding Foreground, ElementName=imageButton, Mode=Default}"
-                           FontSize="{Binding FontSize, ElementName=imageButton, Mode=Default}" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Text, ElementName=imageButton}"
+                           TextAlignment="Center"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="{Binding Foreground, ElementName=imageButton, Mode=Default}"
+                           FontSize="{Binding FontSize, ElementName=imageButton, Mode=Default}"
+                           FontWeight="Bold"/>
             </StackPanel>
         </Button>        
     </Grid>

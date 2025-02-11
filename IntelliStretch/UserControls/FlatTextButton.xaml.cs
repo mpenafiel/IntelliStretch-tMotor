@@ -90,7 +90,7 @@ namespace IntelliStretch.UserControls
 
         private void flatTextButton_GotFocus(object sender, RoutedEventArgs e)
         {
-            bdrHighlight.BorderBrush = new SolidColorBrush(Colors.Red);
+            bdrHighlight.BorderBrush = new SolidColorBrush(Colors.Yellow);
         }
 
         private void flatTextButton_LostFocus(object sender, RoutedEventArgs e)

@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="IntelliStretch.UI.UIPreparation"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Name="uiPreparation" Loaded="uiPreparation_Loaded" FontFamily="Aptos">
+    Name="uiPreparation" Loaded="uiPreparation_Loaded">
     <UserControl.Resources>
         <Storyboard x:Key="sbArrowIndicator">
             <DoubleAnimation Storyboard.TargetName="redArrow" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" From="-30" To="0" RepeatBehavior="Forever"/>
@@ -26,7 +26,7 @@
                 <TranslateTransform/>
             </Image.RenderTransform>
         </Image>
-        <Border x:Name="bdrHints" Margin="50,80" CornerRadius="5" Background="{DynamicResource PrimaryGrayColor}" HorizontalAlignment="Right" Width="580" ClipToBounds="True" Visibility="Collapsed">
+        <Border x:Name="bdrHints" Margin="50,80" CornerRadius="5" Background="#7F8080aa" HorizontalAlignment="Right" Width="580" ClipToBounds="True" Visibility="Collapsed">
             <Border.RenderTransform>
                 <TranslateTransform/>
             </Border.RenderTransform>
@@ -40,16 +40,16 @@
                         <RowDefinition Height="0.8*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal" >
-                        <TextBlock Margin="20,0,0,0" Text=" Hello, " FontSize="40" Foreground="{DynamicResource Black}" VerticalAlignment="Bottom"/>
-                        <TextBlock x:Name="txtCurrentUser" FontSize="44" FontWeight="DemiBold" Foreground="{DynamicResource Black}" VerticalAlignment="Bottom"/>
-                        <TextBlock Text=" :" FontSize="40" Foreground="{DynamicResource Black}" VerticalAlignment="Bottom"/>
+                        <TextBlock Margin="20,0,0,0" Text=" Hello, " FontSize="40" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Bottom"/>
+                        <TextBlock x:Name="txtCurrentUser" FontSize="44" FontWeight="DemiBold" Foreground="Red" VerticalAlignment="Bottom"/>
+                        <TextBlock Text=" :" FontSize="40" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Bottom"/>
                     </StackPanel>
-                    <TextBlock Grid.Row="1" FontSize="68" Text="Welcome to IntelliStretch!" FontWeight="DemiBold" Foreground="{DynamicResource Black}" TextWrapping="Wrap" 
+                    <TextBlock Grid.Row="1" FontSize="60" Text="Welcome to IntelliStretch!" FontWeight="DemiBold" FontFamily="Broadway BT" Foreground="Yellow" TextWrapping="Wrap" 
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 
                     <Image x:Name="greenArrow" Grid.Row="1" Source="../images/GreenArrow.png" Width="48" Height="48" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20" Cursor="Hand" MouseDown="gridInfo_MouseDown">
                         <Image.Effect>
-                            <DropShadowEffect ShadowDepth="0" Color="White" BlurRadius="5" />
+                            <DropShadowEffect ShadowDepth="0" Color="Yellow" BlurRadius="5" />
                         </Image.Effect>
                         <Image.RenderTransform>
                             <TranslateTransform/>
@@ -67,10 +67,10 @@
                         <RowDefinition Height="0.3*"/>
                         <RowDefinition Height="0.1*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock FontSize="32" TextWrapping="Wrap" Foreground="{DynamicResource Black}" Text="  •  Connect data cable to serial port." VerticalAlignment="Center" />
-                    <TextBlock Grid.Row="1" FontSize="32" TextWrapping="Wrap" Foreground="{DynamicResource Black}" Text="  •  Connect emergency stop switch." VerticalAlignment="Center" />
-                    <TextBlock Grid.Row="2" FontSize="32" TextWrapping="Wrap" Foreground="{DynamicResource Black}" Text="  •  Attach external battery." VerticalAlignment="Center" />
-                    <TextBlock Grid.Row="3" FontSize="39" TextWrapping="Wrap" Foreground="Red"  FontWeight="Bold" Text="  Then, switch ON the power..." VerticalAlignment="Center" />
+                    <TextBlock FontSize="32" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextColor}" Text="  •  Connect data cable to serial port." VerticalAlignment="Center" />
+                    <TextBlock Grid.Row="1" FontSize="32" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextColor}" Text="  •  Connect emergency stop switch." VerticalAlignment="Center" />
+                    <TextBlock Grid.Row="2" FontSize="32" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextColor}" Text="  •  Attach external battery." VerticalAlignment="Center" />
+                    <TextBlock Grid.Row="3" FontSize="39" TextWrapping="Wrap" Foreground="Yellow"  FontWeight="Bold" Text="  Then, switch ON the power..." VerticalAlignment="Center" />
                 </Grid>                
             </Grid>
         </Border>

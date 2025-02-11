@@ -9,9 +9,6 @@ using System.Diagnostics;
 
 namespace IntelliStretch
 {
-    /// <summary>
-    /// Interaction logic for MainApp.xaml
-    /// </summary>
     public partial class MainApp : Window
     {
 
@@ -188,7 +185,7 @@ namespace IntelliStretch
             {
                 sysProtocol = new Protocols.System();
                 sysProtocol.Joint = Protocols.Joint.All;  // Default = All-In-One version
-                sysProtocol.HasSensor = true;  // Default = HAS sensor
+                sysProtocol.HasSensor = true;  // Default = NO sensor UPDATE 02.2025: change default to HAS SENSOR
                 Utilities.SaveToXML<Protocols.System>(sysProtocol, sysFile);
             }
             else
@@ -208,7 +205,7 @@ namespace IntelliStretch
                 Protocols.IntelliProtocol defaultProtocol = new Protocols.IntelliProtocol();
                 //System default settings
                 defaultProtocol.System.SamplingRate = 50;
-                defaultProtocol.System.IsSavingData = false;
+                defaultProtocol.System.IsSavingData = true;
 
                 //General default settings
                 defaultProtocol.General.Joint = sysProtocol.Joint;
@@ -221,13 +218,13 @@ namespace IntelliStretch
                 //Stretching default settings
                 defaultProtocol.Stretching.Level = 10;
                 defaultProtocol.Stretching.Duration = 10;
-                defaultProtocol.Stretching.HoldingTime = 100;
-                defaultProtocol.Stretching.FlexionVelocity = 40;
-                defaultProtocol.Stretching.ExtensionVelocity = 40;
+                defaultProtocol.Stretching.HoldingTime = 2;
+                defaultProtocol.Stretching.FlexionVelocity = 15;
+                defaultProtocol.Stretching.ExtensionVelocity = 25;
                 defaultProtocol.Stretching.FlexionTorque = 10;
                 defaultProtocol.Stretching.ExtensionTorque = 5;
-                defaultProtocol.Stretching.FlexionTorqueMax = 30;
-                defaultProtocol.Stretching.ExtensionTorqueMax = 30;
+                defaultProtocol.Stretching.FlexionTorqueMax = 15;
+                defaultProtocol.Stretching.ExtensionTorqueMax = 15;
 
                 //Game default settings
                 defaultProtocol.Game.AssistiveMode.Level = 5;

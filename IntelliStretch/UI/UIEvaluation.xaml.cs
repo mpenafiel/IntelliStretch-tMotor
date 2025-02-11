@@ -17,6 +17,7 @@ using System.Linq;
 using OpenTK.Graphics.OpenGL;
 using ScottPlot.AxisPanels;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace IntelliStretch.UI
 {
@@ -93,6 +94,9 @@ namespace IntelliStretch.UI
         public string DataFilePrefix { get; set; }
 
         private Protocols.DaqProtocol daqProtocol;
+
+        UIElementCollection emgChildren;
+        List<System.Windows.Controls.ComboBox> emgMultipliers = new List<ComboBox>();
 
         #endregion
 
@@ -191,6 +195,8 @@ namespace IntelliStretch.UI
             sliderLockPosition.Maximum = generalProtocol.FlexionMax;
             sliderLockPosition.Minimum = generalProtocol.ExtensionMax;
 
+            emgMultipliers.Add(DorsiMultiplier); emgMultipliers.Add(PlantarMultiplier);
+
             // Add event handler
             sp.UpdateData = new IntelliSerialPort.DelegateUpdateData(Update_UI);
             sp.WriteCmd("BK");
@@ -211,8 +217,8 @@ namespace IntelliStretch.UI
             Streamer1 = plot1.Plot.Add.DataStreamer(3000);
             Streamer2 = plot2.Plot.Add.DataStreamer(3000);
 
-            Streamer1.Color = ScottPlot.Color.FromHex("#348EF6"); //#e5ff24
-            Streamer2.Color = ScottPlot.Color.FromHex("#348EF6"); //#e5ff24
+            Streamer1.Color = ScottPlot.Color.FromHex("#e5ff24"); //#e5ff24
+            Streamer2.Color = ScottPlot.Color.FromHex("#e5ff24"); //#e5ff24  #348EF6
 
             dataStreamers[0] = Streamer1;
             dataStreamers[1] = Streamer2;
@@ -242,7 +248,7 @@ namespace IntelliStretch.UI
         {
             
             plot.Plot.FigureBackground.Color = ScottPlot.Colors.Transparent;
-            plot.Plot.Grid.MajorLineColor = ScottPlot.Colors.LightSlateGray;
+            plot.Plot.Grid.MajorLineColor = ScottPlot.Colors.White;
 
             /* Original styling removes tick marks
             //remove default frame and add left and bottom axes
@@ -276,15 +282,15 @@ namespace IntelliStretch.UI
             leftAxis.MinorTickStyle.Width = 1.5f;
             leftAxis.TickLabelStyle.FontSize = 20;
             leftAxis.FrameLineStyle.Width = 3;
-            leftAxis.Color(ScottPlot.Colors.Gray);
+            leftAxis.Color(ScottPlot.Colors.White);
             leftAxis.LabelText = "Amplitude (mV)";
 
-            // Style axis
+            // Style bottom axis
             bottomAxis.TickLabelStyle.IsVisible = false;
             bottomAxis.MajorTickStyle.Length = 0;
             bottomAxis.MinorTickStyle.Length = 0;
             bottomAxis.FrameLineStyle.Width = 3;
-            bottomAxis.Color(ScottPlot.Colors.Gray);
+            bottomAxis.Color(ScottPlot.Colors.White);
 
 
             plot.Refresh();
@@ -295,7 +301,7 @@ namespace IntelliStretch.UI
                                                                                          // Motor torque value does not have polarity, assess within UI
                                                                                          if (measureMode == "Strength")
                                                                                          {
-                                                                                             if (btnFlexion.IsChecked) newAnkleData.ankleTorque = -newAnkleData.ankleTorque;
+                                                                                             if (btnFlexion.IsChecked == true) newAnkleData.ankleTorque = -newAnkleData.ankleTorque;
                                                                                          }
                                                                                          currentUI.Update_UI(newAnkleData);
 
@@ -371,7 +377,7 @@ namespace IntelliStretch.UI
 
                                 LEDwriter = new DigitalSingleChannelWriter(digitalWriteTask.Stream);
 
-                                if (isStreamingDAQ && btnRecord.IsChecked)
+                                if (isStreamingDAQ && btnRecord.IsChecked==true)
                                 {
                                     dataArray[0] = true;
                                     dataArray[1] = true;
@@ -435,7 +441,7 @@ namespace IntelliStretch.UI
                 }
                 WriterHandler();
                 sp.IsUpdating = false;
-                if (btnLock.IsChecked) switch_Device_Mode();
+                if (btnLock.IsChecked == true) switch_Device_Mode();
                 if (IsSavingData)
                 {
                     sp.Stop_SaveData();
@@ -491,12 +497,8 @@ namespace IntelliStretch.UI
                 {
                     // Read the available data from the channels
                     data = analogInReader.EndReadWaveform(ar);
-                    //Console.WriteLine(data.Length);
 
                     int counter = 0;
-
-                    //scale data according to designated multiplier
-
 
                     //perform additional tasks if recording
                     if ((bool)btnRecord.IsChecked && writer != null && csv != null)
@@ -520,10 +522,22 @@ namespace IntelliStretch.UI
                     {
                         int count = waveform.Samples.Count();
                         double[] dataPerCh = new double[waveform.GetRawData().Length];
+                        double[] scaledData = new double[waveform.GetRawData().Length];
 
+                        //double multiplier = (double)emgMultipliers[counter].SelectedItem;
+                        // Grab content of combobox
+                        string multiplier_string = (emgMultipliers[counter].SelectedItem as ComboBoxItem).Content.ToString();
+                        double multiplier = Convert.ToDouble(multiplier_string);
+
+                        //scale data according to designated multiplier
                         dataPerCh = waveform.GetRawData();
 
-                        dataStreamers[counter].AddRange(dataPerCh);
+                        for(int i=0; i< waveform.GetRawData().Length; i++)
+                        {
+                            scaledData[i] = dataPerCh[i] * multiplier;
+                        }
+
+                        dataStreamers[counter].AddRange(scaledData);
                         // slide marker to the left
                         plots[counter].Plot.GetPlottables<Marker>()
                             .ToList()
@@ -560,7 +574,7 @@ namespace IntelliStretch.UI
         {
             if (btnMeasure.IsPressed)
             {
-                btnMeasure.Image = Utilities.GetImage("Stop-new.png");
+                btnMeasure.Image = Utilities.GetImage("Stop.png");
                 btnMeasure.Text = "Stop ";
                 mainApp.Buttons_Enabled(false);
                 tabItems_Enabled(false);
@@ -569,7 +583,7 @@ namespace IntelliStretch.UI
             }
             else
             {
-                btnMeasure.Image = Utilities.GetImage("Start-new.png");
+                btnMeasure.Image = Utilities.GetImage("Start.png");
                 btnMeasure.Text = "Measure ";
                 Apply_Measure();
                 mainApp.Buttons_Enabled(true);
@@ -599,13 +613,13 @@ namespace IntelliStretch.UI
 
         private void switch_Device_Mode()
         {
-            if (btnBackdrivable.IsChecked)
+            if (btnBackdrivable.IsChecked == true)
             {
                 btnBackdrivable.IsChecked = false;
                 btnLock.IsChecked = true;
                 if (sp.IsConnected) sp.WriteCmd("LK");//change from BK to RL Yupeng 04.2013 //change from RL to BK, Michael 08.20.2024
             }
-            else if (btnLock.IsChecked)
+            else if (btnLock.IsChecked == true)
             {
                 btnBackdrivable.IsChecked = true;
                 btnLock.IsChecked = false;
@@ -615,7 +629,7 @@ namespace IntelliStretch.UI
 
         private void sliderLockPosition_ValueChanged(object sender, RoutedEventArgs e)
         {
-            if (btnLock.IsChecked) btnLock.IsChecked = false;
+            if (btnLock.IsChecked == true) btnLock.IsChecked = false;
         }
 
         private void tabEvaluation_SelectionChanged(object sender, SelectionChangedEventArgs e)
