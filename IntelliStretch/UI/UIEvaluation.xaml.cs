@@ -217,8 +217,8 @@ namespace IntelliStretch.UI
             Streamer1 = plot1.Plot.Add.DataStreamer(3000);
             Streamer2 = plot2.Plot.Add.DataStreamer(3000);
 
-            Streamer1.Color = ScottPlot.Color.FromHex("#348EF6"); //#e5ff24
-            Streamer2.Color = ScottPlot.Color.FromHex("#348EF6"); //#e5ff24
+            Streamer1.Color = ScottPlot.Color.FromHex("#e5ff24"); //#e5ff24
+            Streamer2.Color = ScottPlot.Color.FromHex("#e5ff24"); //#e5ff24  #348EF6
 
             dataStreamers[0] = Streamer1;
             dataStreamers[1] = Streamer2;
@@ -248,7 +248,7 @@ namespace IntelliStretch.UI
         {
             
             plot.Plot.FigureBackground.Color = ScottPlot.Colors.Transparent;
-            plot.Plot.Grid.MajorLineColor = ScottPlot.Colors.LightSlateGray;
+            plot.Plot.Grid.MajorLineColor = ScottPlot.Colors.White;
 
             /* Original styling removes tick marks
             //remove default frame and add left and bottom axes
@@ -282,7 +282,7 @@ namespace IntelliStretch.UI
             leftAxis.MinorTickStyle.Width = 1.5f;
             leftAxis.TickLabelStyle.FontSize = 20;
             leftAxis.FrameLineStyle.Width = 3;
-            leftAxis.Color(ScottPlot.Colors.Gray);
+            leftAxis.Color(ScottPlot.Colors.White);
             leftAxis.LabelText = "Amplitude (mV)";
 
             // Style bottom axis
@@ -290,7 +290,7 @@ namespace IntelliStretch.UI
             bottomAxis.MajorTickStyle.Length = 0;
             bottomAxis.MinorTickStyle.Length = 0;
             bottomAxis.FrameLineStyle.Width = 3;
-            bottomAxis.Color(ScottPlot.Colors.Gray);
+            bottomAxis.Color(ScottPlot.Colors.White);
 
 
             plot.Refresh();
@@ -301,7 +301,7 @@ namespace IntelliStretch.UI
                                                                                          // Motor torque value does not have polarity, assess within UI
                                                                                          if (measureMode == "Strength")
                                                                                          {
-                                                                                             if (btnFlexion.IsChecked) newAnkleData.ankleTorque = -newAnkleData.ankleTorque;
+                                                                                             if (btnFlexion.IsChecked == true) newAnkleData.ankleTorque = -newAnkleData.ankleTorque;
                                                                                          }
                                                                                          currentUI.Update_UI(newAnkleData);
 

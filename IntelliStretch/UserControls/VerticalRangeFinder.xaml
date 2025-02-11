@@ -19,10 +19,13 @@
             </Grid.RowDefinitions>
 
             <Border Grid.Row="0" Grid.ColumnSpan="3" x:Name="ShowBorder" Width="300" Padding="5" BorderThickness="0" Background="Black" CornerRadius="12" Visibility="Collapsed">
-                <TextBlock Grid.Row="0" Grid.ColumnSpan="3" x:Name="ShowTextBlock" TextWrapping="Wrap" Foreground="WhiteSmoke" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Padding="10,5"/>
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="3" x:Name="ShowTextBlock"
+                           TextWrapping="Wrap" Foreground="Yellow" FontSize="30"
+                           HorizontalAlignment="Center" Padding="5,0"/>
             </Border>
 
-            <TextBlock Grid.Row="1" Grid.ColumnSpan="3" Foreground="{DynamicResource TertiaryTextColor}" TextWrapping="Wrap" FontSize="24" FontWeight="DemiBold"  Margin="0,20,20,0" HorizontalAlignment="Center">
+            <TextBlock Grid.Row="1" Grid.ColumnSpan="3" Foreground="{DynamicResource PrimaryTextColor}" TextWrapping="Wrap"
+                       FontSize="28" FontWeight="Regular" HorizontalAlignment="Center">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}Max {0}: {1}" >
                         <Binding Path="FlexionName" ElementName="rangeFinder"/>
@@ -30,8 +33,9 @@
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
-            
-            <TextBlock Grid.Row="3" Grid.ColumnSpan="3" Foreground="{DynamicResource TertiaryTextColor}" TextWrapping="Wrap" FontSize="24" FontWeight="DemiBold"  Margin="0,0,20,0" HorizontalAlignment="Center" >
+
+            <TextBlock Grid.Row="3" Grid.ColumnSpan="3" Foreground="{DynamicResource PrimaryTextColor}" TextWrapping="Wrap"
+                       FontSize="28" HorizontalAlignment="Center" >
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}Max {0}: {1}" >
                         <Binding Path="ExtensionName" ElementName="rangeFinder"/>
@@ -44,31 +48,31 @@
                 <Rectangle.Fill>
                     <LinearGradientBrush EndPoint="-0.528,0.487" StartPoint="1.215,0.487">
                         <GradientStop Color="#BBC1D1" Offset="0"/>
-                        <GradientStop Color="#BBC1D1" Offset="1"/>
+                        <GradientStop Color="Gray" Offset="1"/>
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
 
             <Canvas x:Name="cvsRange" Grid.Column="2" Grid.Row="2">
                 <StackPanel x:Name="pnlCurrentPos" Orientation="Horizontal" HorizontalAlignment="Right" >
-                    <Polygon Points="30,0 0,15 30,30" Stroke="Black" Fill="{DynamicResource PrimaryGrayColor}"/>
-                    <TextBlock x:Name="txtCurrentPos" Foreground="{DynamicResource TertiaryTextColor}" FontSize="28" FontWeight="DemiBold"  Margin="10,0,0,0" />
+                    <Polygon Points="30,0 0,15 30,30" Stroke="Black" Fill="Green"/>
+                    <TextBlock x:Name="txtCurrentPos" Foreground="{DynamicResource PrimaryTextColor}" FontSize="28" FontWeight="DemiBold"  Margin="10,0,0,0" />
                 </StackPanel>
             </Canvas>
 
             <Canvas Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right">
                 <StackPanel x:Name="pnlADorsiMax" Orientation="Horizontal">
-                    <TextBlock x:Name="txtActiveFlexionMax" Foreground="{DynamicResource TertiaryTextColor}" FontSize="28" FontWeight="DemiBold" Margin="0,0,40,0" />
-                    <Polygon Points="-30,0, 0,15, -30,30" Stroke="Black" Fill="#b85f51"/>
+                    <TextBlock x:Name="txtActiveFlexionMax" Foreground="{DynamicResource PrimaryTextColor}" FontSize="28" FontWeight="DemiBold" Margin="0,0,40,0" />
+                    <Polygon Points="-30,0, 0,15, -30,30" Stroke="Black" Fill="Yellow"/>
                 </StackPanel>
                 <StackPanel x:Name="pnlAPlantarMax" Orientation="Horizontal">
-                    <TextBlock x:Name="txtActiveExtensionMax" Foreground="{DynamicResource TertiaryTextColor}" FontSize="28" FontWeight="DemiBold"  Margin="0,0,40,0" />
-                    <Polygon Points="-30,0, 0,15, -30,30" Stroke="Black" Fill="#b85f51"/>
+                    <TextBlock x:Name="txtActiveExtensionMax" Foreground="{DynamicResource PrimaryTextColor}" FontSize="28" FontWeight="DemiBold"  Margin="0,0,40,0" />
+                    <Polygon Points="-30,0, 0,15, -30,30" Stroke="Black" Fill="Yellow"/>
                 </StackPanel>
             </Canvas>
 
             <Canvas Grid.Column="1" Grid.Row="2" Margin="10,20">
-                <Rectangle x:Name="rectAROM" Stroke="Black" Width="60" Height="0" RadiusX="10" RadiusY="10" Fill="#b85f51">
+                <Rectangle x:Name="rectAROM" Stroke="Black" Width="60" Height="0" RadiusX="10" RadiusY="10" Fill="Yellow">
                     <!--#a45448-->
                 </Rectangle>
                 <Rectangle x:Name="rectNeutral" Width="60" Height="2" Fill="Black"/>
