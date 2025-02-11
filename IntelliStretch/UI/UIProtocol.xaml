@@ -74,12 +74,12 @@
                             <GroupBox Margin="12,8" Header="General" FontSize="18.667"  Padding="10" BorderBrush="#FF0046D5"  Foreground="Black">
                                 <UniformGrid Columns="2">
                                     <UserControls:TextSlider x:Name="sliderStretchDuration" FontWeight="Regular" Text="Duration [min]:" Minimum="1" Maximum="60"/>
-                                    <UserControls:TextSlider x:Name="sliderStretchHoldTime" FontWeight="Regular" Text="Holding Time [sec]:" Maximum="20" />
+                                    <UserControls:TextSlider x:Name="sliderStretchHoldTime" FontWeight="Regular" Text="Holding Time [sec]:" Maximum="15" />
                                 </UniformGrid>
                             </GroupBox>
                             <GroupBox Grid.Row="1" Margin="12,8" Padding="10" Header="Velocity [deg/sec]" FontSize="18.667" BorderBrush="#FF0046D5"  Foreground="Black">
                                 <UniformGrid Columns="2">
-                                    <UserControls:TextSlider x:Name="sliderStretchFlexV" FontWeight="Regular" Minimum="10" Maximum="30" TickFrequency="1" 
+                                    <UserControls:TextSlider x:Name="sliderStretchFlexV" FontWeight="Regular" Minimum="5" Maximum="30" TickFrequency="1" 
                                                              Text="{Binding Path=FlexionName, ElementName=uiProtocol, StringFormat={}{0}:}" />
                                     <UserControls:TextSlider x:Name="sliderStretchExtV" Minimum="10" FontWeight="Regular" Maximum="30" TickFrequency="1" 
                                                              Text="{Binding Path=ExtensionName, ElementName=uiProtocol, StringFormat={}{0}:}" />
@@ -87,7 +87,7 @@
                             </GroupBox>
                             <GroupBox Grid.Row="2" Margin="12,8" Padding="10" Header="Torque Limit [Nm]" FontSize="18.667" BorderBrush="#FF0046D5"  Foreground="Black">
                                 <UniformGrid Columns="2">
-                                    <UserControls:TextSlider x:Name="sliderStretchFlexTq" FontWeight="Regular" Minimum="10" Maximum="{Binding FlexionTorqueMax, ElementName=uiProtocol}"  
+                                    <UserControls:TextSlider x:Name="sliderStretchFlexTq" FontWeight="Regular" Minimum="3" Maximum="{Binding FlexionTorqueMax, ElementName=uiProtocol}"  
                                                              Text="{Binding Path=FlexionName, ElementName=uiProtocol, StringFormat={}{0}:}" />
                                     <UserControls:TextSlider x:Name="sliderStretchExtTq"  FontWeight="Regular" Minimum="3" Maximum="{Binding ExtensionTorqueMax, ElementName=uiProtocol}"  
                                                              Text="{Binding Path=ExtensionName, ElementName=uiProtocol, StringFormat={}{0}:}" />
@@ -215,7 +215,43 @@
                                 <ComboBoxItem>250</ComboBoxItem>
                             </ComboBox>
 
-                            <Button x:Name="btnRefresh" Grid.Row="5" Grid.Column="1" Content="Refresh" FontSize="20" Width="120" Height="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,6" Style="{DynamicResource GeneralButtonStyle}" Click="btnRefresh_Click"/>
+                            <Button x:Name="btnRefresh" Grid.Row="5" Grid.Column="1" Content="Refresh" FontSize="20"
+                                    Width="120" Height="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,6" Click="btnRefresh_Click">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="Yellow"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="FontWeight" Value="Regular"/>
+                                        <Setter Property="Padding" Value="5"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="1">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="LightGray"/>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Background" Value="Gray"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+
+                                        <Style.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="5" />
+                                            </Style>
+                                        </Style.Resources>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
 
                         </Grid>
                     </TabItem>
@@ -270,7 +306,6 @@
                                 <Setter Property="Background" Value="Red"/>
                                 <Setter Property="BorderBrush" Value="Black"/>
                                 <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontWeight" Value="DemiBold"/>
                                 <Setter Property="Padding" Value="5"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
@@ -306,7 +341,6 @@
                                 <Setter Property="Background" Value="Green"/>
                                 <Setter Property="BorderBrush" Value="Black"/>
                                 <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontWeight" Value="DemiBold"/>
                                 <Setter Property="Padding" Value="5"/>
                                 <Setter Property="Template">
                                     <Setter.Value>

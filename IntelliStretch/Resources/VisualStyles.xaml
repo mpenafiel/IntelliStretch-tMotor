@@ -268,9 +268,9 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background"
-                                    Value="{DynamicResource SecondaryBlueColor}"/>
+                                    Value="LightGray"/>
                             <Setter Property="Foreground"
-                                    Value="{DynamicResource PrimaryGrayColor}"/>
+                                    Value="Black"/>
 
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
