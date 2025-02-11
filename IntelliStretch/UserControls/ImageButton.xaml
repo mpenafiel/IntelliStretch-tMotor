@@ -50,8 +50,13 @@
                         <ScaleTransform ScaleX="{Binding IsReflected, ElementName=imageButton, Converter={StaticResource boolScaleConverter}, Mode=OneWay}" ScaleY="1" />
                     </Image.RenderTransform>
                 </Image>
-                <TextBlock Text="{Binding Text, ElementName=imageButton}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{Binding Foreground, ElementName=imageButton, Mode=Default}"
-                           FontSize="{Binding FontSize, ElementName=imageButton, Mode=Default}" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Text, ElementName=imageButton}"
+                           TextAlignment="Center"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="{Binding Foreground, ElementName=imageButton, Mode=Default}"
+                           FontSize="{Binding FontSize, ElementName=imageButton, Mode=Default}"
+                           FontWeight="Bold"/>
             </StackPanel>
         </Button>        
     </Grid>
