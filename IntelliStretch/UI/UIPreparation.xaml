@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="IntelliStretch.UI.UIPreparation"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Name="uiPreparation" Loaded="uiPreparation_Loaded" FontFamily="Aptos">
+    Name="uiPreparation" Loaded="uiPreparation_Loaded">
     <UserControl.Resources>
         <Storyboard x:Key="sbArrowIndicator">
             <DoubleAnimation Storyboard.TargetName="redArrow" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" From="-30" To="0" RepeatBehavior="Forever"/>
@@ -41,15 +41,15 @@
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal" >
                         <TextBlock Margin="20,0,0,0" Text=" Hello, " FontSize="40" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Bottom"/>
-                        <TextBlock x:Name="txtCurrentUser" FontSize="44" FontWeight="DemiBold" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Bottom"/>
+                        <TextBlock x:Name="txtCurrentUser" FontSize="44" FontWeight="DemiBold" Foreground="Red" VerticalAlignment="Bottom"/>
                         <TextBlock Text=" :" FontSize="40" Foreground="{DynamicResource PrimaryTextColor}" VerticalAlignment="Bottom"/>
                     </StackPanel>
-                    <TextBlock Grid.Row="1" FontSize="68" Text="Welcome to IntelliStretch!" FontWeight="DemiBold" Foreground="{DynamicResource PrimaryTextColor}" TextWrapping="Wrap" 
+                    <TextBlock Grid.Row="1" FontSize="60" Text="Welcome to IntelliStretch!" FontWeight="DemiBold" FontFamily="Broadway BT" Foreground="Yellow" TextWrapping="Wrap" 
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 
                     <Image x:Name="greenArrow" Grid.Row="1" Source="../images/GreenArrow.png" Width="48" Height="48" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20" Cursor="Hand" MouseDown="gridInfo_MouseDown">
                         <Image.Effect>
-                            <DropShadowEffect ShadowDepth="0" Color="White" BlurRadius="5" />
+                            <DropShadowEffect ShadowDepth="0" Color="Yellow" BlurRadius="5" />
                         </Image.Effect>
                         <Image.RenderTransform>
                             <TranslateTransform/>
