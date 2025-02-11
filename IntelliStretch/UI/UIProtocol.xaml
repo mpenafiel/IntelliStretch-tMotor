@@ -277,6 +277,113 @@
                     <Button x:Name="btnSaveDefault" Content="Save" Width="120" Height="40" FontSize="20" Style="{DynamicResource GeneralButtonStyle}" Click="btnSaveDefault_Click"/>
                     <Button x:Name="btnCancelProtocol" Grid.Column="2" Content="Cancel" Width="120" Height="40" FontSize="20" Style="{DynamicResource GeneralButtonStyle2}" Click="btnCancelProtocol_Click"/>
                     <Button x:Name="btnAcceptProtocol" Grid.Column="3" Content="Accept" Style="{DynamicResource GeneralButtonStyle}" Width="120" Height="40" FontSize="20" Click="btnAcceptProtocol_Click"/>
+                    <Button x:Name="btnSaveDefault" Grid.Column="0" Height="40" Width="120" Content="Save" FontSize="24" Click="btnSaveDefault_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="LightSteelBlue"/>
+                                <Setter Property="BorderBrush" Value="Black"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="1">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightGray"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="Gray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                                <Style.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5" />
+                                    </Style>
+                                </Style.Resources>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="btnCancelProtocol" Grid.Column="2" Height="40" Width="120" Content="Cancel" FontSize="24" Click="btnCancelProtocol_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Red"/>
+                                <Setter Property="BorderBrush" Value="Black"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="DemiBold"/>
+                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="1">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightGray"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="Gray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                                <Style.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5" />
+                                    </Style>
+                                </Style.Resources>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="btnAcceptStretchProtocol" Grid.Column="3" Height="60" Width="180" Content="Accept" FontSize="24" Click="btnAcceptStretchProtocol_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="BorderBrush" Value="Black"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="DemiBold"/>
+                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="1">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="LightGray"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="Gray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                                <Style.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5" />
+                                    </Style>
+                                </Style.Resources>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                 </Grid>
             </Grid>
         </Border>
