@@ -15,7 +15,7 @@
                                 BorderBrush="Transparent"
                                 BorderThickness="0,0,1,0"
                                 CornerRadius="5,0,0,5"
-                                Background="{DynamicResource PrimaryBlueColor}">
+                                Background="#FF1039F2">
 
                             <ContentPresenter
                                 VerticalAlignment="Center"
@@ -25,7 +25,7 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="buttonBorder" Value="{DynamicResource PrimaryGrayColor}"/>
+                            <Setter Property="Background" TargetName="buttonBorder" Value="LightGray"/>
                             <Setter Property="Foreground" Value="{DynamicResource TertiaryTextColor}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -42,7 +42,7 @@
                                 BorderBrush="Transparent"
                                 BorderThickness="1,0,0,0"
                                 CornerRadius="0,5,5,0"
-                                Background="{DynamicResource PrimaryBlueColor}">
+                                Background="#FF1039F2">
 
                             <ContentPresenter
                                 VerticalAlignment="Center"
@@ -52,7 +52,7 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="buttonBorder" Value="{DynamicResource PrimaryGrayColor}"/>
+                            <Setter Property="Background" TargetName="buttonBorder" Value="LightGray"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

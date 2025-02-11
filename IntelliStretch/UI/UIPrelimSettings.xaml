@@ -29,14 +29,14 @@
         </Grid>
 
         <StackPanel Grid.Column="1">
-            <Border Background="{DynamicResource SecondaryBlueColor}" CornerRadius="5" Padding="10">
+            <Border Background="Transparent" CornerRadius="5" Padding="10">
                 <StackPanel>
                     <TextBlock 
                         Height="24" 
                         Text="Neutral Position" 
                         TextWrapping="Wrap" 
                         FontWeight="Bold"
-                        Foreground="{DynamicResource TertiaryTextColor}"
+                        Foreground="{DynamicResource PrimaryTextColor}"
                         FontSize="16"
                         Margin="10,5,5,0"/>
                     <Button
@@ -45,9 +45,11 @@
                         GotFocus="setting_GotFocus"
                         Style="{DynamicResource GeneralButtonStyle}"
                         Click="btnSetNeutral_Click" 
-                        Height="28"
-                        FontSize="12"
-                        Margin="5,0,5,5"/>
+                        Height="36"
+                        FontSize="16"
+                        Margin="5,0,5,5">
+                        
+                    </Button>
 
                     <UserControls:FlatTextButton x:Name="setFlexion" FontWeight="Bold" Caption="{Binding FlexionName, ElementName=uiPrelimSettings, StringFormat=Max {0}:}" ButtonText="Measure" GotFocus="setting_GotFocus" ButtonClick="Measure_ButtonClick"/>
 
