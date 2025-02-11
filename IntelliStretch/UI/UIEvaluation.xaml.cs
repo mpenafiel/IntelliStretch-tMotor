@@ -574,7 +574,7 @@ namespace IntelliStretch.UI
         {
             if (btnMeasure.IsPressed)
             {
-                btnMeasure.Image = Utilities.GetImage("Stop-new.png");
+                btnMeasure.Image = Utilities.GetImage("Stop.png");
                 btnMeasure.Text = "Stop ";
                 mainApp.Buttons_Enabled(false);
                 tabItems_Enabled(false);
@@ -583,7 +583,7 @@ namespace IntelliStretch.UI
             }
             else
             {
-                btnMeasure.Image = Utilities.GetImage("Start-new.png");
+                btnMeasure.Image = Utilities.GetImage("Start.png");
                 btnMeasure.Text = "Measure ";
                 Apply_Measure();
                 mainApp.Buttons_Enabled(true);
