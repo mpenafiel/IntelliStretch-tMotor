@@ -52,6 +52,22 @@ namespace IntelliStretch.UserControls
         // Using a DependencyProperty as the backing store for Caption.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DialogWidthProperty =
             DependencyProperty.Register("DialogWidth", typeof(int), typeof(EmbeddedDialog), new UIPropertyMetadata(null));
+
+        public Color HeaderColor
+        {
+            get { return (Color)GetValue(HeaderColorProperty); }
+            set { SetValue(HeaderColorProperty, value); }
+        }
+        public static readonly DependencyProperty HeaderColorProperty =
+            DependencyProperty.Register("HeaderColor", typeof(Color), typeof(EmbeddedDialog), new UIPropertyMetadata(Colors.Yellow));
+
+        public Color HeaderFontColor
+        {
+            get { return (Color)GetValue(HeaderFontColorProperty); }
+            set { SetValue(HeaderFontColorProperty, value); }
+        }
+        public static readonly DependencyProperty HeaderFontColorProperty =
+            DependencyProperty.Register("HeaderFontColor", typeof(Color), typeof(EmbeddedDialog), new UIPropertyMetadata(Colors.Black));
         #endregion
     }
 }

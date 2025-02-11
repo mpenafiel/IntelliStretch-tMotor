@@ -6,15 +6,19 @@
              xmlns:local="clr-namespace:IntelliStretch.UserControls"
              mc:Ignorable="d" x:Name="embeddedDialog">
     <StackPanel Orientation="Vertical" Width="{Binding DialogWidth, ElementName=embeddedDialog}">
-        <Border Background="{DynamicResource PrimaryBlueColor}" Grid.Row="1" Height="50" CornerRadius="5,5,0,0">
+        <Border Background="Yellow" Grid.Row="1" Height="50" CornerRadius="5,5,0,0">
             <Grid>
-                <TextBlock Text="{Binding DialogTitle, ElementName=embeddedDialog}" Margin="10,0" Padding="10,20" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" Foreground="{DynamicResource PrimaryTextColor}"/>
+                <TextBlock Text="{Binding DialogTitle, ElementName=embeddedDialog}" Margin="10,0" Padding="10,20"
+                           VerticalAlignment="Center" FontWeight="DemiBold"
+                           FontSize="20" Foreground="{Binding HeaderFontColor, ElementName=embeddedDialog}"/>
             </Grid>
         </Border>
 
-        <Border Background="{DynamicResource  SecondaryBlueColor}" Grid.Row="1" CornerRadius="0,0,5,5" Padding="20,10">
+        <Border Background="Black" Grid.Row="1" CornerRadius="0,0,5,5" Padding="20,10">
             <Grid>
-                <TextBlock Text="{Binding DialogText, ElementName=embeddedDialog}" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" Foreground="{DynamicResource TertiaryTextColor}"/>
+                <TextBlock Text="{Binding DialogText, ElementName=embeddedDialog}" TextWrapping="Wrap"
+                           VerticalAlignment="Center" FontWeight="Regular" FontSize="20" 
+                           Foreground="Yellow"/>
             </Grid>
         </Border>
     </StackPanel>

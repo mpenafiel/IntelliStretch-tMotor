@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:IntelliStretch.UserControls"
              mc:Ignorable="d">
     <StackPanel Orientation="Horizontal">
-        <Button x:Name="btnMin" Width="40" FontSize="24" FontWeight="Black" Foreground="{DynamicResource SecondaryBlueColor}" Click="btnMin_Click">
+        <Button x:Name="btnMin" Width="40" FontSize="24" FontWeight="Black" Foreground="White" Click="btnMin_Click">
             <Image Source="..\images\ScrollLeft.png" Margin="8,4" Height="24"/>
             <Button.Template>
                 <ControlTemplate TargetType="Button">
@@ -31,9 +31,18 @@
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Button.Template>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
         </Button>
 
-        <Button x:Name="btnMax"  Width="40" FontSize="24" FontWeight="Black" Foreground="{DynamicResource SecondaryBlueColor}" Click="btnMax_Click">
+        <Button x:Name="btnMax"  Width="40" FontSize="24" FontWeight="Black" Foreground="White" Click="btnMax_Click">
             <Image Source="..\images\ScrollRight.png" Height="24"/>
             <Button.Template>
                 <ControlTemplate TargetType="Button">
