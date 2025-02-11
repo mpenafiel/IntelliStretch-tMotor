@@ -19,7 +19,7 @@
     </UserControl.Resources>
     
     <Grid Background="#C2222222" >
-        <Border x:Name="bdrMainMenu" Background="{DynamicResource SecondaryBlueColor}" BorderBrush="Black" BorderThickness="0" CornerRadius="5" RenderTransformOrigin="0.5,0.5" 
+        <Border x:Name="bdrMainMenu" Background="#FFC8C8C8" BorderBrush="Black" BorderThickness="0" CornerRadius="5" RenderTransformOrigin="0.5,0.5" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" Height="500" Width="700">
             <Border.RenderTransform>
                 <TranslateTransform/>
@@ -50,13 +50,23 @@
                     HorizontalAlignment="Right"
                     Width="23"
                     ImageMargin="0"
-                    BackColor="Transparent"
                     ButtonCornerRadius="5"/>
                 <Path Fill="White" Stretch="Fill" Stroke="{DynamicResource TertiaryTextColor}" VerticalAlignment="Bottom" Height="2" Grid.ColumnSpan="5" Data="M8,22.24 L632.5,22.24"/>
+                <UserControls:ImageButton
+                    x:Name="btnUsers" 
+                    Text="Change&#xa;User"
+                    Image="../images/User.png"
+                    ImageMargin="20" 
+                    Margin="5"
+                    ButtonCornerRadius="5"
+                    BackColor="{DynamicResource PrimaryGrayColor}"
+                    Grid.Row="1"
+                    Grid.Column="0" />
+
                 <UserControls:ImageButton 
                     x:Name="btnConnection" 
                     Text="Connection" 
-                    Image="../images/Connect-new.png" 
+                    Image="../images/Connect.png" 
                     ImageMargin="20" 
                     Margin="5"
                     ButtonCornerRadius="5"
@@ -66,45 +76,13 @@
                 <UserControls:ImageButton
                     x:Name="btnPrelimSettings"
                     Text="Preliminary&#xa;Settings"
-                    Image="../images/Settings-new.png"
+                    Image="../images/Settings.png"
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"
                     BackColor="{DynamicResource PrimaryGrayColor}"
                     Grid.Row="1"
                     Grid.Column="2" />
-                
-                <UserControls:ImageButton
-                    x:Name="btnUsers" 
-                    Text="Change&#xa;User"
-                    Image="../images/User-new.png"
-                    ImageMargin="20" 
-                    Margin="5"
-                    ButtonCornerRadius="5"
-                    BackColor="{DynamicResource PrimaryGrayColor}"
-                    Grid.Row="1"
-                    Grid.Column="0" />
-                
-                <UserControls:ImageButton
-                    x:Name="btnGameLib" 
-                    Text="Game&#xa;Library" 
-                    Image="../images/GameLib-new.png" 
-                    ImageMargin="20"
-                    Margin="5"
-                    ButtonCornerRadius="5"
-                    BackColor="{DynamicResource PrimaryGrayColor}"
-                    Grid.Row="2" 
-                    Grid.Column="2" />
-                <UserControls:ImageButton
-                    x:Name="btnProtocol"
-                    Text="Protocol"
-                    Image="../images/Options-new.png"
-                    ImageMargin="20"
-                    Margin="5"
-                    ButtonCornerRadius="5"
-                    BackColor="{DynamicResource PrimaryGrayColor}"
-                    Grid.Row="2"
-                    Grid.Column="3" />
                 <UserControls:ImageButton
                     x:Name="btnStretching"
                     Text="Passive&#xa;Stretching"
@@ -115,10 +93,20 @@
                     Margin="5"
                     Grid.Row="1"
                     Grid.Column="3"/>
+                <UserControls:ImageButton
+                    x:Name="btnEvaluation"
+                    Text="Evaluation"
+                    Image="../images/Range.png" 
+                    ImageMargin="20"
+                    Margin="5" 
+                    ButtonCornerRadius="5"
+                    BackColor="{DynamicResource PrimaryGrayColor}"
+                    Grid.Row="1"
+                    Grid.Column="4" />
                 <UserControls:ImageButton 
                     x:Name="btnGames"
                     Text="Active&#xa;Movement"
-                    Image="../images/Game-new.png"
+                    Image="../images/Game.png"
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"
@@ -126,19 +114,9 @@
                     Grid.Row="2" 
                     Grid.Column="0"/>
                 <UserControls:ImageButton
-                    x:Name="btnEvaluation"
-                    Text="Evaluation"
-                    Image="../images/Range-new.png" 
-                    ImageMargin="20"
-                    Margin="5" 
-                    ButtonCornerRadius="5"
-                    BackColor="{DynamicResource PrimaryGrayColor}"
-                    Grid.Row="1"
-                    Grid.Column="4" />
-                <UserControls:ImageButton
                     x:Name="btnReport"
                     Text="Report"
-                    Image="../images/Report-new.png"
+                    Image="../images/Report.png"
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"
@@ -146,9 +124,29 @@
                     Grid.Row="2"
                     Grid.Column="1"/>
                 <UserControls:ImageButton
+                    x:Name="btnGameLib" 
+                    Text="Game&#xa;Library" 
+                    Image="../images/GameLib.png" 
+                    ImageMargin="20"
+                    Margin="5"
+                    ButtonCornerRadius="5"
+                    BackColor="{DynamicResource PrimaryGrayColor}"
+                    Grid.Row="2" 
+                    Grid.Column="2" />
+                <UserControls:ImageButton
+                    x:Name="btnProtocol"
+                    Text="Protocol"
+                    Image="../images/Options.png"
+                    ImageMargin="20"
+                    Margin="5"
+                    ButtonCornerRadius="5"
+                    BackColor="{DynamicResource PrimaryGrayColor}"
+                    Grid.Row="2"
+                    Grid.Column="3" />
+                <UserControls:ImageButton
                     x:Name="btnExit"
                     Text="Exit"
-                    Image="../images/Exit-new.png" 
+                    Image="../images/Exit.png" 
                     ImageMargin="20"
                     Margin="5"
                     ButtonCornerRadius="5"

@@ -19,7 +19,7 @@
                             <Setter Property="BorderThickness" Value="0"/>
                             <Setter Property="Effect">
                                 <Setter.Value>
-                                    <DropShadowEffect ShadowDepth="0" Color="DimGray" BlurRadius="10" />
+                                    <DropShadowEffect ShadowDepth="4" Color="DimGray" BlurRadius="10" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>

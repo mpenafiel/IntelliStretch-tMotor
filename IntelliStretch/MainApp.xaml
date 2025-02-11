@@ -18,8 +18,8 @@
             <!-- Start: Button Style -->
             <Style TargetType="Button" x:Key="BtnNext">
                 <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="Background" Value="{DynamicResource SecondaryBlueColor}"/>
-                <Setter Property="Foreground" Value="{DynamicResource PrimaryBlueColor}"/>
+                <Setter Property="Background" Value="#FFECE550"/>
+                <Setter Property="Foreground" Value="Black"/>
                 <Setter Property="FontSize" Value="24"/>
                 <Setter Property="Height" Value="50"/>
                 <Setter Property="FontWeight" Value="Bold"/>
