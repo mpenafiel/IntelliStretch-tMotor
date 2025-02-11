@@ -148,7 +148,7 @@
                                         Click="btnFlexion_Click">
                             <ToggleButton.Style>
                                 <Style TargetType="ToggleButton">
-                                    <Setter Property="Background" Value="Gray"/>
+                                    <Setter Property="Background" Value="LightGray"/>
                                     <Setter Property="BorderBrush" Value="Black"/>
                                     <Setter Property="Foreground" Value="Black"/>
                                     <Setter Property="FontWeight" Value="Regular"/>
@@ -166,7 +166,7 @@
                                     </Setter>
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="LightGray"/>
+                                            <Setter Property="Background" Value="Gray"/>
                                         </Trigger>
                                         <Trigger Property="IsChecked" Value="True">
                                             <Setter Property="Background" Value="Green"/>
@@ -190,7 +190,7 @@
                                         Click="btnExtension_Click">
                             <ToggleButton.Style>
                                 <Style TargetType="ToggleButton">
-                                    <Setter Property="Background" Value="Gray"/>
+                                    <Setter Property="Background" Value="LightGray"/>
                                     <Setter Property="BorderBrush" Value="Black"/>
                                     <Setter Property="Foreground" Value="Black"/>
                                     <Setter Property="FontWeight" Value="Regular"/>
@@ -208,7 +208,7 @@
                                     </Setter>
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="LightGray"/>
+                                            <Setter Property="Background" Value="Gray"/>
                                         </Trigger>
                                         <Trigger Property="IsChecked" Value="True">
                                             <Setter Property="Background" Value="Green"/>
@@ -241,7 +241,7 @@
                                         Click="btnBackdrivable_Click">
                             <ToggleButton.Style>
                                 <Style TargetType="ToggleButton">
-                                    <Setter Property="Background" Value="Gray"/>
+                                    <Setter Property="Background" Value="LightGray"/>
                                     <Setter Property="BorderBrush" Value="Black"/>
                                     <Setter Property="Foreground" Value="Black"/>
                                     <Setter Property="FontWeight" Value="Regular"/>
@@ -259,7 +259,7 @@
                                     </Setter>
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="LightGray"/>
+                                            <Setter Property="Background" Value="Gray"/>
                                         </Trigger>
                                         <Trigger Property="IsChecked" Value="True">
                                             <Setter Property="Background" Value="Yellow"/>
@@ -282,7 +282,7 @@
                                         Click="btnLock_Click">
                             <ToggleButton.Style>
                                 <Style TargetType="ToggleButton">
-                                    <Setter Property="Background" Value="Gray"/>
+                                    <Setter Property="Background" Value="LightGray"/>
                                     <Setter Property="BorderBrush" Value="Black"/>
                                     <Setter Property="Foreground" Value="Black"/>
                                     <Setter Property="FontWeight" Value="Regular"/>
@@ -300,7 +300,7 @@
                                     </Setter>
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="LightGray"/>
+                                            <Setter Property="Background" Value="Gray"/>
                                         </Trigger>
                                         <Trigger Property="IsChecked" Value="True">
                                             <Setter Property="Background" Value="Yellow"/>
@@ -408,7 +408,8 @@
 
                             </Grid>
                         </Grid>
-                        <UserControls:TextSlider Grid.Row="1" x:Name="sliderResistance" Foreground="{DynamicResource TertiaryTextColor}" TextFontSize="22" Text="Resistance" UserControls:TextSlider.ValueChanged="sliderResistance_ValueChanged"/>
+                        <UserControls:TextSlider Grid.Row="1" x:Name="sliderResistance" Foreground="{DynamicResource PrimaryTextColor}" TextFontSize="24" 
+                                                 Text="Resistance" UserControls:TextSlider.ValueChanged="sliderResistance_ValueChanged"/>
                         <!--<UniformGrid Grid.Row="1" Grid.ColumnSpan="2" Columns="2" UserControls:TextSlider.ValueChanged="sliderResistance_ValueChanged">-->
                             <!--<UserControls:TextSlider x:Name="sliderResistFlex" Foreground="{DynamicResource TertiaryTextColor}" TextFontSize="22" Text="{Binding Path=FlexionName, ElementName=uiEvaluation, StringFormat={}{0} Resistance:}" />-->
                             <!--<UserControls:TextSlider x:Name="sliderResistExt" Foreground="{DynamicResource TertiaryTextColor}" TextFontSize="22" Text="{Binding Path=ExtensionName, ElementName=uiEvaluation, StringFormat={}{0} Resistance:}" />-->

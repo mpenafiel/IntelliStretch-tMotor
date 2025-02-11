@@ -35,12 +35,47 @@
                         </Image> 
                         <StackPanel Orientation="Vertical">
                             <TextBlock Padding="0,10" Text="{Binding Name}" />
-                            <TextBlock Foreground="DarkSlateBlue" Width="400" FontSize="14" Padding="0,10" TextWrapping="Wrap" Text="{Binding Description}" />
+                            <TextBlock Foreground="Black" Width="400" FontSize="14" FontWeight="Regular" Padding="0,10" TextWrapping="Wrap" Text="{Binding Description}" />
                         </StackPanel> 
                     </StackPanel>      
                     <StackPanel Margin="0,0,20,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="120">
                         <UserControls:UserCheckBox x:Name="chkInUse" Text="Display" FontSize="14" Height="40" Margin="0,10" IsChecked="{Binding IsInUse, Mode=TwoWay}" MouseLeftButtonDown="chkInUse_MouseLeftButtonDown"/>
-                        <Button x:Name="btnDeleteGame" Content="Delete" Height="40" Margin="0,10" FontSize="12" Style="{DynamicResource GeneralButtonStyle}" Click="btnDeleteGame_Click"/>
+                        <Button x:Name="btnDeleteGame" Content="Delete" Height="24" Margin="0,10" FontSize="12" Click="btnDeleteGame_Click">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Red"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontWeight" Value="Regular"/>
+                                    <Setter Property="Padding" Value="5"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="1">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightGray"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="Gray"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5" />
+                                        </Style>
+                                    </Style.Resources>
+                                </Style>
+                            </Button.Style>
+                        </Button>
                     </StackPanel>    
                 </Grid>
             </Border>
@@ -53,7 +88,7 @@
     </UserControl.Resources>
     
     <Grid Background="#C2222222">
-        <Border x:Name="bdrPopup" Background="{DynamicResource PrimaryTextColor}" BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
+        <Border x:Name="bdrPopup" Background="#C2222222" BorderBrush="Black" BorderThickness="1" CornerRadius="5" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" Height="560" Width="850">
             <Border.RenderTransform>
                 <TranslateTransform/>
@@ -70,8 +105,45 @@
                                 <RowDefinition Height="100" />
                             </Grid.RowDefinitions>
                             <ListBox x:Name="lstGames" Margin="10,20,10,0" Background="{DynamicResource SecondaryBlueColor}" BorderThickness="0" FontSize="32" FontWeight="Bold" HorizontalContentAlignment="Stretch" ItemTemplate="{StaticResource localListTemplate}"/>
-                            <Button x:Name="btnAddGame" Grid.Row="1" Margin="20,0,0,0" Content="Add Game" Style="{DynamicResource GeneralButtonStyle}" Width="180" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <Button x:Name="btnAddGame" Grid.Row="1" Margin="20,0,0,0" Content="Add Game" Width="180" Height="60"
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="Green"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="FontWeight" Value="Regular"/>
+                                        <Setter Property="Padding" Value="5"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="1">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="LightGray"/>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Background" Value="Gray"/>
+                                            </Trigger>
+                                        </Style.Triggers>
 
+                                        <Style.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="5" />
+                                            </Style>
+                                        </Style.Resources>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                            
                             <UserControls:VerticalScroller Grid.Row="1" Height="60" HorizontalAlignment="Right" VerticalAlignment="Center" ButtonMinClick="btnItemDown_Click" ButtonMaxClick="btnItemUp_Click" Margin="20,0"/>
                         </Grid>
                     </TabItem>

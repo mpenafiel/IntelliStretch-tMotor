@@ -77,7 +77,7 @@
             </Grid.RowDefinitions>
             
             <!--Header - Title-->
-            <TextBlock Margin="80,0,0,0" Text="{Binding SelectedItem.Header, ElementName=tabContent}" TextWrapping="Wrap" Foreground="Yellow" FontSize="48" FontWeight="DemiBold" FontFamily="Times New Roman" 
+            <TextBlock Margin="80,0,0,0" Text="{Binding SelectedItem.Header, ElementName=tabContent}" TextWrapping="Wrap" Foreground="Yellow" FontSize="48" FontWeight="DemiBold" FontFamily="Aptos" 
                        HorizontalAlignment="Left" VerticalAlignment="Bottom"  Visibility="{Binding IsSelected, ElementName=tabGames, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=false}"/>
             <StackPanel Margin="100,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="{Binding IsSelected, ElementName=tabGames, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=true}" >
                 <TextBlock x:Name="txtGameTitle" Text="{Binding GameTitle, ElementName=uiGames, Mode=OneWay}" FontFamily="Comic Sans MS" FontSize="68" FontWeight="Bold" Foreground="{DynamicResource PrimaryTextColor}" />
