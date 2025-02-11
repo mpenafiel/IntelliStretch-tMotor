@@ -11,6 +11,8 @@
 
     <SolidColorBrush x:Key="PrimaryGrayColor" Color="#BBC1D1"/>
     <SolidColorBrush x:Key="SecondaryGrayColor" Color="Gray"/>
+    <SolidColorBrush x:Key="TertiaryGrayColor" Color="#828282"/>
+    
 
 
     <!-- Slider styles -->

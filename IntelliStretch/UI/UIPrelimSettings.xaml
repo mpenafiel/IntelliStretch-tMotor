@@ -18,16 +18,14 @@
 
         <Slider Grid.Column="0" x:Name="sliderValuePicker" Margin="20" Orientation="Vertical" SmallChange="1" IsSnapToTickEnabled="True" ValueChanged="sliderValuePicker_ValueChanged" Opacity="0.0"/>
 
-        <Grid RenderTransformOrigin="0.5,0.5" Grid.Column="2" HorizontalAlignment="Right" Margin="50">
+        <Grid RenderTransformOrigin="0.5,0.5" Grid.Column="2" HorizontalAlignment="Right">
             <Grid.RenderTransform>
                 <ScaleTransform ScaleX="{Binding IsReflected, ElementName=uiPrelimSettings, Converter={StaticResource boolScaleConverter}, Mode=OneWay}" ScaleY="1" />
             </Grid.RenderTransform>
-            <Image Source="{Binding GuideLinesImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Margin="50"/>
-            <Image x:Name="imgNeutral" Source="{Binding NeutralImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Margin="50"/>
-            <Image x:Name="imgFlexion" Source="{Binding FlexionImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Visibility="Collapsed" Margin="50"/>
-            <Image x:Name="imgExtension" Source="{Binding ExtensionImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Visibility="Collapsed" Margin="50"/>
-
-            <Border Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}" Panel.ZIndex="-1"/>
+            <Image Source="{Binding GuideLinesImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right"/>
+            <Image x:Name="imgNeutral" Source="{Binding NeutralImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right"/>
+            <Image x:Name="imgFlexion" Source="{Binding FlexionImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Visibility="Collapsed"/>
+            <Image x:Name="imgExtension" Source="{Binding ExtensionImage, ElementName=uiPrelimSettings}" HorizontalAlignment="Right" Visibility="Collapsed"/>
         </Grid>
 
         <StackPanel Grid.Column="1">

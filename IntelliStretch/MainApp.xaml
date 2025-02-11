@@ -144,8 +144,12 @@
 
             
             <!--Bottom - Navigation bar-->
-            <UserControls:ImageButton x:Name="btnNavigator" Grid.Row="2" Margin="32,0,0,12" Image="images/Navigator-new.png" ImageMargin="8" ButtonCornerRadius="5" BackColor="{DynamicResource PrimaryGrayColor}"
-                                                     Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="btnNavigator_Click" />
+            <UserControls:ImageButton x:Name="btnNavigator"
+                                      Grid.Row="2"
+                                      Margin="32,0,0,12" Image="images/Navigator.png" 
+                                      ImageMargin="8" ButtonCornerRadius="5"
+                                      BackColor="#828282"
+                                      Width="80" Height="80"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="btnNavigator_Click" />
             
 
             <Button
