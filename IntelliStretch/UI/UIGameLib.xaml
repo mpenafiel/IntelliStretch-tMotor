@@ -107,7 +107,7 @@
                             <ListBox x:Name="lstGames" Margin="10,20,10,0" Background="{DynamicResource SecondaryBlueColor}" BorderThickness="0" FontSize="32" FontWeight="Bold" HorizontalContentAlignment="Stretch" ItemTemplate="{StaticResource localListTemplate}"/>
                             <Button x:Name="btnAddGame" Grid.Row="1" Margin="20,0,0,0" Content="Add Game" Width="180" Height="60"
                                     HorizontalAlignment="Left" 
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center" Click="btnAddGame_Click">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Background" Value="Green"/>

@@ -99,6 +99,10 @@ namespace IntelliStretch.UI
             }
         }
 
+        private void btnAddGame_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         private void btnDeleteGame_Click(object sender, RoutedEventArgs e)
         {
