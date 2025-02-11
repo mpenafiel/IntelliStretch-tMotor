@@ -151,7 +151,7 @@
                                       ImageMargin="8" ButtonCornerRadius="5"
                                       BackColor="#828282"
                                       Width="80" Height="80"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="btnNavigator_Click" />
-            
+
 
             <Button
                 x:Name="btnNext"
@@ -159,12 +159,47 @@
                 Content="Next"
                 Margin="0,0,40,20"
                 Width="120"
-                Height="60"
+                Height="50"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Click="btnNext_Click"
-                Style="{DynamicResource BtnNext}"
-                Visibility="Hidden"/>
+                Visibility="Hidden"
+                FontSize="24">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Yellow"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontWeight" Value="DemiBold"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightGray"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="Gray"/>
+                            </Trigger>
+                        </Style.Triggers>
+
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5" />
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </Button.Style>
+            </Button>
             <TextBlock x:Name="txtGameDescription" Grid.Row="2" Margin="120,0,180,0" Text="{Binding GameDescription, ElementName=uiGames, Mode=OneWay}" FontSize="28" TextAlignment="Center" TextWrapping="Wrap" 
                        Foreground="WhiteSmoke"  Visibility="{Binding IsSelected, ElementName=tabGames, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=true}"/>
         </Grid>
