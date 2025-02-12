@@ -13,80 +13,12 @@ namespace IntelliStretch
     public partial class MainApp : Window
     {
 
-        //readonly System.Windows.Forms.Timer DAQStatusTimer = new System.Windows.Forms.Timer() { Interval = 100, Enabled = true };
-        static bool dispError = false;
-        DigitalSingleChannelWriter LEDwriter = null;
-        bool[] dataArray = new bool[8];
-
         #region Constructor
 
         public MainApp()
         {
             InitializeComponent();
 
-            /*DAQStatusTimer.Tick += (s, e) =>
-            {
-                try
-                {
-                    if (intelliProtocol != null && digitalWriteTask == null)
-                    {
-                        digitalWriteTask = new NationalInstruments.DAQmx.Task();
-
-                        digitalWriteTask.DOChannels.CreateChannel(intelliProtocol.DAQ.DigitalChannel, "",
-                                ChannelLineGrouping.OneChannelForAllLines);
-
-                        dataArray[0] = true;
-                        dataArray[1] = false;
-                        dataArray[2] = false;
-                        dataArray[3] = false;
-                        dataArray[4] = false;
-                        dataArray[5] = false;
-                        dataArray[6] = false;
-                        dataArray[7] = false;
-
-                        LEDwriter = new DigitalSingleChannelWriter(digitalWriteTask.Stream);
-                        LEDwriter.WriteSingleSampleMultiLine(true, dataArray);
-
-                        dispError = false;
-                    }
-                    if (LEDwriter != null)
-                    {
-                        if (uiEvaluation.IsDAQStreaming())
-                        {
-                            dataArray[0] = true;
-                            dataArray[1] = true;
-                            dataArray[2] = true;
-                            dataArray[3] = true;
-                            dataArray[4] = true;
-                            dataArray[5] = true;
-                            dataArray[6] = true;
-                            dataArray[7] = true;
-
-                            LEDwriter.WriteSingleSampleMultiLine(true, dataArray);
-                        }
-                        else
-                        {
-                            dataArray[0] = true;
-                            dataArray[1] = false;
-                            dataArray[2] = false;
-                            dataArray[3] = false;
-                            dataArray[4] = false;
-                            dataArray[5] = false;
-                            dataArray[6] = false;
-                            dataArray[7] = false;
-
-                            LEDwriter.WriteSingleSampleMultiLine(true, dataArray);
-                        }
-                    }
-                }
-                catch (DaqException ex)
-                {
-                    Debug.WriteLine(ex);
-                    // Include message here?
-                    digitalWriteTask?.Dispose();
-                    digitalWriteTask = null;
-                }
-            };*/
         }
    
         #endregion
