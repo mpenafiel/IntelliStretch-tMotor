@@ -183,7 +183,7 @@ namespace IntelliStretch
                 defaultProtocol.DAQ.Channel2_Name = "Channel 2";
                 defaultProtocol.DAQ.SamplingRate = 1000;
                 defaultProtocol.DAQ.SampPerChan = 100;
-                defaultProtocol.DAQ.DigitalChannel = "Dev1/port0/line0:2";
+                defaultProtocol.DAQ.DigitalChannel = "Dev1/port0/line0:1";
 
                 Utilities.SaveToXML<Protocols.IntelliProtocol>(defaultProtocol, defaultFile);
             }
