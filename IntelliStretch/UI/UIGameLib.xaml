@@ -144,7 +144,7 @@
                                 </Button.Style>
                             </Button>
                             
-                            <UserControls:VerticalScroller Grid.Row="1" Height="60" HorizontalAlignment="Right" VerticalAlignment="Center" ButtonMinClick="btnItemDown_Click" ButtonMaxClick="btnItemUp_Click" Margin="20,0"/>
+                            <UserControls:VerticalScroller Visibility="Collapsed" Grid.Row="1" Height="60" HorizontalAlignment="Right" VerticalAlignment="Center" ButtonMinClick="btnItemDown_Click" ButtonMaxClick="btnItemUp_Click" Margin="20,0"/>
                         </Grid>
                     </TabItem>
                     <TabItem x:Name="tabOnlineGames" Header="Online Game Library" Visibility="Collapsed">

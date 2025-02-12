@@ -13,8 +13,6 @@ namespace IntelliStretch.UI
         public UIMainMenu()
         {
             InitializeComponent();
-
-            if ()
         }
 
         #region Variables

@@ -6,6 +6,7 @@ using System.IO;
 using IntelliStretch.UI;       
 using NationalInstruments.DAQmx;
 using System.Diagnostics;
+using IntelliStretch.Games;
 
 namespace IntelliStretch
 {
@@ -128,6 +129,11 @@ namespace IntelliStretch
             get { return intelliProtocol; }
             set { intelliProtocol = value; }
         }
+
+        static string appPath = AppDomain.CurrentDomain.BaseDirectory;
+
+        // Check Game System
+        static string gamesFile = appPath + @"Games\gamelist.xml";
 
         #endregion
 
@@ -602,9 +608,23 @@ namespace IntelliStretch
                     break;
 
                 case "btnGames":
-                    Select_Task(TaskMode.Game);
-                    break;
+                    List<GameInfo> gameList = Utilities.ReadFromXML<List<GameInfo>>(gamesFile, true);
 
+                    if (gameList.Count == 0)
+                    {
+                        MessageBoxResult result = MessageBox.Show("No games are available. Would you like to add games?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            uiGameLib.SlideIn();
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        Select_Task(TaskMode.Game);
+                        break;
+                    }
                 case "btnEvaluation":
                     Select_Task(TaskMode.Evaluation);
                     break;
