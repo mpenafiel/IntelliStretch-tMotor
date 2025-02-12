@@ -301,7 +301,7 @@
                             <Image x:Name="imgLeg" Source="../images/leg_part.png" Stretch="Uniform" Grid.Column="2" VerticalAlignment="Bottom" Grid.ColumnSpan="2" />
                             <Image x:Name="imgFoot" Source="../images/shoe.png" Stretch="Uniform" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2"  />
                         </Grid>
-                        <TextBlock Name="txtAnkleDataInfo" FontSize="24" Foreground="{DynamicResource PrimaryTextColor}" Height="180.054" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" />
+                        <TextBlock Name="txtAnkleDataInfo" FontSize="28" Foreground="{DynamicResource PrimaryTextColor}" Height="180.054" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" />
                     </Grid>
                 </TabItem>
 

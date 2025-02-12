@@ -79,9 +79,9 @@
                             </GroupBox>
                             <GroupBox Grid.Row="1" Margin="12,8" Padding="10" Header="Velocity [deg/sec]" FontSize="18.667" BorderBrush="#FF0046D5"  Foreground="Black">
                                 <UniformGrid Columns="2">
-                                    <UserControls:TextSlider x:Name="sliderStretchFlexV" FontWeight="Regular" Minimum="5" Maximum="30" TickFrequency="1" 
+                                    <UserControls:TextSlider x:Name="sliderStretchFlexV" FontWeight="Regular" Minimum="3" Maximum="30" TickFrequency="1" 
                                                              Text="{Binding Path=FlexionName, ElementName=uiProtocol, StringFormat={}{0}:}" />
-                                    <UserControls:TextSlider x:Name="sliderStretchExtV" Minimum="10" FontWeight="Regular" Maximum="30" TickFrequency="1" 
+                                    <UserControls:TextSlider x:Name="sliderStretchExtV" Minimum="3" FontWeight="Regular" Maximum="30" TickFrequency="1" 
                                                              Text="{Binding Path=ExtensionName, ElementName=uiProtocol, StringFormat={}{0}:}" />
                                 </UniformGrid>
                             </GroupBox>
