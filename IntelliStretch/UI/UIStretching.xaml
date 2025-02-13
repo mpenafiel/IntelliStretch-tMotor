@@ -303,7 +303,7 @@
                         </Grid>
                         <UserControls:EmbeddedDialog
                             x:Name="txtAnkleDataInfo"
-                            DialogTitle="Caution" DialogWidth="250" 
+                            DialogTitle="Control Feedback" DialogWidth="250" 
                             VerticalAlignment="Top"
                             HorizontalAlignment="Right"
                             Margin="10,10,0,0"/>
@@ -326,7 +326,7 @@
                         </Grid>
                         <UserControls:EmbeddedDialog
                             x:Name="txtElbowDataInfo"
-                            DialogTitle="Caution" DialogWidth="250" 
+                            DialogTitle="Control Feedback" DialogWidth="250" 
                             VerticalAlignment="Top"
                             HorizontalAlignment="Right"
                             Margin="10,10,0,0"/>
@@ -348,7 +348,7 @@
                         </Grid>
                         <UserControls:EmbeddedDialog
                             x:Name="txtWristDataInfo"
-                            DialogTitle="Caution" DialogWidth="250" 
+                            DialogTitle="Control Feedback" DialogWidth="250" 
                             VerticalAlignment="Top"
                             HorizontalAlignment="Right"
                             Margin="10,10,0,0"/>
@@ -368,7 +368,7 @@
                         </Grid>
                         <UserControls:EmbeddedDialog
                             x:Name="txtKneeDataInfo"
-                            DialogTitle="Caution" DialogWidth="250" 
+                            DialogTitle="Control Feedback" DialogWidth="250" 
                             VerticalAlignment="Top"
                             HorizontalAlignment="Right"
                             Margin="10,10,0,0"/>
