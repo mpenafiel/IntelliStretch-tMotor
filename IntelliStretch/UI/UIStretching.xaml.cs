@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IntelliStretch.UserControls;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -15,7 +16,7 @@ namespace IntelliStretch.UI
         #region Variables
 
         Image imgJoint;
-        TextBlock txtJointInfo;
+        EmbeddedDialog txtJointInfo;
         IntelliSerialPort sp;
         MainApp mainApp;
         Protocols.Joint selectedJoint;
@@ -167,7 +168,7 @@ namespace IntelliStretch.UI
 
                 txtJointInfo.Dispatcher.Invoke(new Action(delegate
                 {
-                    txtJointInfo.Text = "Position (deg): " + newAnkleData.anklePos.ToString("#0.0")
+                    txtJointInfo.DialogText = "Position (deg): " + newAnkleData.anklePos.ToString("#0.0")
                                     + "\r\nTorque (Nm): " + newAnkleData.ankleTorque.ToString("#0.0")
                                     + "\r\nCurrent Level: " + (newAnkleData.ankleAm * 100).ToString() + "%";
                 }));
