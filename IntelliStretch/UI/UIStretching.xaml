@@ -301,7 +301,12 @@
                             <Image x:Name="imgLeg" Source="../images/leg_part.png" Stretch="Uniform" Grid.Column="2" VerticalAlignment="Bottom" Grid.ColumnSpan="2" />
                             <Image x:Name="imgFoot" Source="../images/shoe.png" Stretch="Uniform" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2"  />
                         </Grid>
-                        <TextBlock Name="txtAnkleDataInfo" FontSize="24" Foreground="{DynamicResource TertiaryTextColor}" Height="180.054" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" />
+                        <UserControls:EmbeddedDialog
+                            x:Name="txtAnkleDataInfo"
+                            DialogTitle="Caution" DialogWidth="250" 
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Margin="10,10,0,0"/>
                     </Grid>
                 </TabItem>
 
@@ -319,7 +324,12 @@
                             <Image Source="../images/Upper_arm.png" Margin="50" Stretch="Uniform" />
                             <Image x:Name="imgForearm" Source="../images/Forearm.png" Margin="50" Stretch="Uniform" />
                         </Grid>
-                        <TextBlock Name="txtElbowDataInfo" FontSize="24" Foreground="White" Height="180.054" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" />
+                        <UserControls:EmbeddedDialog
+                            x:Name="txtElbowDataInfo"
+                            DialogTitle="Caution" DialogWidth="250" 
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Margin="10,10,0,0"/>
                     </Grid>
                 </TabItem>
 
@@ -336,7 +346,12 @@
                             <Image Source="../images/3D_grid.png" Stretch="Uniform" Margin="0,173,0,0" />
                             <Image x:Name="imgWrist" Source="../images/Wrist_hand_part.png" Margin="50" Stretch="Uniform" />
                         </Grid>
-                        <TextBlock Name="txtWristDataInfo" FontSize="24" Foreground="White" Height="180.054" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" />
+                        <UserControls:EmbeddedDialog
+                            x:Name="txtWristDataInfo"
+                            DialogTitle="Caution" DialogWidth="250" 
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Margin="10,10,0,0"/>
                     </Grid>
                 </TabItem>
 
@@ -351,7 +366,12 @@
                             <Image Source="../images/Knee_thigh_part.png" Stretch="Uniform" Grid.Column="2" VerticalAlignment="Bottom" Grid.ColumnSpan="2" />
                             <Image x:Name="imgKnee" Source="../images/Knee_leg_part.png" Stretch="Uniform" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2"  />
                         </Grid>
-                        <TextBlock Name="txtKneeDataInfo" FontSize="24" Foreground="White" Height="180.054" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" />
+                        <UserControls:EmbeddedDialog
+                            x:Name="txtKneeDataInfo"
+                            DialogTitle="Caution" DialogWidth="250" 
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Margin="10,10,0,0"/>
                     </Grid>
                 </TabItem>
 

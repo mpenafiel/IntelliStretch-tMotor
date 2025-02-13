@@ -442,7 +442,7 @@ namespace IntelliStretch.UI
             protocol.ControlDirection = (cboCtrlDirection.SelectedIndex == 0) ? Protocols.Direction.Horizontal : Protocols.Direction.Vertical;
             protocol.IsNoLoading = (bool)chkNoLoading.IsChecked;
             protocol.ScalingFactor = (float)sliderResistScale.Value;
-            protocol.FlexionResistance = (int)sliderResistance.Value;
+            protocol.Resistance = (int)sliderResistance.Value;
 
             //protocol.FlexionResistance = (int)sliderResistFlex.Value;
             //protocol.ExtensionResistance = (int)sliderResistExt.Value;

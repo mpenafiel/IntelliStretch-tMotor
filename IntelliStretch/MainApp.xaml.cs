@@ -6,16 +6,12 @@ using System.IO;
 using IntelliStretch.UI;       
 using NationalInstruments.DAQmx;
 using System.Diagnostics;
+using IntelliStretch.Games;
 
 namespace IntelliStretch
 {
     public partial class MainApp : Window
     {
-
-        //readonly System.Windows.Forms.Timer DAQStatusTimer = new System.Windows.Forms.Timer() { Interval = 100, Enabled = true };
-        static bool dispError = false;
-        DigitalSingleChannelWriter LEDwriter = null;
-        bool[] dataArray = new bool[8];
 
         #region Constructor
 
@@ -23,69 +19,6 @@ namespace IntelliStretch
         {
             InitializeComponent();
 
-            /*DAQStatusTimer.Tick += (s, e) =>
-            {
-                try
-                {
-                    if (intelliProtocol != null && digitalWriteTask == null)
-                    {
-                        digitalWriteTask = new NationalInstruments.DAQmx.Task();
-
-                        digitalWriteTask.DOChannels.CreateChannel(intelliProtocol.DAQ.DigitalChannel, "",
-                                ChannelLineGrouping.OneChannelForAllLines);
-
-                        dataArray[0] = true;
-                        dataArray[1] = false;
-                        dataArray[2] = false;
-                        dataArray[3] = false;
-                        dataArray[4] = false;
-                        dataArray[5] = false;
-                        dataArray[6] = false;
-                        dataArray[7] = false;
-
-                        LEDwriter = new DigitalSingleChannelWriter(digitalWriteTask.Stream);
-                        LEDwriter.WriteSingleSampleMultiLine(true, dataArray);
-
-                        dispError = false;
-                    }
-                    if (LEDwriter != null)
-                    {
-                        if (uiEvaluation.IsDAQStreaming())
-                        {
-                            dataArray[0] = true;
-                            dataArray[1] = true;
-                            dataArray[2] = true;
-                            dataArray[3] = true;
-                            dataArray[4] = true;
-                            dataArray[5] = true;
-                            dataArray[6] = true;
-                            dataArray[7] = true;
-
-                            LEDwriter.WriteSingleSampleMultiLine(true, dataArray);
-                        }
-                        else
-                        {
-                            dataArray[0] = true;
-                            dataArray[1] = false;
-                            dataArray[2] = false;
-                            dataArray[3] = false;
-                            dataArray[4] = false;
-                            dataArray[5] = false;
-                            dataArray[6] = false;
-                            dataArray[7] = false;
-
-                            LEDwriter.WriteSingleSampleMultiLine(true, dataArray);
-                        }
-                    }
-                }
-                catch (DaqException ex)
-                {
-                    Debug.WriteLine(ex);
-                    // Include message here?
-                    digitalWriteTask?.Dispose();
-                    digitalWriteTask = null;
-                }
-            };*/
         }
    
         #endregion
@@ -128,6 +61,11 @@ namespace IntelliStretch
             get { return intelliProtocol; }
             set { intelliProtocol = value; }
         }
+
+        static string appPath = AppDomain.CurrentDomain.BaseDirectory;
+
+        // Check Game System
+        static string gamesFile = appPath + @"Games\gamelist.xml";
 
         #endregion
 
@@ -222,8 +160,8 @@ namespace IntelliStretch
                 defaultProtocol.Stretching.ExtensionVelocity = 25;
                 defaultProtocol.Stretching.FlexionTorque = 10;
                 defaultProtocol.Stretching.ExtensionTorque = 5;
-                defaultProtocol.Stretching.FlexionTorqueMax = 15;
-                defaultProtocol.Stretching.ExtensionTorqueMax = 15;
+                defaultProtocol.Stretching.FlexionTorqueMax = 11;
+                defaultProtocol.Stretching.ExtensionTorqueMax = 11;
 
                 //Game default settings
                 defaultProtocol.Game.AssistiveMode.Level = 5;
@@ -245,7 +183,7 @@ namespace IntelliStretch
                 defaultProtocol.DAQ.Channel2_Name = "Channel 2";
                 defaultProtocol.DAQ.SamplingRate = 1000;
                 defaultProtocol.DAQ.SampPerChan = 100;
-                defaultProtocol.DAQ.DigitalChannel = "Dev1/port0/line0:2";
+                defaultProtocol.DAQ.DigitalChannel = "Dev1/port0/line0:1";
 
                 Utilities.SaveToXML<Protocols.IntelliProtocol>(defaultProtocol, defaultFile);
             }
@@ -602,9 +540,23 @@ namespace IntelliStretch
                     break;
 
                 case "btnGames":
-                    Select_Task(TaskMode.Game);
-                    break;
+                    List<GameInfo> gameList = Utilities.ReadFromXML<List<GameInfo>>(gamesFile, true);
 
+                    if (gameList.Count == 0)
+                    {
+                        MessageBoxResult result = MessageBox.Show("No games are available. Would you like to add games?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            uiGameLib.SlideIn();
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        Select_Task(TaskMode.Game);
+                        break;
+                    }
                 case "btnEvaluation":
                     Select_Task(TaskMode.Evaluation);
                     break;

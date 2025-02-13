@@ -45,7 +45,7 @@ namespace IntelliStretch.UI
         public bool isStreamingDAQ = false;
 
         DigitalSingleChannelWriter LEDwriter = null;
-        bool[] dataArray = new bool[8];
+        bool[] ledArray = new bool[2];
 
 
         #endregion
@@ -366,28 +366,22 @@ namespace IntelliStretch.UI
                                 digitalWriteTask.DOChannels.CreateChannel(intelliProtocol.DAQ.DigitalChannel, "",
                                         ChannelLineGrouping.OneChannelForAllLines);
 
-                                dataArray[0] = false;
-                                dataArray[1] = false;
-                                dataArray[2] = false;
-                                dataArray[3] = false;
-                                dataArray[4] = false;
-                                dataArray[5] = false;
-                                dataArray[6] = false;
-                                dataArray[7] = false;
+                                ledArray[0] = false;
+                                ledArray[1] = false;
 
                                 LEDwriter = new DigitalSingleChannelWriter(digitalWriteTask.Stream);
 
                                 if (isStreamingDAQ && btnRecord.IsChecked==true)
                                 {
-                                    dataArray[0] = true;
-                                    dataArray[1] = true;
+                                    ledArray[0] = true;
+                                    ledArray[1] = true;
                                 }
                                 else if (isStreamingDAQ)
                                 {
-                                    dataArray[0] = true;
+                                    ledArray[0] = true;
                                 }
 
-                                LEDwriter.WriteSingleSampleMultiLine(true, dataArray);
+                                LEDwriter.WriteSingleSampleMultiLine(true, ledArray);
                             }
                         }
                     }
@@ -431,10 +425,10 @@ namespace IntelliStretch.UI
 
                 if (digitalWriteTask !=null && LEDwriter != null)
                 {
-                    dataArray[0] = false;
-                    dataArray[1] = false;
+                    ledArray[0] = false;
+                    ledArray[1] = false;
 
-                    LEDwriter.WriteSingleSampleMultiLine(true, dataArray);
+                    LEDwriter.WriteSingleSampleMultiLine(true, ledArray);
 
                     digitalWriteTask?.Dispose();
                     digitalWriteTask = null;
