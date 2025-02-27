@@ -121,7 +121,7 @@ namespace IntelliStretch.UserControls
             }
             else
             {
-                currentPos = -newAnkleData.ankleTorque;
+                currentPos = newAnkleData.ankleTorque;
 
                 if (currentPos > PassiveFlexMax)
                     currentPos = PassiveFlexMax;

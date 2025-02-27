@@ -426,7 +426,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
-                                <!-- <RowDefinition Height="60" /> -->
+                                <RowDefinition Height="60" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="300"></ColumnDefinition>
@@ -481,6 +481,12 @@
                                 TextFontSize="22"
                                 ValueChanged="sliderLockPosition_ValueChanged"
                                 Visibility="Collapsed"/>
+                            <Border Grid.Row="2" Grid.ColumnSpan="3" x:Name="ShowOffset" Width="175" HorizontalAlignment="Left"
+                                    Padding="5" BorderThickness="0" Background="Black" CornerRadius="5">
+                                <TextBlock Grid.Row="0" Grid.ColumnSpan="3" x:Name="OffsetBlock" Text="Offset: 0"
+                                           TextWrapping="Wrap" Foreground="Yellow" FontSize="30"
+                                            HorizontalAlignment="Center" Padding="5,0"/>
+                            </Border>
                         </Grid>
                         <Grid x:Name="hStrengthLayout">
                             <Grid.RowDefinitions>

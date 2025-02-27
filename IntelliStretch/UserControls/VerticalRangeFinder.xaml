@@ -18,7 +18,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="0" Grid.ColumnSpan="3" x:Name="ShowBorder" Width="300" Padding="5" BorderThickness="0" Background="Black" CornerRadius="12" Visibility="Collapsed">
+            <Border Grid.Row="0" Grid.ColumnSpan="3" x:Name="ShowBorder" Width="300" Padding="5" BorderThickness="0" Background="Black" CornerRadius="5" Visibility="Collapsed">
                 <TextBlock Grid.Row="0" Grid.ColumnSpan="3" x:Name="ShowTextBlock"
                            TextWrapping="Wrap" Foreground="Yellow" FontSize="30"
                            HorizontalAlignment="Center" Padding="5,0"/>

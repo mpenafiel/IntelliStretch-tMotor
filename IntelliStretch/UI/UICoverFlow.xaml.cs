@@ -17,9 +17,6 @@ using RehabGameLib;
 
 namespace IntelliStretch.UI
 {
-    /// <summary>
-    /// Interaction logic for UICoverFlow.xaml
-    /// </summary>
     public partial class UICoverFlow : UserControl
     {
         public UICoverFlow()
@@ -660,7 +657,7 @@ namespace IntelliStretch.UI
                 case GameCategory.Flash:
                     rehabGame = new UIFlash(gamePath + selectedGame.Name + "\\" + selectedGame.Source) as RehabGameBase;
                     rehabGame.isCtrlInversed = false;
-                    Game_Added();
+                    Game_Added();      
                     StartGame();
                     //MessageBox.Show("Flash games have been temporarily disabled");
                     break;
