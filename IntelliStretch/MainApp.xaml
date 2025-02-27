@@ -77,6 +77,7 @@
             </Grid.RowDefinitions>
             
             <!--Header - Title-->
+            <Border Background="Transparent"/>
             <TextBlock Margin="80,0,0,0" Text="{Binding SelectedItem.Header, ElementName=tabContent}" TextWrapping="Wrap" Foreground="Yellow" FontSize="48" FontWeight="DemiBold" FontFamily="Aptos" 
                        HorizontalAlignment="Left" VerticalAlignment="Bottom"  Visibility="{Binding IsSelected, ElementName=tabGames, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=false}"/>
             <StackPanel Margin="100,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="{Binding IsSelected, ElementName=tabGames, Converter={StaticResource boolVisibilityConverter}, ConverterParameter=true}" >
@@ -97,7 +98,8 @@
             
             
             <!--Middle - Content-->
-            <Border Grid.Row="1" VerticalAlignment="Stretch" Padding="50" Margin="80,15,80,30" CornerRadius="5">
+            <Border Background="Transparent" Grid.Row="1" Panel.ZIndex="-1"/>
+            <Border Grid.Row="1" Margin="40">
                 <Grid>
                     <TabControl x:Name="tabContent"  Background="{x:Null}" Style="{StaticResource ContentTabStyle}" Visibility="Hidden" FocusVisualStyle="{x:Null}">
 

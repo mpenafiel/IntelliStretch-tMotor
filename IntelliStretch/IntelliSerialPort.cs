@@ -17,6 +17,7 @@ namespace IntelliStretch
         List<SerialPort> scanList;
         System.Timers.Timer scanTimer;
         string dataQueue;
+        string lastData;
         AnkleData ankleData;
         StreamWriter dataWriter;
         private CsvWriter csvWriter = null;
@@ -142,7 +143,65 @@ namespace IntelliStretch
 
         public void readLine()
         {
-            if(sp.IsOpen) sp.ReadChar();
+            Console.WriteLine(lastData);
+        }
+
+        public double ReadTorque()
+        {
+            if (lastData.IndexOf("\r\n") >= 0)
+            {
+                // If whole data line available
+                int nP = lastData.IndexOf('P', 0); // Position tag
+                if (nP >= 0)
+                {
+                    int nT = lastData.IndexOf('T', nP);  // Torque tag
+                    if (nT > 0)
+                    {
+                        int nA = lastData.IndexOf('A', nT); // Current tag
+                        if (nA > 0)
+                        {
+                            int nD = lastData.IndexOf('D', nA);  // Target tag, optional
+                            if (nD > 0)
+                            {
+                                int nW = lastData.IndexOf('W', nD); // received command, 08.22.2013.Yupeng
+                                                                     //int nE = (nW > 0) ? dataQueue.IndexOf('E', nW) : dataQueue.IndexOf('E', nD); // End tag ,08.22.2013.Yupeng, Since DSp has EXn parameter
+                                int nR = (nW > 0) ? lastData.IndexOf('\r', nW) : lastData.IndexOf('\r', nD); // End tag ,08.22.2013.Yupeng
+
+                                if (nR > 0)
+                                {
+                                    try
+                                    {
+                                        // Data format correct
+                                        string strAnklePos = lastData.Substring(nP + 1, nT - nP - 1); // position string
+                                        string strAnkleTorque = lastData.Substring(nT + 1, nA - nT - 1); // torque string
+                                        string strAnkleAm = lastData.Substring(nA + 1, nD - nA - 1); // current string
+
+
+                                        double anklePos = -Convert.ToSingle(strAnklePos) / 100f;  // position data
+                                        double ankleTorque = -Convert.ToSingle(strAnkleTorque) / 100f; // torque data
+                                        double ankleAm = Convert.ToSingle(strAnkleAm) / 100f; // current data
+
+                                        double[] ankleData = new double[3];
+                                        ankleData[0] = anklePos;
+                                        ankleData[1] = ankleTorque;
+                                        ankleData[2] = ankleAm;
+                                        return ankleTorque;
+                                    }
+                                    catch (Exception)
+                                    {
+                                        //MessageBox.Show("Data Decoding failure.");
+                                        sp.DiscardInBuffer();
+                                        return new double();
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            return new double();
         }
 
         public void WriteCmd(string cmd)
@@ -311,7 +370,7 @@ namespace IntelliStretch
                                                 //dataWriter.WriteCmd(ankleData.anklePos.ToString() + " " + ankleData.ankleTorque.ToString() + " " + ankleData.ankleAm.ToString());  // save ankle data
                                             }
                                             if (this.IsUpdating && UpdateData != null) UpdateData(ankleData);  // update new ankle data
-
+                                            lastData = dataQueue;
                                             dataQueue = ""; // Clear the data queue
                                             
                                         }

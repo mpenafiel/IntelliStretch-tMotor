@@ -83,6 +83,7 @@ namespace IntelliStretch.UI
         Protocols.IntelliProtocol intelliProtocol;
         MainApp mainApp;
         Interfaces.IUpdateUI currentUI;
+        double torqueOffset = 0d;
         string measureMode;
         bool IsSavingData;
 
@@ -298,11 +299,12 @@ namespace IntelliStretch.UI
 
         private void Update_UI(IntelliSerialPort.AnkleData newAnkleData) => this.Dispatcher.Invoke(new Action(delegate
                                                                                      {
-                                                                                         // Motor torque value does not have polarity, assess within UI
+                                                                                         // Motor torque value does not have polarity, assign polatiry within UI
                                                                                          if (measureMode == "Strength")
                                                                                          {
-                                                                                             if (btnFlexion.IsChecked == true) newAnkleData.ankleTorque = -newAnkleData.ankleTorque;
+                                                                                             if ( btnExtension.IsChecked == true) newAnkleData.ankleTorque = -newAnkleData.ankleTorque;
                                                                                          }
+                                                                                         
                                                                                          currentUI.Update_UI(newAnkleData);
 
                                                                                      }));
@@ -407,7 +409,15 @@ namespace IntelliStretch.UI
 
                 UI_Handler();
                 currentUI.Set_Initial(true);
-                if (measureMode == "AROM" && sp.IsConnected) sp.WriteCmd("BK");//Add BK , Yupeng 04.2013 
+                if (measureMode == "AROM" && sp.IsConnected) sp.WriteCmd("BK");//Add BK , Yupeng 04.2013
+                if (measureMode == "Strength" && sp.IsConnected)//Add TQ for torque offset , Michael 02.2025 
+                {
+                    double Data = sp.ReadTorque();
+                    Console.WriteLine(Data);
+                    OffsetBlock.Text = $"Offset: {Data.ToString("#0.0")}";
+                    sp.WriteCmd("TQ");
+                }
+                
 
                 if (IsSavingData) sp.Start_SaveData(measureMode);
                 sp.IsUpdating = true;
@@ -785,38 +795,6 @@ namespace IntelliStretch.UI
             }
         }
 
-        private void switch_EMG_Scale(object sender, RoutedEventArgs e)
-        {
-            /*if (x1.IsChecked)
-            {
-                x1.IsChecked = true;
-                x10.IsChecked = false;
-                x50.IsChecked = false;
-                x100.IsChecked = false;
-            }
-            else if (x10.IsChecked)
-            {
-                x1.IsChecked = false;
-                x10.IsChecked = true;
-                x50.IsChecked = false;
-                x100.IsChecked = false;
-            }
-            else if (x50.IsChecked)
-            {
-                x1.IsChecked = false;
-                x10.IsChecked = false;
-                x50.IsChecked = true;
-                x100.IsChecked = false;
-            }
-            else if (x10.IsChecked)
-            {
-                x1.IsChecked = false;
-                x10.IsChecked = false;
-                x50.IsChecked = false;
-                x100.IsChecked = true;
-            }*/
-        }
-
         private void btnFlexion_Click(object sender, RoutedEventArgs e)
         {
             btnFlexion.IsChecked = true;
@@ -827,38 +805,6 @@ namespace IntelliStretch.UI
         {
             btnFlexion.IsChecked = false;
             btnExtension.IsChecked = true;
-        }
-
-        private void x1_Click(object sender, RoutedEventArgs e)
-        {
-            //x1.IsChecked = true;
-            //x10.IsChecked = false;
-            //x50.IsChecked = false;
-            //x100.IsChecked = false;
-        }
-
-        private void x10_Click(object sender, RoutedEventArgs e)
-        {
-            //x1.IsChecked = false;
-            //x10.IsChecked = true;
-            //x50.IsChecked = false;
-            //x100.IsChecked = false;
-        }
-
-        private void x50_Click(object sender, RoutedEventArgs e)
-        {
-            //x1.IsChecked = false;
-            //x10.IsChecked = false;
-            //x50.IsChecked = true;
-            //x100.IsChecked = false;
-        }
-
-        private void x100_Click(object sender, RoutedEventArgs e)
-        {
-            //x1.IsChecked = false;
-            //x10.IsChecked = false;
-            //x50.IsChecked = false;
-            //x100.IsChecked = true;
         }
     }
 }
