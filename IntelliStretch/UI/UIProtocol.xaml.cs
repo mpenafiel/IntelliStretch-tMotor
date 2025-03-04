@@ -465,7 +465,7 @@ namespace IntelliStretch.UI
 
                     int devIndex = physicalChannelComboBox1.Text.IndexOf("/");
                     string devName = physicalChannelComboBox1.Text.Substring(0, devIndex);
-                    protocol.DigitalChannel = $"{devName}/port0/line0:7";
+                    protocol.DigitalChannel = $"{devName}/port0/line0:1";
 
                     return true;
                 }
