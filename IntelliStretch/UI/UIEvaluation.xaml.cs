@@ -794,17 +794,5 @@ namespace IntelliStretch.UI
                 }
             }
         }
-
-        private void btnFlexion_Click(object sender, RoutedEventArgs e)
-        {
-            btnFlexion.IsChecked = true;
-            btnExtension.IsChecked = false;
-        }
-
-        private void btnExtension_Click(object sender, RoutedEventArgs e)
-        {
-            btnFlexion.IsChecked = false;
-            btnExtension.IsChecked = true;
-        }
     }
 }
