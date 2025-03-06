@@ -160,8 +160,8 @@ namespace IntelliStretch
                 defaultProtocol.Stretching.ExtensionVelocity = 25;
                 defaultProtocol.Stretching.FlexionTorque = 10;
                 defaultProtocol.Stretching.ExtensionTorque = 5;
-                defaultProtocol.Stretching.FlexionTorqueMax = 11;
-                defaultProtocol.Stretching.ExtensionTorqueMax = 11;
+                defaultProtocol.Stretching.FlexionTorqueMax = 15;
+                defaultProtocol.Stretching.ExtensionTorqueMax = 15;
 
                 //Game default settings
                 defaultProtocol.Game.AssistiveMode.Level = 5;
