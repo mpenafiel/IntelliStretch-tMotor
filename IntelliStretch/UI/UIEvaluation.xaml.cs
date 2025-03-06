@@ -299,12 +299,7 @@ namespace IntelliStretch.UI
 
         private void Update_UI(IntelliSerialPort.AnkleData newAnkleData) => this.Dispatcher.Invoke(new Action(delegate
                                                                                      {
-                                                                                         // Motor torque value does not have polarity, assign polatiry within UI
-                                                                                         if (measureMode == "Strength")
-                                                                                         {
-                                                                                             if ( btnExtension.IsChecked == true) newAnkleData.ankleTorque = -newAnkleData.ankleTorque;
-                                                                                         }
-                                                                                         
+                                                                                         // Motor torque value does not have polarity, assign polatiry within UI                                                                                         
                                                                                          currentUI.Update_UI(newAnkleData);
 
                                                                                      }));
