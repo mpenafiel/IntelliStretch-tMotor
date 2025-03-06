@@ -440,7 +440,7 @@ namespace IntelliStretch.UI
                 }
                 WriterHandler();
                 sp.IsUpdating = false;
-                if (btnLock.IsChecked == true) switch_Device_Mode();
+                //if (btnLock.IsChecked == true) switch_Device_Mode(); // Keep the motor locked even when stop is pressed... Michael 03.2025
                 if (IsSavingData)
                 {
                     sp.Stop_SaveData();
