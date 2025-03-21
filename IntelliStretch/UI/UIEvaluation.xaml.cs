@@ -26,12 +26,21 @@ namespace IntelliStretch.UI
         #region Plot Components
         private ScottPlot.Plottables.DataStreamer Streamer1 = null;
         private ScottPlot.Plottables.DataStreamer Streamer2 = null;
+
+        private ScottPlot.Plottables.DataStreamer TorqueStreamer = null;
+        private ScottPlot.Plottables.DataStreamer PositionStreamer = null;
+
         private DataStreamer[] dataStreamers = new DataStreamer[2];
+
+        private DataStreamer[] torqueStreamer = new DataStreamer[1];
 
         private WpfPlot[] plots = new WpfPlot[2];
 
         private ScottPlot.Plottables.VerticalLine VLine1;
         private ScottPlot.Plottables.VerticalLine VLine2;
+
+        private ScottPlot.Plottables.VerticalLine tqVline;
+        private ScottPlot.Plottables.VerticalLine posVline;
         #endregion
 
         #region NI DAQ
@@ -72,6 +81,25 @@ namespace IntelliStretch.UI
                     hPlot1.Refresh();
                     hPlot2.Refresh();
                 }
+
+                if (TorqueStreamer != null && TorqueStreamer.HasNewData)
+                {
+                    tqVline.IsVisible = TorqueStreamer.Renderer is ScottPlot.DataViews.Wipe;
+                    tqVline.Position = TorqueStreamer.Data.NextIndex * TorqueStreamer.Data.SamplePeriod + TorqueStreamer.Data.OffsetX;
+
+                    vTQPlot.Refresh();
+                    // hTQPlot.Refresh();
+                }
+
+                if (PositionStreamer != null && PositionStreamer.HasNewData)
+                {
+                    posVline.IsVisible = PositionStreamer.Renderer is ScottPlot.DataViews.Wipe;
+                    posVline.Position = PositionStreamer.Data.NextIndex * PositionStreamer.Data.SamplePeriod + PositionStreamer.Data.OffsetX;
+
+                    vAROMPlot.Refresh();
+                    // hTQPlot.Refresh();
+                }
+
             };
         }
 
@@ -212,14 +240,23 @@ namespace IntelliStretch.UI
 
         private void InitializePlots(ScottPlot.WPF.WpfPlot plot1, ScottPlot.WPF.WpfPlot plot2)
         {
-            StylePlot(plot1);
-            StylePlot(plot2);
+            StylePlot(plot1, "", "Amplitude (mv)");
+            StylePlot(plot2, "", "Amplitude (mv)");
+
+            StylePlot(vTQPlot,"", "Torque (Nm)");
+            StylePlot(vAROMPlot,"", "Position (Degrees)");
 
             Streamer1 = plot1.Plot.Add.DataStreamer(3000);
             Streamer2 = plot2.Plot.Add.DataStreamer(3000);
 
+            TorqueStreamer = vTQPlot.Plot.Add.DataStreamer(3000);
+            PositionStreamer = vAROMPlot.Plot.Add.DataStreamer(3000);
+
             Streamer1.Color = ScottPlot.Color.FromHex("#e5ff24"); //#e5ff24
             Streamer2.Color = ScottPlot.Color.FromHex("#e5ff24"); //#e5ff24  #348EF6
+
+            TorqueStreamer.Color = ScottPlot.Color.FromHex("#e5ff24");
+            PositionStreamer.Color = ScottPlot.Color.FromHex("#e5ff24");
 
             dataStreamers[0] = Streamer1;
             dataStreamers[1] = Streamer2;
@@ -231,9 +268,14 @@ namespace IntelliStretch.UI
             plots[1] = plot2;
 
             VLine1 = plot1.Plot.Add.VerticalLine(0, 2, ScottPlot.Colors.Red);
-            VLine1.LineWidth = 5;
+            VLine1.LineWidth = 3;
             VLine2 = plot2.Plot.Add.VerticalLine(0, 2, ScottPlot.Colors.Red);
-            VLine2.LineWidth = 5;
+            VLine2.LineWidth = 3;
+
+            tqVline = vTQPlot.Plot.Add.VerticalLine(0,2, ScottPlot.Colors.Red);
+            tqVline.LineWidth = 3;
+            posVline = vAROMPlot.Plot.Add.VerticalLine(0,2,ScottPlot.Colors.Red);
+            posVline.LineWidth = 3;
 
             plot1.Plot.Axes.ContinuouslyAutoscale = false;
             Streamer1.ManageAxisLimits = true;
@@ -245,7 +287,7 @@ namespace IntelliStretch.UI
             plot2.Plot.Axes.SetLimitsY(-3, 3);
         }
 
-        public void StylePlot(ScottPlot.WPF.WpfPlot plot)
+        public void StylePlot(ScottPlot.WPF.WpfPlot plot, string title, string yLabel)
         {
             
             plot.Plot.FigureBackground.Color = ScottPlot.Colors.Transparent;
@@ -284,7 +326,9 @@ namespace IntelliStretch.UI
             leftAxis.TickLabelStyle.FontSize = 20;
             leftAxis.FrameLineStyle.Width = 3;
             leftAxis.Color(ScottPlot.Colors.White);
-            leftAxis.LabelText = "Amplitude (mV)";
+            leftAxis.LabelText = yLabel;
+            leftAxis.LabelFontSize = 36;
+            plot.Plot.Title(title);
 
             // Style bottom axis
             bottomAxis.TickLabelStyle.IsVisible = false;
@@ -299,12 +343,7 @@ namespace IntelliStretch.UI
 
         private void Update_UI(IntelliSerialPort.AnkleData newAnkleData) => this.Dispatcher.Invoke(new Action(delegate
                                                                                      {
-                                                                                         // Motor torque value does not have polarity, assign polatiry within UI
-                                                                                         if (measureMode == "Strength")
-                                                                                         {
-                                                                                             if ( btnExtension.IsChecked == true) newAnkleData.ankleTorque = -newAnkleData.ankleTorque;
-                                                                                         }
-                                                                                         
+                                                                                         // Motor polarity is read from the force sensor                                                                                        
                                                                                          currentUI.Update_UI(newAnkleData);
 
                                                                                      }));
@@ -445,7 +484,7 @@ namespace IntelliStretch.UI
                 }
                 WriterHandler();
                 sp.IsUpdating = false;
-                if (btnLock.IsChecked == true) switch_Device_Mode();
+                //if (btnLock.IsChecked == true) switch_Device_Mode(); // Keep the motor locked even when stop is pressed... Michael 03.2025
                 if (IsSavingData)
                 {
                     sp.Stop_SaveData();
@@ -722,10 +761,16 @@ namespace IntelliStretch.UI
                     vPlot1.Visibility = Visibility.Visible;
                     vPlot2.Visibility = Visibility.Visible;
 
-                    strength_v_FlexionGrid.SetValue(Grid.ColumnProperty, 2);
-                    strength_v_ExtensionGrid.SetValue(Grid.ColumnProperty, 2);
+                    strength_v_demo.SetValue(Grid.ColumnProperty, 1);
+                    strength_v_demo.SetValue(Grid.ColumnSpanProperty, 1);
 
-                    vStrength.SetValue(Grid.ColumnSpanProperty, 1);
+                    vTQPlot.SetValue(Grid.ColumnSpanProperty, 1);
+                    Thickness margin = vTQPlot.Margin;
+                    margin.Left = 0;
+                    margin.Right = 0;
+                    vTQPlot.Margin = margin;
+
+
                     emgStack.Visibility = Visibility.Visible;
                 }
                 else
@@ -733,10 +778,15 @@ namespace IntelliStretch.UI
                     vPlot1.Visibility = Visibility.Collapsed;
                     vPlot2.Visibility = Visibility.Collapsed;
 
-                    strength_v_FlexionGrid.SetValue(Grid.ColumnProperty, 2);
-                    strength_v_ExtensionGrid.SetValue(Grid.ColumnProperty, 2);
+                    strength_v_demo.SetValue(Grid.ColumnProperty, 1);
+                    strength_v_demo.SetValue(Grid.ColumnSpanProperty, 2);
 
-                    vStrength.SetValue(Grid.ColumnSpanProperty, 2);
+                    vTQPlot.SetValue(Grid.ColumnSpanProperty, 2);
+                    Thickness margin = vTQPlot.Margin;
+                    margin.Left = 100;
+                    margin.Right = 100;
+                    vTQPlot.Margin = margin;
+
                     emgStack.Visibility = Visibility.Collapsed;
                 }
             }
@@ -793,18 +843,6 @@ namespace IntelliStretch.UI
                     }
                 }
             }
-        }
-
-        private void btnFlexion_Click(object sender, RoutedEventArgs e)
-        {
-            btnFlexion.IsChecked = true;
-            btnExtension.IsChecked = false;
-        }
-
-        private void btnExtension_Click(object sender, RoutedEventArgs e)
-        {
-            btnFlexion.IsChecked = false;
-            btnExtension.IsChecked = true;
         }
     }
 }

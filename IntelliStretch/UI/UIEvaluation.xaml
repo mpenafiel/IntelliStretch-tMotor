@@ -8,6 +8,7 @@
     <UserControl.Resources>        
         <ResourceDictionary>
             <value_converters:BoolVisibilityConverter x:Key="bvConverter" />
+            <value_converters:BoolScaleConverter x:Key="boolScaleConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Resources/TabPanelStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -130,100 +131,7 @@
                                 <ComboBoxItem>50</ComboBoxItem>
                                 <ComboBoxItem>100</ComboBoxItem>
                             </ComboBox>
-                        </Grid>                        
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Visibility="{Binding IsSelected, ElementName=tabStrength, Converter={StaticResource bvConverter}, ConverterParameter=true}">
-                    <TextBlock Text="Measure" Margin="15,10,0,0" VerticalAlignment="Bottom" FontSize="28" Foreground="{DynamicResource PrimaryTextColor}"/>
-                    <Rectangle Height="1" Fill="{DynamicResource PrimaryTextColor}" Margin="10,0"/>
-
-                    <StackPanel Margin="40,10,20,10">
-                        <ToggleButton x:Name="btnFlexion"
-                                      Margin="0,0,0,10"
-                                        Content="Dorsiflexion"
-                                        FontSize="20"
-                                        Height="40"
-                                        Width="160"
-                                        IsChecked="True"
-                                        Click="btnFlexion_Click">
-                            <ToggleButton.Style>
-                                <Style TargetType="ToggleButton">
-                                    <Setter Property="Background" Value="LightGray"/>
-                                    <Setter Property="BorderBrush" Value="Black"/>
-                                    <Setter Property="Foreground" Value="Black"/>
-                                    <Setter Property="FontWeight" Value="Regular"/>
-                                    <Setter Property="Padding" Value="5"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="ToggleButton">
-                                                <Border Background="{TemplateBinding Background}"
-                                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                                    BorderThickness="1">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="Gray"/>
-                                        </Trigger>
-                                        <Trigger Property="IsChecked" Value="True">
-                                            <Setter Property="Background" Value="Green"/>
-                                            <Setter Property="Foreground" Value="White"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-
-                                    <Style.Resources>
-                                        <Style TargetType="Border">
-                                            <Setter Property="CornerRadius" Value="5" />
-                                        </Style>
-                                    </Style.Resources>
-                                </Style>
-                            </ToggleButton.Style>
-                        </ToggleButton>
-                        <ToggleButton x:Name="btnExtension"
-                                        Content="Plantarflexion"
-                                        FontSize="20"
-                                        Height="40"
-                                        Width="160"
-                                        Click="btnExtension_Click">
-                            <ToggleButton.Style>
-                                <Style TargetType="ToggleButton">
-                                    <Setter Property="Background" Value="LightGray"/>
-                                    <Setter Property="BorderBrush" Value="Black"/>
-                                    <Setter Property="Foreground" Value="Black"/>
-                                    <Setter Property="FontWeight" Value="Regular"/>
-                                    <Setter Property="Padding" Value="5"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="ToggleButton">
-                                                <Border Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="1">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="Gray"/>
-                                        </Trigger>
-                                        <Trigger Property="IsChecked" Value="True">
-                                            <Setter Property="Background" Value="Green"/>
-                                            <Setter Property="Foreground" Value="White"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-
-                                    <Style.Resources>
-                                        <Style TargetType="Border">
-                                            <Setter Property="CornerRadius" Value="5" />
-                                        </Style>
-                                    </Style.Resources>
-                                </Style>
-                            </ToggleButton.Style>
-                        </ToggleButton>
+                        </Grid>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Visibility="{Binding IsSelected, ElementName=tabStrength, Converter={StaticResource bvConverter}, ConverterParameter=true}">
@@ -351,24 +259,49 @@
                                 Grid.Row="0"
                                 Grid.RowSpan="2"
                                 Grid.Column="0"
-                                Grid.ColumnSpan="2"
+                                Grid.ColumnSpan="1"
                                 Margin="0, 20" 
                                 HorizontalAlignment="Center" 
                                 FlexionName="{Binding FlexionName, ElementName=uiEvaluation}"
                                 ExtensionName="{Binding ExtensionName, ElementName=uiEvaluation}"/>
 
-                            <Grid Grid.Row="0" Grid.Column="2" x:Name="arom_v_flexionGrid" Margin="5,25"  HorizontalAlignment="Center" Cursor="Arrow">
 
-                                <Border Grid.Row="0" Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}"/>
-                                <Image Grid.Row="0" Source="{Binding Path=FlexionImage, ElementName=uiEvaluation}"/>
-
-                            </Grid>
-
-                            <Grid Grid.Row="1" Grid.Column="2" x:Name="arom_v_extensionGrid" Margin="5,25"  HorizontalAlignment="Center" Cursor="Arrow">
+                            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" x:Name="arom_v_demo" Margin="5,25"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Cursor="Arrow">
                                 <Border Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}"/>
-                                <Image Source="{Binding Path=ExtensionImage, ElementName=uiEvaluation}"/>
+                                <Grid Height="300" Width="400" x:Name="arom_demoAnkle" Visibility="Visible">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.63*" />
+                                        <RowDefinition Height="0.12*" />
+                                        <RowDefinition Height="0.10*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.10*"/>
+                                        <ColumnDefinition Width="0.20*"/>
+                                        <ColumnDefinition Width="0.12*"/>
+                                        <ColumnDefinition Width="0.08*"/>
+                                        <ColumnDefinition Width="0.10*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="../images/3D_grid.png" Stretch="Uniform" Grid.RowSpan="3" Grid.ColumnSpan="5" VerticalAlignment="Bottom" />
+                                    <Image x:Name="imgLeg" Source="../images/leg_part.png" Stretch="Uniform" Grid.Column="2" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+                                    <Image x:Name="imgFoot" Source="../images/shoe.png" Stretch="Uniform" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2"  />
+                                </Grid>
+                                <Grid Height="300" x:Name="arom_demoWrist" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+                                    <Grid.RenderTransform>
+                                        <ScaleTransform ScaleX="{Binding IsReflected, ElementName=uiStretching, Converter={StaticResource boolScaleConverter}, Mode=OneWay}" ScaleY="1" />
+                                    </Grid.RenderTransform>
+                                    <Image Source="../images/3D_grid.png" Stretch="Uniform" Margin="0,150,0,0"/>
+                                    <Image x:Name="imgWrist" Source="../images/Wrist_hand_part.png" Margin="10" Stretch="Uniform" />
+                                </Grid>
                             </Grid>
 
+                            <ScottPlot:WpfPlot
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="2"
+                                x:Name="vAROMPlot"
+                                Background="Transparent"
+                                Margin="100,20,100,20"
+                                FontSize="24"/>
 
                         </Grid>
                         <Grid x:Name="hAROMLayout" Grid.Row="0">
@@ -430,24 +363,45 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="300"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition Width="400"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                
                             </Grid.ColumnDefinitions>
 
-                            <Grid Grid.Row="0" Grid.Column="2" x:Name="strength_v_FlexionGrid" Margin="5,25"  HorizontalAlignment="Center" Cursor="Arrow">
+                            <Grid Height="300" Width="400" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="strength_v_demo" HorizontalAlignment="Center" VerticalAlignment="Bottom" Cursor="Arrow">
                                 <Border Grid.Row="0" Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}"/>
-                                <Image Grid.Row="0" Source="{Binding Path=FlexionImage, ElementName=uiEvaluation}"/>
+                                <Grid  x:Name="str_demoAnkle" Visibility="Visible">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.63*" />
+                                        <RowDefinition Height="0.12*" />
+                                        <RowDefinition Height="0.10*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.10*"/>
+                                        <ColumnDefinition Width="0.20*"/>
+                                        <ColumnDefinition Width="0.12*"/>
+                                        <ColumnDefinition Width="0.08*"/>
+                                        <ColumnDefinition Width="0.10*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="../images/3D_grid.png" Stretch="Uniform" Grid.RowSpan="3" Grid.ColumnSpan="5" VerticalAlignment="Bottom" />
+                                    <Image x:Name="imgLeg2" Source="../images/leg_part.png" Stretch="Uniform" Grid.Column="2" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+                                    <Image x:Name="imgFoot2" Source="../images/shoe.png" Stretch="Uniform" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2"  />
+                                </Grid>
 
-                            </Grid>
-
-                            <Grid Grid.Row="1" Grid.Column="2" x:Name="strength_v_ExtensionGrid" Margin="5,25"  HorizontalAlignment="Center" Cursor="Arrow">
-                                <Border Grid.Row="0" Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}"/>
-                                <Image Grid.Row="1" Source="{Binding Path=ExtensionImage, ElementName=uiEvaluation}" Visibility="Visible"/>
                             </Grid>
 
                             <ScottPlot:WpfPlot
                                 Grid.Row="0"
                                 Grid.Column="1"
+                                Grid.ColumnSpan="2"
+                                x:Name="vTQPlot"
+                                Background="Transparent"
+                                Margin="100,20,100,20"
+                                FontSize="24"/>
+
+                            <ScottPlot:WpfPlot
+                                Grid.Row="0"
+                                Grid.Column="2"
                                 x:Name="vPlot1"
                                 Background="Transparent"
                                 FontSize="24"
@@ -455,17 +409,17 @@
                                 Visibility="Collapsed"/>
                             <ScottPlot:WpfPlot
                                 Grid.Row="1" 
-                                Grid.Column="1"
+                                Grid.Column="2"
                                 x:Name="vPlot2" 
                                 Background="Transparent"
                                 FontSize="24" 
                                 Margin="20,20,0,20"
                                 Visibility="Collapsed"/>
+                            
                             <UserControls:VerticalRangeFinder 
                                 Grid.Row="0"
                                 Grid.RowSpan="2" 
                                 Grid.Column="0" 
-                                Grid.ColumnSpan="2"
                                 x:Name="vStrength" 
                                 Margin="0, 20" 
                                 HorizontalAlignment="Center"
