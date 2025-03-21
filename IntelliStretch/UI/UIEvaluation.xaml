@@ -289,7 +289,7 @@
                                     <Grid.RenderTransform>
                                         <ScaleTransform ScaleX="{Binding IsReflected, ElementName=uiStretching, Converter={StaticResource boolScaleConverter}, Mode=OneWay}" ScaleY="1" />
                                     </Grid.RenderTransform>
-                                    <Image Source="../images/3D_grid.png" Stretch="Uniform" Margin="0,150,0,0" />
+                                    <Image Source="../images/3D_grid.png" Stretch="Uniform" Margin="0,150,0,0"/>
                                     <Image x:Name="imgWrist" Source="../images/Wrist_hand_part.png" Margin="10" Stretch="Uniform" />
                                 </Grid>
                             </Grid>

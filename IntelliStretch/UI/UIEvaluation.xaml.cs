@@ -26,12 +26,21 @@ namespace IntelliStretch.UI
         #region Plot Components
         private ScottPlot.Plottables.DataStreamer Streamer1 = null;
         private ScottPlot.Plottables.DataStreamer Streamer2 = null;
+
+        private ScottPlot.Plottables.DataStreamer TorqueStreamer = null;
+        private ScottPlot.Plottables.DataStreamer PositionStreamer = null;
+
         private DataStreamer[] dataStreamers = new DataStreamer[2];
+
+        private DataStreamer[] torqueStreamer = new DataStreamer[1];
 
         private WpfPlot[] plots = new WpfPlot[2];
 
         private ScottPlot.Plottables.VerticalLine VLine1;
         private ScottPlot.Plottables.VerticalLine VLine2;
+
+        private ScottPlot.Plottables.VerticalLine tqVline;
+        private ScottPlot.Plottables.VerticalLine posVline;
         #endregion
 
         #region NI DAQ
@@ -72,6 +81,25 @@ namespace IntelliStretch.UI
                     hPlot1.Refresh();
                     hPlot2.Refresh();
                 }
+
+                if (TorqueStreamer != null && TorqueStreamer.HasNewData)
+                {
+                    tqVline.IsVisible = TorqueStreamer.Renderer is ScottPlot.DataViews.Wipe;
+                    tqVline.Position = TorqueStreamer.Data.NextIndex * TorqueStreamer.Data.SamplePeriod + TorqueStreamer.Data.OffsetX;
+
+                    vTQPlot.Refresh();
+                    // hTQPlot.Refresh();
+                }
+
+                if (PositionStreamer != null && PositionStreamer.HasNewData)
+                {
+                    posVline.IsVisible = PositionStreamer.Renderer is ScottPlot.DataViews.Wipe;
+                    posVline.Position = PositionStreamer.Data.NextIndex * PositionStreamer.Data.SamplePeriod + PositionStreamer.Data.OffsetX;
+
+                    vAROMPlot.Refresh();
+                    // hTQPlot.Refresh();
+                }
+
             };
         }
 
@@ -221,8 +249,14 @@ namespace IntelliStretch.UI
             Streamer1 = plot1.Plot.Add.DataStreamer(3000);
             Streamer2 = plot2.Plot.Add.DataStreamer(3000);
 
+            TorqueStreamer = vTQPlot.Plot.Add.DataStreamer(3000);
+            PositionStreamer = vAROMPlot.Plot.Add.DataStreamer(3000);
+
             Streamer1.Color = ScottPlot.Color.FromHex("#e5ff24"); //#e5ff24
             Streamer2.Color = ScottPlot.Color.FromHex("#e5ff24"); //#e5ff24  #348EF6
+
+            TorqueStreamer.Color = ScottPlot.Color.FromHex("#e5ff24");
+            PositionStreamer.Color = ScottPlot.Color.FromHex("#e5ff24");
 
             dataStreamers[0] = Streamer1;
             dataStreamers[1] = Streamer2;
@@ -234,9 +268,14 @@ namespace IntelliStretch.UI
             plots[1] = plot2;
 
             VLine1 = plot1.Plot.Add.VerticalLine(0, 2, ScottPlot.Colors.Red);
-            VLine1.LineWidth = 5;
+            VLine1.LineWidth = 3;
             VLine2 = plot2.Plot.Add.VerticalLine(0, 2, ScottPlot.Colors.Red);
-            VLine2.LineWidth = 5;
+            VLine2.LineWidth = 3;
+
+            tqVline = vTQPlot.Plot.Add.VerticalLine(0,2, ScottPlot.Colors.Red);
+            tqVline.LineWidth = 3;
+            posVline = vAROMPlot.Plot.Add.VerticalLine(0,2,ScottPlot.Colors.Red);
+            posVline.LineWidth = 3;
 
             plot1.Plot.Axes.ContinuouslyAutoscale = false;
             Streamer1.ManageAxisLimits = true;
