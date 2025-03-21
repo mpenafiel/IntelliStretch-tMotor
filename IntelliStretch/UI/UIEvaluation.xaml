@@ -259,16 +259,16 @@
                                 Grid.Row="0"
                                 Grid.RowSpan="2"
                                 Grid.Column="0"
-                                Grid.ColumnSpan="2"
+                                Grid.ColumnSpan="1"
                                 Margin="0, 20" 
                                 HorizontalAlignment="Center" 
                                 FlexionName="{Binding FlexionName, ElementName=uiEvaluation}"
                                 ExtensionName="{Binding ExtensionName, ElementName=uiEvaluation}"/>
 
 
-                            <Grid Grid.RowSpan="2" Grid.Column="2" x:Name="arom_v_demo" Margin="5,25"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Cursor="Arrow">
+                            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" x:Name="arom_v_demo" Margin="5,25"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Cursor="Arrow">
                                 <Border Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}"/>
-                                <Grid Height="300" x:Name="arom_demoAnkle" Visibility="Visible">
+                                <Grid Height="300" Width="400" x:Name="arom_demoAnkle" Visibility="Visible">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="0.63*" />
                                         <RowDefinition Height="0.12*" />
@@ -294,6 +294,14 @@
                                 </Grid>
                             </Grid>
 
+                            <ScottPlot:WpfPlot
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="2"
+                                x:Name="vAROMPlot"
+                                Background="Transparent"
+                                Margin="100,20,100,20"
+                                FontSize="24"/>
 
                         </Grid>
                         <Grid x:Name="hAROMLayout" Grid.Row="0">
@@ -355,13 +363,14 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="300"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition Width="400"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                
                             </Grid.ColumnDefinitions>
 
-                            <Grid Grid.RowSpan="2" Grid.Column="2" x:Name="strength_v_FlexionGrid" Margin="5,25"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Cursor="Arrow">
+                            <Grid Height="300" Width="400" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="strength_v_demo" HorizontalAlignment="Center" VerticalAlignment="Bottom" Cursor="Arrow">
                                 <Border Grid.Row="0" Background="#E6000000" BorderThickness="5" CornerRadius="5" BorderBrush="{DynamicResource SecondaryGrayColor}"/>
-                                <Grid Height="300" x:Name="str_demoAnkle" Visibility="Visible">
+                                <Grid  x:Name="str_demoAnkle" Visibility="Visible">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="0.63*" />
                                         <RowDefinition Height="0.12*" />
@@ -384,6 +393,15 @@
                             <ScottPlot:WpfPlot
                                 Grid.Row="0"
                                 Grid.Column="1"
+                                Grid.ColumnSpan="2"
+                                x:Name="vTQPlot"
+                                Background="Transparent"
+                                Margin="100,20,100,20"
+                                FontSize="24"/>
+
+                            <ScottPlot:WpfPlot
+                                Grid.Row="0"
+                                Grid.Column="2"
                                 x:Name="vPlot1"
                                 Background="Transparent"
                                 FontSize="24"
@@ -391,17 +409,17 @@
                                 Visibility="Collapsed"/>
                             <ScottPlot:WpfPlot
                                 Grid.Row="1" 
-                                Grid.Column="1"
+                                Grid.Column="2"
                                 x:Name="vPlot2" 
                                 Background="Transparent"
                                 FontSize="24" 
                                 Margin="20,20,0,20"
                                 Visibility="Collapsed"/>
+                            
                             <UserControls:VerticalRangeFinder 
                                 Grid.Row="0"
                                 Grid.RowSpan="2" 
                                 Grid.Column="0" 
-                                Grid.ColumnSpan="2"
                                 x:Name="vStrength" 
                                 Margin="0, 20" 
                                 HorizontalAlignment="Center"

@@ -212,8 +212,11 @@ namespace IntelliStretch.UI
 
         private void InitializePlots(ScottPlot.WPF.WpfPlot plot1, ScottPlot.WPF.WpfPlot plot2)
         {
-            StylePlot(plot1);
-            StylePlot(plot2);
+            StylePlot(plot1, "", "Amplitude (mv)");
+            StylePlot(plot2, "", "Amplitude (mv)");
+
+            StylePlot(vTQPlot,"", "Torque (Nm)");
+            StylePlot(vAROMPlot,"", "Position (Degrees)");
 
             Streamer1 = plot1.Plot.Add.DataStreamer(3000);
             Streamer2 = plot2.Plot.Add.DataStreamer(3000);
@@ -245,7 +248,7 @@ namespace IntelliStretch.UI
             plot2.Plot.Axes.SetLimitsY(-3, 3);
         }
 
-        public void StylePlot(ScottPlot.WPF.WpfPlot plot)
+        public void StylePlot(ScottPlot.WPF.WpfPlot plot, string title, string yLabel)
         {
             
             plot.Plot.FigureBackground.Color = ScottPlot.Colors.Transparent;
@@ -284,7 +287,9 @@ namespace IntelliStretch.UI
             leftAxis.TickLabelStyle.FontSize = 20;
             leftAxis.FrameLineStyle.Width = 3;
             leftAxis.Color(ScottPlot.Colors.White);
-            leftAxis.LabelText = "Amplitude (mV)";
+            leftAxis.LabelText = yLabel;
+            leftAxis.LabelFontSize = 36;
+            plot.Plot.Title(title);
 
             // Style bottom axis
             bottomAxis.TickLabelStyle.IsVisible = false;
@@ -299,7 +304,7 @@ namespace IntelliStretch.UI
 
         private void Update_UI(IntelliSerialPort.AnkleData newAnkleData) => this.Dispatcher.Invoke(new Action(delegate
                                                                                      {
-                                                                                         // Motor torque value does not have polarity, assign polatiry within UI                                                                                         
+                                                                                         // Motor polarity is read from the force sensor                                                                                        
                                                                                          currentUI.Update_UI(newAnkleData);
 
                                                                                      }));
@@ -717,10 +722,16 @@ namespace IntelliStretch.UI
                     vPlot1.Visibility = Visibility.Visible;
                     vPlot2.Visibility = Visibility.Visible;
 
-                    strength_v_FlexionGrid.SetValue(Grid.ColumnProperty, 2);
-                    strength_v_ExtensionGrid.SetValue(Grid.ColumnProperty, 2);
+                    strength_v_demo.SetValue(Grid.ColumnProperty, 1);
+                    strength_v_demo.SetValue(Grid.ColumnSpanProperty, 1);
 
-                    vStrength.SetValue(Grid.ColumnSpanProperty, 1);
+                    vTQPlot.SetValue(Grid.ColumnSpanProperty, 1);
+                    Thickness margin = vTQPlot.Margin;
+                    margin.Left = 0;
+                    margin.Right = 0;
+                    vTQPlot.Margin = margin;
+
+
                     emgStack.Visibility = Visibility.Visible;
                 }
                 else
@@ -728,10 +739,15 @@ namespace IntelliStretch.UI
                     vPlot1.Visibility = Visibility.Collapsed;
                     vPlot2.Visibility = Visibility.Collapsed;
 
-                    strength_v_FlexionGrid.SetValue(Grid.ColumnProperty, 2);
-                    strength_v_ExtensionGrid.SetValue(Grid.ColumnProperty, 2);
+                    strength_v_demo.SetValue(Grid.ColumnProperty, 1);
+                    strength_v_demo.SetValue(Grid.ColumnSpanProperty, 2);
 
-                    vStrength.SetValue(Grid.ColumnSpanProperty, 2);
+                    vTQPlot.SetValue(Grid.ColumnSpanProperty, 2);
+                    Thickness margin = vTQPlot.Margin;
+                    margin.Left = 100;
+                    margin.Right = 100;
+                    vTQPlot.Margin = margin;
+
                     emgStack.Visibility = Visibility.Collapsed;
                 }
             }
